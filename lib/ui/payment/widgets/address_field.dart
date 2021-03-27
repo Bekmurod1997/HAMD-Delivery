@@ -1,15 +1,9 @@
-import 'package:HAMD/constants/colors.dart';
-import 'package:HAMD/constants/fontSize.dart';
 import 'package:HAMD/constants/fonts.dart';
-import 'package:HAMD/ui/auth/sms_screen.dart';
-import 'package:HAMD/ui/user/user_screen.dart';
+import 'package:HAMD/ui/masks/mask_format.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_masked_text/flutter_masked_text.dart';
+
 import 'package:flutter_svg/flutter_svg.dart';
-
-import 'package:get/get.dart';
-
-final _formKey = GlobalKey<FormState>();
 
 class AddressField extends StatefulWidget {
   int sendIndex;
@@ -19,13 +13,12 @@ class AddressField extends StatefulWidget {
 }
 
 class _AddressFieldState extends State<AddressField> {
-  var controllerHumo =
-      MaskedTextController(mask: '0000 0000 0000 0000', text: '9860');
-  var controllerUzcard =
-      MaskedTextController(mask: '0000 0000 0000 0000', text: '8600');
-  var controllerNumber =
-      MaskedTextController(mask: '000 00 000 00 00', text: '+998');
-  var controllerDate = MaskedTextController(mask: '00/00');
+  final _formKey = GlobalKey<FormState>();
+  TextEditingController uzCardController = TextEditingController();
+  TextEditingController humoController = TextEditingController();
+  TextEditingController dateController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+
   int selected = 0;
 
   @override
@@ -205,8 +198,11 @@ class _AddressFieldState extends State<AddressField> {
                         height: 14,
                       ),
                       TextFormField(
+                        inputFormatters: selected == 0
+                            ? [InputMask.maskUzCard]
+                            : [InputMask.maskHumo],
                         controller:
-                            selected == 0 ? controllerUzcard : controllerHumo,
+                            selected == 0 ? uzCardController : humoController,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                           filled: true,
@@ -270,7 +266,8 @@ class _AddressFieldState extends State<AddressField> {
                           Expanded(
                             flex: 3,
                             child: TextFormField(
-                              controller: controllerNumber,
+                              inputFormatters: [InputMask.maskPhoneNumber],
+                              controller: phoneController,
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
                                 filled: true,
@@ -302,7 +299,8 @@ class _AddressFieldState extends State<AddressField> {
                           Expanded(
                             flex: 1,
                             child: TextFormField(
-                              controller: controllerDate,
+                              inputFormatters: [InputMask.maskDate],
+                              controller: dateController,
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
                                 filled: true,

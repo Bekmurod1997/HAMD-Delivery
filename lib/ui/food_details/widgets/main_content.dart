@@ -1,7 +1,7 @@
 import 'package:HAMD/constants/fonts.dart';
 import 'package:HAMD/ui/food_details/widgets/item_image.dart';
 import 'package:HAMD/ui/food_details/widgets/item_position.dart';
-import 'package:HAMD/ui/food_details/widgets/item_title.dart';
+
 import 'package:HAMD/ui/food_details/widgets/price_and_button.dart';
 import 'package:HAMD/ui/food_details/widgets/rating_and_time.dart';
 import 'package:flutter/material.dart';

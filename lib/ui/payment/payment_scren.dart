@@ -1,13 +1,13 @@
 import 'package:HAMD/constants/colors.dart';
-import 'package:HAMD/constants/fontSize.dart';
+
 import 'package:HAMD/constants/fonts.dart';
-import 'package:HAMD/ui/auth/sms_screen.dart';
+
 import 'package:HAMD/ui/componants/header.dart';
 import 'package:HAMD/ui/pamentStatus/payment_status_screen.dart';
 import 'package:HAMD/ui/payment/widgets/address_field.dart';
-import 'package:HAMD/ui/payment/widgets/custom_radio_buttons.dart';
+
 import 'package:HAMD/ui/payment/widgets/payment_card.dart';
-import 'package:HAMD/ui/payment/widgets/payment_types.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

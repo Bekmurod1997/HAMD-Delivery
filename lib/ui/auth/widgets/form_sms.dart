@@ -1,22 +1,50 @@
 import 'package:HAMD/constants/colors.dart';
-import 'package:HAMD/constants/fontSize.dart';
 import 'package:HAMD/constants/fonts.dart';
+import 'package:HAMD/services/code_confirm.dart';
 import 'package:HAMD/ui/home/home_screen.dart';
-import 'package:HAMD/ui/user/user_screen.dart';
+import 'package:HAMD/utils/my_prefs.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../sms_screen.dart';
-import 'package:flutter_masked_text/flutter_masked_text.dart';
+class FormSms extends StatefulWidget {
+  @override
+  _FormSmsState createState() => _FormSmsState();
+}
 
-final _formKey = GlobalKey<FormState>();
+class _FormSmsState extends State<FormSms> {
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController codeController = TextEditingController();
+  void validateAndSave() async {
+    final FormState form = _formKey.currentState;
+    if (form.validate()) {
+      // showDialog(
+      //   context: context,
+      //   barrierDismissible: false,
+      //   builder: (context) {
+      //     return Dialog(
+      //       child: new Row(
+      //         mainAxisSize: MainAxisSize.min,
+      //         children: [
+      //           new CircularProgressIndicator(),
+      //           new Text("Loading"),
+      //         ],
+      //       ),
+      //     );
+      //   },
+      // );
 
-class FormSms extends StatelessWidget {
+      if (codeController.text == MyPref.code) {
+        ConfirmCode.codeConfirmFunction(code: codeController.text);
+        Get.offAll(HomeScreen());
+      } else {
+        print('hatolik');
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
-
-    String _phoneSms;
 
     return Form(
       key: _formKey,
@@ -43,6 +71,7 @@ class FormSms extends StatelessWidget {
                   ),
                   Flexible(
                     child: TextFormField(
+                      controller: codeController,
                       // autofocus: true,
                       keyboardType: TextInputType.number,
 
@@ -62,7 +91,14 @@ class FormSms extends StatelessWidget {
                         color: Colors.black,
                         fontSize: 16.0,
                       ),
-                      onSaved: (input) => _phoneSms = input,
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return "Value can not be empty";
+                        } else if (value.length < 6) {
+                          return 'Value can not be less than 13';
+                        }
+                        return null;
+                      },
                     ),
                   ),
                 ],
@@ -77,7 +113,7 @@ class FormSms extends StatelessWidget {
               child: RaisedButton(
                 elevation: 0,
                 color: ColorPalatte.strongRedColor,
-                onPressed: () => Get.to(HomeScreen()),
+                onPressed: () => validateAndSave(),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15)),
                 child: Text(

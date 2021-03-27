@@ -1,15 +1,13 @@
 import 'dart:ui';
 
 import 'package:HAMD/constants/colors.dart';
-import 'package:HAMD/constants/fontSize.dart';
+
 import 'package:HAMD/constants/fonts.dart';
 import 'package:HAMD/ui/auth/auth_screen.dart';
 import 'package:HAMD/ui/landing/pageview/widgets/pageview_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 
 class MyPageView extends StatefulWidget {
   @override

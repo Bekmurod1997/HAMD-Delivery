@@ -1,22 +1,22 @@
+import 'package:HAMD/ObxHelper/profile_controller.dart';
 import 'package:HAMD/constants/fonts.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class UserWelcomeItem extends StatelessWidget {
+  final UserProfileController ppController = Get.find<UserProfileController>();
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 26),
       child: Container(
         width: double.infinity,
-        height: screenSize.height * 0.2,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(25),
         ),
         child: Padding(
-          padding: EdgeInsets.all(20.0),
+          padding: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,7 +36,7 @@ class UserWelcomeItem extends StatelessWidget {
                           ),
                           children: [
                             TextSpan(
-                              text: 'Дмитрий!',
+                              text: ppController.profileList.first.name ?? '',
                               style: FontStyles.boldStyle(
                                 fontSize: 22,
                                 fontFamily: 'Montserrat',
@@ -45,6 +45,9 @@ class UserWelcomeItem extends StatelessWidget {
                             )
                           ]),
                     ),
+
+                    // print(ppController.profileList);
+
                     SizedBox(
                       height: 8,
                     ),
@@ -67,14 +70,12 @@ class UserWelcomeItem extends StatelessWidget {
               ),
               Expanded(
                 flex: 1,
-                child: Container(
-                    height: 50,
-                    width: 50,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      //color: Colors.yellow,
-                    ),
-                    child: Image.asset('assets/images/user.png')),
+                child: CircleAvatar(
+                    radius: 30.0,
+                    backgroundImage: NetworkImage(
+                      'http://hamd.loko.uz/' +
+                          ppController?.profileList?.first?.photo,
+                    )),
               ),
             ],
           ),

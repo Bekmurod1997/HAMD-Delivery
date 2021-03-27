@@ -1,6 +1,5 @@
 import 'package:HAMD/constants/fonts.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class Bill extends StatelessWidget {
   final int sendIndex;

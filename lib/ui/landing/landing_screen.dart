@@ -3,9 +3,7 @@ import 'package:HAMD/constants/fonts.dart';
 import 'package:HAMD/ui/landing/pageview/my_pageview.dart';
 import 'package:HAMD/ui/landing/widgets/language_choose.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import '../auth/auth_screen.dart';
+
 import 'package:get/get.dart';
 
 class LandingScreen extends StatelessWidget {

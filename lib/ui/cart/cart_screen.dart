@@ -1,15 +1,8 @@
 import 'package:HAMD/constants/colors.dart';
-import 'package:HAMD/constants/fontSize.dart';
-import 'package:HAMD/ui/auth/sms_screen.dart';
-import 'package:HAMD/ui/cart/widgets/bill.dart';
-import 'package:HAMD/ui/cart/widgets/order_button.dart';
-import 'package:HAMD/ui/cart/widgets/order_list.dart';
 import 'package:HAMD/ui/componants/header.dart';
-import 'package:HAMD/ui/payment/payment_scren.dart';
+
 import 'package:HAMD/ui/payment/widgets/custom_radio_buttons.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
 class CartScreen extends StatelessWidget {

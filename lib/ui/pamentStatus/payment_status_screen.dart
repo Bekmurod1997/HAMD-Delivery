@@ -1,6 +1,7 @@
 import 'package:HAMD/constants/colors.dart';
 import 'package:HAMD/constants/fonts.dart';
 import 'package:HAMD/custom-icons/hamd_icons.dart';
+import 'package:HAMD/ui/home/home_screen.dart';
 import 'package:HAMD/ui/pamentStatus/widgets/stages.dart';
 import 'package:flutter/material.dart';
 import 'package:HAMD/ui/componants/header.dart';
@@ -269,7 +270,9 @@ class PaymentStatusScreen extends StatelessWidget {
                         child: RaisedButton(
                           elevation: 0,
                           color: ColorPalatte.strongRedColor,
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.to(HomeScreen());
+                          },
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15)),
                           child: Text(

@@ -1,12 +1,10 @@
 import 'dart:ui';
 
 import 'package:HAMD/constants/colors.dart';
-import 'package:HAMD/constants/fontSize.dart';
 import 'package:HAMD/constants/fonts.dart';
 import 'package:HAMD/ui/auth/widgets/form_number.dart';
 import 'package:HAMD/ui/auth/widgets/welcome_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'widgets/logo_item.dart';
 
 class AuthScreen extends StatelessWidget {
