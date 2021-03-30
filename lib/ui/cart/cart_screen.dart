@@ -1,3 +1,4 @@
+import 'package:HAMD/ObxHelper/add_cart_controller.dart';
 import 'package:HAMD/constants/colors.dart';
 import 'package:HAMD/ui/componants/header.dart';
 
@@ -6,9 +7,11 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
 class CartScreen extends StatelessWidget {
+  final AddCartController addCartController = Get.find<AddCartController>();
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
+    var recievedIndex = Get.arguments;
 
     return Scaffold(
       backgroundColor: ColorPalatte.mainPageColor,

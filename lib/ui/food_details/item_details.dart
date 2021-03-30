@@ -114,6 +114,10 @@ class ItemDetails extends StatelessWidget {
                                       SizedBox(height: 20),
                                       Spacer(),
                                       PriceAndButton(
+                                        id: productByCategoryController
+                                            .productByCategoryList[
+                                                recievedIndex]
+                                            .id,
                                         price: productByCategoryController
                                             .productByCategoryList[
                                                 recievedIndex]

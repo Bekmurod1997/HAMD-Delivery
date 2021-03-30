@@ -1,3 +1,4 @@
+import 'package:HAMD/ObxHelper/add_cart_controller.dart';
 import 'package:HAMD/ObxHelper/all_products_controller.dart';
 import 'package:HAMD/ObxHelper/item_category_controller.dart';
 import 'package:HAMD/ObxHelper/product_by_category.dart';
@@ -35,6 +36,7 @@ class _MyAppState extends State<MyApp> {
       Get.put(AllProductsController());
   final ProductByCategoryController productByCategoryController =
       Get.put(ProductByCategoryController());
+  final AddCartController addCartController = Get.put(AddCartController());
   var secondToken = MyPref.secondToken ?? '';
 
   @override
