@@ -6,6 +6,7 @@ import 'package:HAMD/constants/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class CategoryButtons extends StatefulWidget {
   int selectedCategory;
   CategoryButtons({@required this.selectedCategory});

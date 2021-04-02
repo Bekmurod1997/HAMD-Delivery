@@ -1,6 +1,5 @@
 import 'package:http/http.dart' as http;
 import 'package:HAMD/models/item_details_model.dart';
-import 'package:HAMD/constants/api.dart';
 import 'dart:convert';
 
 class ItemDetails {

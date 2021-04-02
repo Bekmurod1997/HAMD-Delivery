@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class AddressField extends StatefulWidget {
-  int sendIndex;
+  //changed to final
+  final int sendIndex;
   AddressField({this.sendIndex});
   @override
   _AddressFieldState createState() => _AddressFieldState();
@@ -23,12 +24,6 @@ class _AddressFieldState extends State<AddressField> {
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-
-    String cartNumber;
-    String phoneNumber;
-    String exDate;
-
     var payments = [
       'assets/icons/uzcard.svg',
       'assets/images/humo.png',
@@ -225,7 +220,6 @@ class _AddressFieldState extends State<AddressField> {
                           fontFamily: 'Montserrat',
                           color: Color(0xff0E0900),
                         ),
-                        onSaved: (input) => cartNumber = input,
                       ),
                       SizedBox(height: 15),
                       Row(
@@ -290,7 +284,6 @@ class _AddressFieldState extends State<AddressField> {
                                 fontFamily: 'Montserrat',
                                 color: Color(0xff0E0900),
                               ),
-                              onSaved: (input) => cartNumber = input,
                             ),
                           ),
                           SizedBox(
@@ -323,7 +316,6 @@ class _AddressFieldState extends State<AddressField> {
                                 fontFamily: 'Montserrat',
                                 color: Color(0xff0E0900),
                               ),
-                              onSaved: (input) => cartNumber = input,
                             ),
                           ),
                         ],

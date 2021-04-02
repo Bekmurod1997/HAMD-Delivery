@@ -1,12 +1,9 @@
 import 'package:HAMD/ObxHelper/item_category_controller.dart';
 import 'package:HAMD/ObxHelper/profile_controller.dart';
 import 'package:HAMD/constants/colors.dart';
-
-import 'package:HAMD/ui/cart/cart_screen.dart';
 import 'package:HAMD/ui/home/widgets/category_buttons.dart';
 import 'package:HAMD/ui/home/widgets/food_card.dart';
 import 'package:HAMD/ui/home/widgets/user_welcome_item.dart';
-import 'package:HAMD/ui/user/user_screen.dart';
 import 'package:flutter/material.dart';
 import '../componants/header.dart';
 import 'package:get/get.dart';
@@ -38,8 +35,8 @@ class _HomeScreenState extends State<HomeScreen> {
               icon1Url: 'assets/icons/drawer.svg',
               title: 'Основное меню',
               icon2Url: 'assets/icons/shopping-cart.svg',
-              onpress1: () => Get.to(UserScreen()),
-              onpress2: () => Get.to(CartScreen()),
+              onpress1: () => Get.toNamed('/user-screen'),
+              onpress2: () => Get.toNamed('/cart-screen'),
             ),
             Expanded(
               child: Obx(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class Header extends StatelessWidget {
+  final bool hasAction;
   final String icon1Url;
   final String title;
   final String icon2Url;
@@ -17,10 +18,11 @@ class Header extends StatelessWidget {
     this.icon1Url,
     this.onpress1,
     this.title,
-    this.icon2Url,
-    this.onpress2,
     this.height1,
     this.width1,
+    this.hasAction = true,
+    this.icon2Url,
+    this.onpress2,
     this.height2,
     this.width2,
   });
@@ -50,15 +52,17 @@ class Header extends StatelessWidget {
                 color: Color(0xff222E54),
               ),
             ),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: Colors.white,
-              ),
-              child: IconButton(
-                  icon: mySvg(icon2Url, width: width1, height: height2),
-                  onPressed: onpress2),
-            ),
+            hasAction
+                ? Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.white,
+                    ),
+                    child: IconButton(
+                        icon: mySvg(icon2Url, width: width2, height: height2),
+                        onPressed: onpress2),
+                  )
+                : Container(),
           ],
         ),
       ),

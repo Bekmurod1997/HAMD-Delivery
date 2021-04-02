@@ -1,11 +1,11 @@
 import 'package:HAMD/ObxHelper/all_products_controller.dart';
 import 'package:HAMD/ObxHelper/product_by_category.dart';
 import 'package:HAMD/constants/fonts.dart';
-import 'package:HAMD/ui/food_details/item_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class FoodCard extends StatefulWidget {
   int selectedCategory;
   FoodCard({@required this.selectedCategory});
@@ -47,7 +47,7 @@ class _FoodCardState extends State<FoodCard> {
                     print('itemindex');
                     print(productByCategoryController
                         .productByCategoryList[index].id);
-                    Get.to(ItemDetails(), arguments: index);
+                    Get.toNamed('/product-detail-screen', arguments: index);
                   },
                   child: Padding(
                     padding: index == 0

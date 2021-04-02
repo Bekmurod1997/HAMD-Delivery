@@ -1,7 +1,6 @@
 import 'package:HAMD/constants/colors.dart';
 import 'package:HAMD/constants/fonts.dart';
 import 'package:HAMD/custom-icons/hamd_icons.dart';
-import 'package:HAMD/ui/home/home_screen.dart';
 import 'package:HAMD/ui/pamentStatus/widgets/stages.dart';
 import 'package:flutter/material.dart';
 import 'package:HAMD/ui/componants/header.dart';
@@ -9,6 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
+// ignore: must_be_immutable
 class PaymentStatusScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
 
@@ -90,6 +90,7 @@ class PaymentStatusScreen extends StatelessWidget {
                     filledStars = value.toInt();
                     filledStars > 0
                         ? _secondSnackBar(context, filledStars)
+                        // ignore: unnecessary_statements
                         : null;
                   },
                 ),
@@ -271,7 +272,7 @@ class PaymentStatusScreen extends StatelessWidget {
                           elevation: 0,
                           color: ColorPalatte.strongRedColor,
                           onPressed: () {
-                            Get.to(HomeScreen());
+                            Get.toNamed('/home-screen');
                           },
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15)),

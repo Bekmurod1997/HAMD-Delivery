@@ -1,9 +1,9 @@
-class PaymentType {
+class PaymentTypeModel {
   List<Data> data;
 
-  PaymentType({this.data});
+  PaymentTypeModel({this.data});
 
-  PaymentType.fromJson(Map<String, dynamic> json) {
+  PaymentTypeModel.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
       data = new List<Data>();
       json['data'].forEach((v) {

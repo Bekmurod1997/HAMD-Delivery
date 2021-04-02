@@ -1,9 +1,10 @@
 import 'package:HAMD/constants/colors.dart';
 
 import 'package:HAMD/constants/fonts.dart';
+import 'package:HAMD/services/order.dart';
 
 import 'package:HAMD/ui/componants/header.dart';
-import 'package:HAMD/ui/pamentStatus/payment_status_screen.dart';
+
 import 'package:HAMD/ui/payment/widgets/address_field.dart';
 
 import 'package:HAMD/ui/payment/widgets/payment_card.dart';
@@ -14,11 +15,9 @@ import 'package:get/get.dart';
 class PaymentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var recievedIndex = Get.arguments;
     final screenSize = MediaQuery.of(context).size;
-    final _formKey = GlobalKey<FormState>();
 
-    String _addressField;
-    int recievedIndex = Get.arguments;
     print('recieved index is: $recievedIndex');
     return Scaffold(
       backgroundColor: ColorPalatte.mainPageColor,
@@ -40,13 +39,13 @@ class PaymentScreen extends StatelessWidget {
               itemBuilder: (context, index) => Column(
                 children: [
                   PaymentCard(
-                    sendIndex: recievedIndex,
+                    sendIndex: recievedIndex[0],
                   ),
                   SizedBox(height: 32),
                   //CustomRadioButtons(),
                   SizedBox(height: 32),
                   AddressField(
-                    sendIndex: recievedIndex,
+                    sendIndex: recievedIndex[0],
                   ),
                   SizedBox(height: 32),
                   // PaymentTypes(),
@@ -56,7 +55,15 @@ class PaymentScreen extends StatelessWidget {
                     child: RaisedButton(
                       elevation: 0,
                       color: Color(0xff9F111B),
-                      onPressed: () => Get.to(PaymentStatusScreen()),
+                      onPressed: () {
+                        var delivery = 12;
+                        if (recievedIndex == 1) {
+                          delivery = 13;
+                        }
+                        Order.makeOrders(
+                            address: recievedIndex[1], deliveryType: delivery);
+                        // Get.toNamed('/payment-status-screen');
+                      },
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15)),
                       child: Text(

@@ -1,6 +1,5 @@
 import 'package:HAMD/constants/colors.dart';
 import 'package:HAMD/constants/fonts.dart';
-import 'package:HAMD/ui/auth/widgets/form_number.dart';
 import 'package:HAMD/ui/auth/widgets/form_sms.dart';
 import 'package:HAMD/ui/auth/widgets/logo_item.dart';
 import 'package:HAMD/ui/auth/widgets/sms_text_item.dart';

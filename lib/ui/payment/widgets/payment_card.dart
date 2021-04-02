@@ -1,6 +1,5 @@
 import 'package:HAMD/constants/fonts.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class PaymentCard extends StatelessWidget {
   final int sendIndex;
@@ -13,7 +12,7 @@ class PaymentCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Container(
         height:
-            sendIndex == 1 ? screenSize.height * .20 : screenSize.height * 0.23,
+            sendIndex == 1 ? screenSize.height * 0.23 : screenSize.height * .22,
         width: screenSize.width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
@@ -58,7 +57,7 @@ class PaymentCard extends StatelessWidget {
                 ],
               ),
               sendIndex == 1 ? Container() : SizedBox(height: 12),
-              sendIndex == 1
+              sendIndex == 2
                   ? Container()
                   : Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

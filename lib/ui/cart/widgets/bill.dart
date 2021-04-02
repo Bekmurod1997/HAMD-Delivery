@@ -1,15 +1,36 @@
+import 'package:HAMD/ObxHelper/cart_list_controller.dart';
 import 'package:HAMD/constants/fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class Bill extends StatelessWidget {
+class Bill extends StatefulWidget {
   final int sendIndex;
   Bill({this.sendIndex});
+
+  @override
+  _BillState createState() => _BillState();
+}
+
+class _BillState extends State<Bill> {
+  final CartListController cartListController = Get.find<CartListController>();
+
+  int sum = 0;
+  @override
+  void initState() {
+    for (var i = 0; i < cartListController.allCartList.length; i++) {
+      setState(() {
+        sum = sum + cartListController.allCartList[i].totalPrice;
+      });
+    }
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     return Container(
       width: screenSize.width * 0.86,
-      height: sendIndex == 1 ? 110 : 150,
+      height: widget.sendIndex == 2 ? 110 : 150,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
         color: Colors.white,
@@ -33,7 +54,7 @@ class Bill extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '124 000',
+                  sum.toString(),
                   style: FontStyles.mediumStyle(
                     fontSize: 14,
                     fontFamily: 'Montserrat',
@@ -42,12 +63,12 @@ class Bill extends StatelessWidget {
                 ),
               ],
             ),
-            sendIndex == 1
+            widget.sendIndex == 2
                 ? Container()
                 : SizedBox(
                     height: 13,
                   ),
-            sendIndex == 1
+            widget.sendIndex == 2
                 ? Container()
                 : Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

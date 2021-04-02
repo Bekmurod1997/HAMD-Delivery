@@ -10,8 +10,8 @@ class CartScreen extends StatelessWidget {
   final AddCartController addCartController = Get.find<AddCartController>();
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-    var recievedIndex = Get.arguments;
+    // final screenSize = MediaQuery.of(context).size;
+    // var recievedIndex = Get.arguments;
 
     return Scaffold(
       backgroundColor: ColorPalatte.mainPageColor,

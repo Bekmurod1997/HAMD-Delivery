@@ -1,4 +1,3 @@
-import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:HAMD/models/item_details_model.dart';
 import 'dart:convert';

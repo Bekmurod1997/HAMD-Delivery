@@ -3,7 +3,6 @@ import 'package:HAMD/constants/colors.dart';
 import 'package:HAMD/constants/fonts.dart';
 import 'package:HAMD/ui/componants/header.dart';
 
-import 'package:HAMD/ui/user/widgets/edit_profile.dart';
 import 'package:HAMD/ui/user/widgets/my_orders.dart';
 import 'package:HAMD/ui/user/widgets/user_data_item.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +27,6 @@ class _UserScreenState extends State<UserScreen> {
   int selectedRadio;
 
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     selectedRadio = 1;
@@ -40,9 +38,6 @@ class _UserScreenState extends State<UserScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String cartNumber;
-    String phoneNumber;
-    String exDate;
     return Scaffold(
       backgroundColor: ColorPalatte.mainPageColor,
       body: Column(
@@ -52,7 +47,7 @@ class _UserScreenState extends State<UserScreen> {
             onpress1: () => Get.back(),
             title: 'Мой профиль',
             icon2Url: 'assets/icons/pencil.svg',
-            onpress2: () => Get.to(EditProfile()),
+            onpress2: () => Get.toNamed('/edit-profile-screen'),
             height2: 18,
             width2: 18,
           ),
@@ -374,7 +369,6 @@ class _UserScreenState extends State<UserScreen> {
                                       fontFamily: 'Montserrat',
                                       color: Color(0xff0E0900),
                                     ),
-                                    onSaved: (input) => cartNumber = input,
                                   ),
                                   SizedBox(height: 15),
                                   Row(
@@ -443,8 +437,6 @@ class _UserScreenState extends State<UserScreen> {
                                             fontFamily: 'Montserrat',
                                             color: Color(0xff0E0900),
                                           ),
-                                          onSaved: (input) =>
-                                              cartNumber = input,
                                         ),
                                       ),
                                       SizedBox(
@@ -479,8 +471,6 @@ class _UserScreenState extends State<UserScreen> {
                                             fontFamily: 'Montserrat',
                                             color: Color(0xff0E0900),
                                           ),
-                                          onSaved: (input) =>
-                                              cartNumber = input,
                                         ),
                                       ),
                                     ],

@@ -1,9 +1,9 @@
-class DeliveryType {
+class DeliveryTypeModel {
   List<Data> data;
 
-  DeliveryType({this.data});
+  DeliveryTypeModel({this.data});
 
-  DeliveryType.fromJson(Map<String, dynamic> json) {
+  DeliveryTypeModel.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
       data = new List<Data>();
       json['data'].forEach((v) {

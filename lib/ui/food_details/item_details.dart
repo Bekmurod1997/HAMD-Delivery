@@ -1,8 +1,6 @@
-import 'package:HAMD/ObxHelper/all_products_controller.dart';
 import 'package:HAMD/ObxHelper/counterState.dart';
 import 'package:HAMD/ObxHelper/product_by_category.dart';
 import 'package:HAMD/constants/fonts.dart';
-import 'package:HAMD/ui/cart/cart_screen.dart';
 
 import 'package:HAMD/ui/componants/my_appbar.dart';
 import 'package:HAMD/ui/food_details/widgets/item_description.dart';
@@ -15,7 +13,7 @@ import 'package:HAMD/constants/colors.dart';
 
 import 'package:get/get.dart';
 
-class ItemDetails extends StatelessWidget {
+class ItemDetailsScreen extends StatelessWidget {
   final ProductByCategoryController productByCategoryController =
       Get.find<ProductByCategoryController>();
   final CounterClass counterState = Get.put(CounterClass());
@@ -26,16 +24,18 @@ class ItemDetails extends StatelessWidget {
     print(recievedIndex);
     return Scaffold(
         appBar: PreferredSize(
-            child: customAppBar(context,
-                icon1Url: 'assets/icons/Icon-left.svg',
-                height1: 14,
-                width1: 14,
-                onpress1: () => Get.back(),
-                title: 'Лаваш Средний',
-                icon2Url: 'assets/icons/shopping-cart.svg',
-                width2: 25,
-                height2: 25,
-                onpress2: () => Get.to(CartScreen())),
+            child: customAppBar(
+              context,
+              icon1Url: 'assets/icons/Icon-left.svg',
+              height1: 14,
+              width1: 14,
+              onpress1: () => Get.back(),
+              title: 'Лаваш Средний',
+              icon2Url: 'assets/icons/shopping-cart.svg',
+              width2: 25,
+              height2: 25,
+              onpress2: () => Get.toNamed('/cart-screen'),
+            ),
             preferredSize: Size.fromHeight(
                 kToolbarHeight + MediaQuery.of(context).viewPadding.top)),
         backgroundColor: ColorPalatte.mainPageColor,
@@ -51,15 +51,6 @@ class ItemDetails extends StatelessWidget {
                   } else {
                     return Column(
                       children: [
-                        // Header(
-                        //   icon1Url: 'assets/icons/Icon-left.svg',
-                        //   title: 'Лаваш Средный',
-                        //   onpress1: () => Get.back(),
-                        //   icon2Url: 'assets/icons/shopping-cart.svg',
-                        //   width2: 25,
-                        //   height2: 25,
-                        //   onpress2: () => Get.to(CartScreen()),
-                        // ),
                         SizedBox(height: 7),
                         // MainContent(),
 

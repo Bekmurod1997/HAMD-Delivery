@@ -1,19 +1,26 @@
-import 'package:HAMD/ObxHelper/add_cart_controller.dart';
+import 'package:HAMD/ObxHelper/cart_list_controller.dart';
+import 'package:HAMD/ObxHelper/counterState.dart';
 import 'package:HAMD/constants/fonts.dart';
-import 'package:HAMD/ui/cart/cart_screen.dart';
+import 'package:HAMD/services/add_cart_post.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-class PriceAndButton extends StatelessWidget {
+class PriceAndButton extends StatefulWidget {
   final String price;
   final int id;
   PriceAndButton({@required this.id, @required this.price});
 
   @override
+  _PriceAndButtonState createState() => _PriceAndButtonState();
+}
+
+class _PriceAndButtonState extends State<PriceAndButton> {
+  bool ordering = false;
+  final CartListController cartListController = Get.find<CartListController>();
+  final CounterClass counterClass = Get.find<CounterClass>();
+  @override
   Widget build(BuildContext context) {
-    var present = false;
-    final AddCartController addCartController = Get.find<AddCartController>();
     return Container(
       margin: EdgeInsets.only(bottom: 10),
       child: Row(
@@ -36,7 +43,7 @@ class PriceAndButton extends StatelessWidget {
                 height: 6,
               ),
               Text(
-                '${price} сум',
+                '${widget.price} сум',
                 style: FontStyles.regularStyle(
                   fontSize: 26,
                   fontFamily: 'Poppins',
@@ -46,51 +53,27 @@ class PriceAndButton extends StatelessWidget {
             ],
           ),
           GestureDetector(
-              child: Align(
-                alignment: Alignment.topRight,
-                child: SvgPicture.asset(
-                  'assets/icons/plus.svg',
-                  width: 50,
-                  height: 50,
-                ),
-              ),
-              onTap: () {
-                print('pressed item id');
-                print(id);
+              child: Obx(() => Align(
+                    alignment: Alignment.topRight,
+                    child: counterClass.loading.value
+                        ? CircularProgressIndicator()
+                        : SvgPicture.asset(
+                            'assets/icons/plus.svg',
+                            width: 50,
+                            height: 50,
+                          ),
+                  )),
+              onTap: () async {
+                counterClass.onFetching();
+                int amount = counterClass.count.value;
 
                 print('adding to car id:');
-                // addCartController.fetchAddCartData(id);
+                print(widget.id);
+                print('amount');
+                print(amount);
 
-                if (!addCartController.addCardList.isNotEmpty) {
-                  print('list pustoy');
-                  addCartController.fetchAddCartData(id);
-                } else {
-                  for (var i = 0;
-                      i < addCartController.addCardList.length;
-                      i++) {
-                    if (id == addCartController.addCardList[i].id) {
-                      present = true;
-                      print('present value is ');
-                      print(present);
-                      break;
-                    }
-                  }
-                  if (present) {
-                    print('item is already in card');
-                  } else {
-                    print('vtory else robotayet');
-                    addCartController.fetchAddCartData(id);
-                  }
-                }
-
-                // if (addCartController.addCardList[id].i null) {
-                //   addCartController.fetchAddCartData(id);
-                // } else {
-                //   print('error in adding cart in price and button screen');
-                // }
-                print('************');
-                print(addCartController.addCardList[0].name);
-
+                AddCartPostService.addCartPostService(
+                    amount: amount, productId: widget.id);
                 // Get.to(CartScreen());
               }),
         ],

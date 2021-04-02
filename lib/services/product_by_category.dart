@@ -1,7 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'package:HAMD/models/product_by_category_model.dart';
 import 'dart:convert';
-import 'package:HAMD/constants/api.dart';
 
 class ProductByCategory {
   static var client = http.Client();

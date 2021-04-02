@@ -1,8 +1,14 @@
 import 'package:HAMD/ObxHelper/add_cart_controller.dart';
 import 'package:HAMD/ObxHelper/all_products_controller.dart';
+import 'package:HAMD/ObxHelper/cart_list_controller.dart';
+import 'package:HAMD/ObxHelper/delivert_type_controller.dart';
 import 'package:HAMD/ObxHelper/item_category_controller.dart';
+import 'package:HAMD/ObxHelper/list_of_orders.dart';
+import 'package:HAMD/ObxHelper/order_detail_view_controller.dart';
+import 'package:HAMD/ObxHelper/payment_type_controller.dart';
 import 'package:HAMD/ObxHelper/product_by_category.dart';
 import 'package:HAMD/ObxHelper/profile_controller.dart';
+import 'package:HAMD/constants/page_list.dart';
 import 'package:HAMD/locales/strings.dart';
 import 'package:HAMD/ui/home/home_screen.dart';
 import 'package:HAMD/utils/my_prefs.dart';
@@ -37,6 +43,16 @@ class _MyAppState extends State<MyApp> {
   final ProductByCategoryController productByCategoryController =
       Get.put(ProductByCategoryController());
   final AddCartController addCartController = Get.put(AddCartController());
+  final DelivertyTypeController delivertyTypeController =
+      Get.put(DelivertyTypeController());
+  final PaymentTypeController paymnetTypeController =
+      Get.put(PaymentTypeController());
+
+  final OrderDetailViewController orderDetailViewController =
+      Get.put(OrderDetailViewController());
+  final listOfAllOrdersControllers = Get.put(ListOfAllOrdersControllers());
+  final CartListController cartListController = Get.put(CartListController());
+
   var secondToken = MyPref.secondToken ?? '';
 
   @override
@@ -59,6 +75,7 @@ class _MyAppState extends State<MyApp> {
         // accentColor: Colors.transparent.withOpacity(0),
       ),
       home: MyPref.secondToken == null ? LandingScreen() : HomeScreen(),
+      getPages: PageList.page,
       //home: HomeScreen(),
       translations: Strings(),
       locale: Locale("uz", "UZ"),
