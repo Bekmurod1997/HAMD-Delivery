@@ -30,12 +30,11 @@ class _FoodCardState extends State<FoodCard> {
             child: CircularProgressIndicator(),
           );
         } else {
-          return Container(
-            height: screenSize.height * 0.54,
-            width: double.infinity,
+          return Expanded(
             child: ListView.separated(
               itemCount:
                   productByCategoryController.productByCategoryList.length,
+              separatorBuilder: (context, index) => SizedBox(width: 0),
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return GestureDetector(
@@ -58,60 +57,61 @@ class _FoodCardState extends State<FoodCard> {
                         borderRadius: BorderRadius.circular(25),
                         color: Colors.white,
                       ),
-                      width: screenSize.width * 0.8,
+                      width: productByCategoryController
+                                  .productByCategoryList.length ==
+                              1
+                          ? screenSize.width * 0.88
+                          : screenSize.width * 0.86,
                       child: Column(
                         children: [
                           Padding(
                             padding:
                                 EdgeInsets.only(left: 0, right: 0, top: 20),
-                            child: Container(
-                              width: screenSize.height * 0.33,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(25),
-                                color: Color(0xffEDF0F3),
-                              ),
-                              child: Stack(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(25),
-                                    child: Center(
-                                      child: Image.network(
+                            child: Stack(
+                              children: [
+                                Container(
+                                  width: screenSize.width * 0.76,
+                                  height: screenSize.height * 0.23,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(25),
+                                    color: Color(0xffEDF0F3),
+                                    image: DecorationImage(
+                                      image: NetworkImage(
                                         'http://hamd.loko.uz/' +
                                             productByCategoryController
                                                 .productByCategoryList[index]
                                                 .photo,
-                                        fit: BoxFit.contain,
                                       ),
+                                      fit: BoxFit.cover,
                                     ),
                                   ),
-                                  Positioned(
-                                    bottom: 10,
-                                    left: 15,
-                                    child: Container(
-                                      height: 35,
-                                      width: 52,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(30),
-                                          color: Colors.white),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Text('4.5'),
-                                          SizedBox(width: 3.0),
-                                          SvgPicture.asset(
-                                            'assets/icons/star.svg',
-                                            width: 16,
-                                          )
-                                        ],
-                                      ),
+                                ),
+                                Positioned(
+                                  bottom: 10,
+                                  left: 15,
+                                  child: Container(
+                                    height: 35,
+                                    width: 52,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(30),
+                                        color: Colors.white),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Text('4.5'),
+                                        SizedBox(width: 3.0),
+                                        SvgPicture.asset(
+                                          'assets/icons/star.svg',
+                                          width: 16,
+                                        )
+                                      ],
                                     ),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
                           SizedBox(height: 10),
@@ -134,8 +134,10 @@ class _FoodCardState extends State<FoodCard> {
                                     ),
                                     Text(
                                       productByCategoryController
-                                          .productByCategoryList[index].price
-                                          .toString(),
+                                              .productByCategoryList[index]
+                                              .price
+                                              .toString() +
+                                          ' сум',
                                       style: FontStyles.semiBoldStyle(
                                         fontSize: 16,
                                         fontFamily: 'Ubuntu',
@@ -214,7 +216,6 @@ class _FoodCardState extends State<FoodCard> {
                   ),
                 );
               },
-              separatorBuilder: (context, index) => SizedBox(width: 0),
             ),
           );
         }

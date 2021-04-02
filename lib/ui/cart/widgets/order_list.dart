@@ -19,14 +19,10 @@ class _OrderListState extends State<OrderList> {
   @override
   void initState() {
     cartListController.fetchAllCartList();
-    // ignore: unused_local_variable
-    var productsLength = cartListController.allCartList.length;
 
     super.initState();
   }
 
-  var productsAmount = List<int>.generate(cartListController.allCartList.length,
-      (i) => cartListController.allCartList[i].amount);
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -155,13 +151,11 @@ class _OrderListState extends State<OrderList> {
                         iconSize: 30.0,
                         color: ColorPalatte.strongRedColor,
                         icon: Icon(Icons.cancel),
-                        onPressed: () {
-                          DeleteFromCart.deleteFromCart(cartListController
+                        onPressed: () async {
+                          await DeleteFromCart.deleteFromCart(cartListController
                               .allCartList[index].productId
                               .toString());
                           cartListController.fetchAllCartList();
-                          Get.offAndToNamed('/cart-screen');
-                          print('deleted');
                         },
                       ))
                 ],

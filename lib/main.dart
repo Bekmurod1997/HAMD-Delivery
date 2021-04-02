@@ -1,6 +1,7 @@
 import 'package:HAMD/ObxHelper/add_cart_controller.dart';
 import 'package:HAMD/ObxHelper/all_products_controller.dart';
 import 'package:HAMD/ObxHelper/cart_list_controller.dart';
+import 'package:HAMD/ObxHelper/counterState.dart';
 import 'package:HAMD/ObxHelper/delivert_type_controller.dart';
 import 'package:HAMD/ObxHelper/item_category_controller.dart';
 import 'package:HAMD/ObxHelper/list_of_orders.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final CategoryItemController categoryController =
       Get.put(CategoryItemController());
-
+  final CounterClass counterState = Get.put(CounterClass());
   final UserProfileController profileController =
       Get.put(UserProfileController());
   final AllProductsController allProductsController =
