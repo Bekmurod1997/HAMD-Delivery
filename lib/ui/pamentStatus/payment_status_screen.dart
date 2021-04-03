@@ -301,11 +301,12 @@ class PaymentStatusScreen extends StatelessWidget {
       body: Column(
         children: [
           Header(
-            icon1Url: 'assets/icons/Icon-left.svg',
-            onpress1: () => Get.back(),
+            hasAction: false,
+            icon1Url: 'assets/icons/drawer.svg',
+            onpress1: () => Get.toNamed('/home-screen'),
             title: 'Статус заказа',
-            icon2Url: 'assets/icons/close.svg',
-            onpress2: () => Get.back(),
+            // icon2Url: 'assets/icons/close.svg',
+            // onpress2: () => Get.back(),
             height2: 18,
             width2: 18,
           ),

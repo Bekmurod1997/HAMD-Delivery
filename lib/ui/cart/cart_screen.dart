@@ -39,18 +39,10 @@ class CartScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           CustomRadioButtons(),
-                          // Padding(
-                          //   padding: const EdgeInsets.symmetric(horizontal: 26),
-                          //   child: OrderList(),
-                          // ),
                         ],
                       ),
                     ),
                   ),
-                  // SizedBox(height: 16),
-                  // Bill(),
-                  // SizedBox(height: 16),
-                  // OrderButton(),
                   SizedBox(
                     height: 40,
                   ),

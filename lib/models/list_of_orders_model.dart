@@ -23,14 +23,15 @@ class ListOfOrdersModel {
 
 class Data {
   int id;
-  int productTotalSum;
-  int productCount;
+  Null productTotalSum;
+  Null productCount;
   String address;
   String mapLocation;
   int status;
   PaymentType paymentType;
   PaymentType deliveryType;
   List<OrderProducts> orderProducts;
+  String date;
 
   Data(
       {this.id,
@@ -41,7 +42,8 @@ class Data {
       this.status,
       this.paymentType,
       this.deliveryType,
-      this.orderProducts});
+      this.orderProducts,
+      this.date});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -62,6 +64,7 @@ class Data {
         orderProducts.add(new OrderProducts.fromJson(v));
       });
     }
+    date = json['date'];
   }
 
   Map<String, dynamic> toJson() {
@@ -82,6 +85,7 @@ class Data {
       data['orderProducts'] =
           this.orderProducts.map((v) => v.toJson()).toList();
     }
+    data['date'] = this.date;
     return data;
   }
 }

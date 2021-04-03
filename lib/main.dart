@@ -36,11 +36,11 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final CategoryItemController categoryController =
       Get.put(CategoryItemController());
+  final AllProductsController allProductsController =
+      Get.put(AllProductsController());
   final CounterClass counterState = Get.put(CounterClass());
   final UserProfileController profileController =
       Get.put(UserProfileController());
-  final AllProductsController allProductsController =
-      Get.put(AllProductsController());
   final ProductByCategoryController productByCategoryController =
       Get.put(ProductByCategoryController());
   final AddCartController addCartController = Get.put(AddCartController());

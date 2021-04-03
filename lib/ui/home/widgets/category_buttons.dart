@@ -46,7 +46,10 @@ class _CategoryButtonsState extends State<CategoryButtons> {
           child: Obx(() {
             if (categoryData.isLoading.value) {
               return Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                      ColorPalatte.strongRedColor),
+                ),
               );
             } else {
               return ListView.separated(

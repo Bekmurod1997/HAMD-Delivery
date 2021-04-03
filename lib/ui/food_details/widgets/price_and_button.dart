@@ -1,4 +1,3 @@
-import 'package:HAMD/ObxHelper/cart_list_controller.dart';
 import 'package:HAMD/ObxHelper/counterState.dart';
 import 'package:HAMD/constants/fonts.dart';
 import 'package:HAMD/services/add_cart_post.dart';
@@ -17,7 +16,7 @@ class PriceAndButton extends StatefulWidget {
 
 class _PriceAndButtonState extends State<PriceAndButton> {
   bool ordering = false;
-  final CartListController cartListController = Get.find<CartListController>();
+
   final CounterClass counterClass = Get.find<CounterClass>();
   @override
   Widget build(BuildContext context) {
@@ -63,8 +62,9 @@ class _PriceAndButtonState extends State<PriceAndButton> {
                             height: 50,
                           ),
                   )),
-              onTap: () async {
+              onTap: () {
                 counterClass.onFetching();
+
                 int amount = counterClass.count.value;
 
                 print('adding to car id:');

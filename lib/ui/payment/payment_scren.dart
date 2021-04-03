@@ -62,7 +62,7 @@ class PaymentScreen extends StatelessWidget {
                         }
                         Order.makeOrders(
                             address: recievedIndex[1], deliveryType: delivery);
-                        // Get.toNamed('/payment-status-screen');
+                        Get.toNamed('/payment-status-screen');
                       },
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15)),

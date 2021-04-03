@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ItemPosition extends StatelessWidget {
-  final CounterClass counterState = Get.put(CounterClass());
+  final CounterClass counterState = Get.find<CounterClass>();
 
   final FavoriteState favoriteState = Get.put(FavoriteState());
 

@@ -1,11 +1,15 @@
+import 'package:HAMD/ObxHelper/cart_list_controller.dart';
 import 'package:HAMD/constants/colors.dart';
 import 'package:HAMD/constants/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
+final CartListController cartListController = Get.find<CartListController>();
 AppBar customAppBar(
   BuildContext context, {
   String icon1Url,
+  final bool isCart,
   String title,
   String icon2Url,
   Function onpress1,
@@ -19,19 +23,7 @@ AppBar customAppBar(
     automaticallyImplyLeading: false,
     backgroundColor: ColorPalatte.mainPageColor,
     elevation: 0,
-    // leading: Padding(
-    //   padding: const EdgeInsets.only(top: 0, left: 0, right: 0),
-    //   child: Container(
-    //     decoration: BoxDecoration(
-    //       borderRadius: BorderRadius.circular(15),
-    //       color: Colors.white,
-    //     ),
-    //     child: IconButton(
-    //       icon: Icon(Icons.ac_unit),
-    //       onPressed: icon1press,
-    //     ),
-    //   ),
-    // ),
+
     flexibleSpace: Padding(
       padding: const EdgeInsets.only(top: 50, left: 26, right: 26, bottom: 10),
       child: Container(
@@ -61,19 +53,64 @@ AppBar customAppBar(
                 color: Color(0xff222E54),
               ),
             ),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: Colors.white,
-              ),
-              child: IconButton(
-                  icon: SvgPicture.asset(
-                    icon2Url,
-                    width: width2,
-                    height: height2,
-                  ),
-                  onPressed: onpress2),
-            ),
+            isCart
+                ? Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.white,
+                    ),
+                    child: Stack(
+                      overflow: Overflow.visible,
+                      children: [
+                        IconButton(
+                          icon: SvgPicture.asset(
+                            icon2Url,
+                            width: width2,
+                            height: height2,
+                          ),
+                          onPressed: onpress2,
+                        ),
+                        Obx(
+                          () => cartListController.allCartList.length == 0
+                              ? Container()
+                              : Positioned(
+                                  top: 0,
+                                  right: -5,
+                                  child: Container(
+                                    width: 20,
+                                    height: 20,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(30),
+                                      color: ColorPalatte.strongRedColor,
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        cartListController.allCartList.length
+                                            .toString(),
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                        ),
+                      ],
+                    ))
+                : Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.white,
+                    ),
+                    child: IconButton(
+                        icon: SvgPicture.asset(
+                          icon2Url,
+                          width: width2,
+                          height: height2,
+                        ),
+                        onPressed: onpress2),
+                  )
           ],
         ),
       ),

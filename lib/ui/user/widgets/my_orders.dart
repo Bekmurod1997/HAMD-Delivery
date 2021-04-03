@@ -81,7 +81,9 @@ class MyOrders extends StatelessWidget {
                                 SizedBox(
                                   width: double.infinity,
                                   child: Text(
-                                    '01.02.2021, 13:45',
+                                    listOfAllOrdersControllers
+                                        .orderList[index].date
+                                        .toString(),
                                     textAlign: TextAlign.right,
                                     style: FontStyles.regularStyle(
                                       fontSize: 12,
