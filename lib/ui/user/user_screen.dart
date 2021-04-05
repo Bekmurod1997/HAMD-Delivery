@@ -1,6 +1,9 @@
+import 'package:HAMD/ObxHelper/plastic_card_type_controller.dart';
+import 'package:HAMD/ObxHelper/platic_card_controller.dart';
 import 'package:HAMD/constants/colors.dart';
 
 import 'package:HAMD/constants/fonts.dart';
+import 'package:HAMD/services/plastic_card_type.dart';
 import 'package:HAMD/ui/componants/header.dart';
 
 import 'package:HAMD/ui/user/widgets/my_orders.dart';
@@ -17,8 +20,14 @@ class UserScreen extends StatefulWidget {
 }
 
 class _UserScreenState extends State<UserScreen> {
+  final PlaticCardController platicCardController =
+      Get.find<PlaticCardController>();
+  final PlasticCardTypeController plasticCardTypeController =
+      Get.find<PlasticCardTypeController>();
   TextEditingController dateController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
+  TextEditingController dateHumoController = TextEditingController();
+  TextEditingController phoneUzController = TextEditingController();
+  TextEditingController phoneHumoController = TextEditingController();
   TextEditingController humoController = TextEditingController();
   TextEditingController uzCardController = TextEditingController();
   int selectedIndex = 0;
@@ -27,9 +36,21 @@ class _UserScreenState extends State<UserScreen> {
   int selectedRadio;
 
   void initState() {
+    print('this is init state');
+
     super.initState();
 
     selectedRadio = 1;
+    if (plasticCardTypeController.plasticCardTypeList.isNotEmpty) {
+      uzCardController.text =
+          plasticCardTypeController.plasticCardTypeList.first.cardNumber;
+      dateController.text =
+          plasticCardTypeController.plasticCardTypeList.first.cardExpire;
+      phoneUzController.text =
+          plasticCardTypeController.plasticCardTypeList.first.cardPhoneNumber;
+    }
+    // uzCardController
+    //   ..text = plasticCardTypeController.plasticCardTypeList?.first?.cardNumber;
   }
 
   selectedRadioValue(int val) {
@@ -98,7 +119,8 @@ class _UserScreenState extends State<UserScreen> {
                             color: selectedIndex == 1
                                 ? Color(0xffE9DCE0)
                                 : Colors.transparent,
-                            onPressed: () {
+                            onPressed: () async {
+                              PlasticCardType.fetchPlasticCardType(14);
                               if (selectedIndex == 0) {
                                 setState(() {
                                   selectedIndex = 1;
@@ -202,9 +224,15 @@ class _UserScreenState extends State<UserScreen> {
                                                                 groupValue:
                                                                     selectedRadio,
                                                                 onChanged:
-                                                                    (val) {
+                                                                    (val) async {
                                                                   print(
                                                                       'Radio $val');
+
+                                                                  print(
+                                                                      'changing zapros to plastic card');
+                                                                  PlasticCardType
+                                                                      .fetchPlasticCardType(
+                                                                          14);
                                                                   if (selectedCard ==
                                                                       2) {
                                                                     setState(
@@ -260,7 +288,40 @@ class _UserScreenState extends State<UserScreen> {
                                                                 groupValue:
                                                                     selectedRadio,
                                                                 onChanged:
-                                                                    (val) {
+                                                                    (val) async {
+                                                                  print(
+                                                                      'changing zapros to plastic card');
+                                                                  await PlasticCardType
+                                                                      .fetchPlasticCardType(
+                                                                          15);
+
+                                                                  if (plasticCardTypeController
+                                                                      .plasticCardTypeList
+                                                                      .isNotEmpty) {
+                                                                    setState(
+                                                                        () {
+                                                                      humoController.text = plasticCardTypeController
+                                                                          .plasticCardTypeList
+                                                                          .first
+                                                                          .cardNumber;
+                                                                      print(
+                                                                          'card number');
+                                                                      print(humoController
+                                                                          .text);
+                                                                      dateHumoController.text = plasticCardTypeController
+                                                                          .plasticCardTypeList
+                                                                          .first
+                                                                          .cardExpire;
+                                                                      print(
+                                                                          'expire date');
+                                                                      print(dateHumoController
+                                                                          .text);
+                                                                      phoneHumoController.text = platicCardController
+                                                                          .plasticCardList
+                                                                          .first
+                                                                          .cardPhoneNumber;
+                                                                    });
+                                                                  }
                                                                   if (selectedCard ==
                                                                       1) {
                                                                     setState(
@@ -320,164 +381,196 @@ class _UserScreenState extends State<UserScreen> {
                                       )
                               ],
                             ),
-                            Container(
-                              margin: EdgeInsets.symmetric(vertical: 25),
-                              child: Column(
-                                children: [
-                                  Align(
-                                    alignment: Alignment.topLeft,
-                                    child: Text(
-                                      'Введите номер Вашей карты',
-                                      style: FontStyles.regularStyle(
-                                        fontSize: 11,
-                                        fontFamily: 'Montserrat',
-                                        color: Color(0xff24253D),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 14,
-                                  ),
-                                  TextFormField(
-                                    controller: selectedRadio == 1
-                                        ? uzCardController
-                                        : humoController,
-                                    inputFormatters: selectedRadio == 1
-                                        ? [InputMask.maskUzCard]
-                                        : [InputMask.maskHumo],
-                                    keyboardType: TextInputType.number,
-                                    decoration: InputDecoration(
-                                      filled: true,
-                                      fillColor: Colors.white,
-                                      focusedBorder: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(15.0),
-                                        borderSide: BorderSide(
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(15.0),
-                                        borderSide: BorderSide(
-                                          color: Colors.transparent,
-                                        ),
-                                      ),
-                                    ),
-                                    style: FontStyles.regularStyle(
-                                      fontSize: 18,
-                                      fontFamily: 'Montserrat',
-                                      color: Color(0xff0E0900),
-                                    ),
-                                  ),
-                                  SizedBox(height: 15),
-                                  Row(
+                            Obx(() {
+                              if (plasticCardTypeController.isLoading.value) {
+                                return Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              } else {
+                                return Container(
+                                  margin: EdgeInsets.symmetric(vertical: 25),
+                                  child: Column(
                                     children: [
-                                      Expanded(
-                                        flex: 2,
-                                        child: Align(
-                                          alignment: Alignment.topLeft,
-                                          child: Text(
-                                            'Номер прикрепленного телефона',
-                                            style: FontStyles.regularStyle(
-                                              fontSize: 11,
-                                              fontFamily: 'Montserrat',
-                                              color: Color(0xff24253D),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 1,
-                                        child: Align(
-                                          alignment: Alignment.topRight,
-                                          child: Text(
-                                            'Дата действия',
-                                            style: FontStyles.regularStyle(
-                                              fontSize: 11,
-                                              fontFamily: 'Montserrat',
-                                              color: Color(0xff24253D),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 14),
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        flex: 3,
-                                        child: TextFormField(
-                                          inputFormatters: [
-                                            InputMask.maskPhoneNumber
-                                          ],
-                                          controller: phoneController,
-                                          keyboardType: TextInputType.number,
-                                          decoration: InputDecoration(
-                                            filled: true,
-                                            fillColor: Colors.white,
-                                            focusedBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(15.0),
-                                              borderSide: BorderSide(
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(15.0),
-                                              borderSide: BorderSide(
-                                                color: Colors.transparent,
-                                              ),
-                                            ),
-                                          ),
+                                      Align(
+                                        alignment: Alignment.topLeft,
+                                        child: Text(
+                                          'Введите номер Вашей карты',
                                           style: FontStyles.regularStyle(
-                                            fontSize: 18,
+                                            fontSize: 11,
                                             fontFamily: 'Montserrat',
-                                            color: Color(0xff0E0900),
+                                            color: Color(0xff24253D),
                                           ),
                                         ),
                                       ),
                                       SizedBox(
-                                        width: 10,
+                                        height: 14,
                                       ),
-                                      Expanded(
-                                        flex: 1,
-                                        child: TextFormField(
-                                          inputFormatters: [InputMask.maskDate],
-                                          controller: dateController,
-                                          keyboardType: TextInputType.number,
-                                          decoration: InputDecoration(
-                                            filled: true,
-                                            fillColor: Colors.white,
-                                            focusedBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(15.0),
-                                              borderSide: BorderSide(
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(15.0),
-                                              borderSide: BorderSide(
-                                                color: Colors.transparent,
-                                              ),
+                                      TextFormField(
+                                        controller: selectedRadio == 1
+                                            ? uzCardController
+                                            : humoController,
+                                        inputFormatters: selectedRadio == 1
+                                            ? [InputMask.maskUzCard]
+                                            : [InputMask.maskHumo],
+                                        keyboardType: TextInputType.number,
+                                        decoration: InputDecoration(
+                                          hintText: selectedRadio == 1
+                                              ? '8600'
+                                              : '9860',
+                                          hintStyle: FontStyles.regularStyle(
+                                            fontSize: 16,
+                                            fontFamily: 'Ubuntu',
+                                            color: Color(0xff9E9E9E),
+                                          ),
+                                          filled: true,
+                                          fillColor: Colors.white,
+                                          focusedBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(15.0),
+                                            borderSide: BorderSide(
+                                              color: Colors.white,
                                             ),
                                           ),
-                                          style: FontStyles.regularStyle(
-                                            fontSize: 18,
-                                            fontFamily: 'Montserrat',
-                                            color: Color(0xff0E0900),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(15.0),
+                                            borderSide: BorderSide(
+                                              color: Colors.transparent,
+                                            ),
                                           ),
                                         ),
+                                        style: FontStyles.regularStyle(
+                                          fontSize: 18,
+                                          fontFamily: 'Montserrat',
+                                          color: Color(0xff0E0900),
+                                        ),
                                       ),
+                                      SizedBox(height: 15),
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            flex: 2,
+                                            child: Align(
+                                              alignment: Alignment.topLeft,
+                                              child: Text(
+                                                'Номер прикрепленного телефона',
+                                                style: FontStyles.regularStyle(
+                                                  fontSize: 11,
+                                                  fontFamily: 'Montserrat',
+                                                  color: Color(0xff24253D),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 1,
+                                            child: Align(
+                                              alignment: Alignment.topRight,
+                                              child: Text(
+                                                'Дата действия',
+                                                style: FontStyles.regularStyle(
+                                                  fontSize: 11,
+                                                  fontFamily: 'Montserrat',
+                                                  color: Color(0xff24253D),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 14),
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            flex: 3,
+                                            child: TextFormField(
+                                              inputFormatters: [
+                                                InputMask.maskPhoneNumber
+                                              ],
+                                              controller: selectedRadio == 1
+                                                  ? phoneUzController
+                                                  : phoneHumoController,
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              decoration: InputDecoration(
+                                                filled: true,
+                                                fillColor: Colors.white,
+                                                focusedBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          15.0),
+                                                  borderSide: BorderSide(
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                                enabledBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          15.0),
+                                                  borderSide: BorderSide(
+                                                    color: Colors.transparent,
+                                                  ),
+                                                ),
+                                              ),
+                                              style: FontStyles.regularStyle(
+                                                fontSize: 18,
+                                                fontFamily: 'Montserrat',
+                                                color: Color(0xff0E0900),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Expanded(
+                                            flex: 1,
+                                            child: TextFormField(
+                                              controller: selectedRadio == 1
+                                                  ? dateController
+                                                  : dateHumoController,
+                                              inputFormatters: [
+                                                InputMask.maskDate
+                                              ],
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              decoration: InputDecoration(
+                                                filled: true,
+                                                fillColor: Colors.white,
+                                                focusedBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          15.0),
+                                                  borderSide: BorderSide(
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                                enabledBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          15.0),
+                                                  borderSide: BorderSide(
+                                                    color: Colors.transparent,
+                                                  ),
+                                                ),
+                                              ),
+                                              style: FontStyles.regularStyle(
+                                                fontSize: 18,
+                                                fontFamily: 'Montserrat',
+                                                color: Color(0xff0E0900),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      )
                                     ],
-                                  )
-                                ],
-                              ),
-                            ),
+                                  ),
+                                );
+                              }
+                            }),
                           ],
                         ),
                       ),

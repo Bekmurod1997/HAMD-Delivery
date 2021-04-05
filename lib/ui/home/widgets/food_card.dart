@@ -36,7 +36,7 @@ class _FoodCardState extends State<FoodCard> {
         } else {
           return productByCategoryController.productByCategoryList.length > 0
               ? Container(
-                  height: 330.0,
+                  height: 370.0,
                   child: ListView.separated(
                     itemCount: productByCategoryController
                         .productByCategoryList.length,

@@ -55,14 +55,13 @@ class PaymentScreen extends StatelessWidget {
                     child: RaisedButton(
                       elevation: 0,
                       color: Color(0xff9F111B),
-                      onPressed: () {
+                      onPressed: () async {
                         var delivery = 12;
                         if (recievedIndex == 1) {
                           delivery = 13;
                         }
                         Order.makeOrders(
                             address: recievedIndex[1], deliveryType: delivery);
-                        Get.toNamed('/payment-status-screen');
                       },
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15)),

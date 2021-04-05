@@ -200,6 +200,12 @@ class _AddressFieldState extends State<AddressField> {
                             selected == 0 ? uzCardController : humoController,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
+                          hintText: selected == 0 ? '8600' : '9860',
+                          hintStyle: FontStyles.regularStyle(
+                            fontSize: 16,
+                            fontFamily: 'Ubuntu',
+                            color: Color(0xff9E9E9E),
+                          ),
                           filled: true,
                           fillColor: Colors.white,
                           focusedBorder: OutlineInputBorder(
@@ -264,6 +270,12 @@ class _AddressFieldState extends State<AddressField> {
                               controller: phoneController,
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
+                                hintText: '998',
+                                hintStyle: FontStyles.regularStyle(
+                                  fontSize: 16,
+                                  fontFamily: 'Ubuntu',
+                                  color: Color(0xff9E9E9E),
+                                ),
                                 filled: true,
                                 fillColor: Colors.white,
                                 focusedBorder: OutlineInputBorder(
@@ -296,6 +308,12 @@ class _AddressFieldState extends State<AddressField> {
                               controller: dateController,
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
+                                hintText: '00/00',
+                                hintStyle: FontStyles.regularStyle(
+                                  fontSize: 16,
+                                  fontFamily: 'Ubuntu',
+                                  color: Color(0xff9E9E9E),
+                                ),
                                 filled: true,
                                 fillColor: Colors.white,
                                 focusedBorder: OutlineInputBorder(

@@ -1,6 +1,10 @@
 import 'dart:io';
 import 'package:HAMD/utils/my_prefs.dart';
 import 'package:http/http.dart' as http;
+import 'package:HAMD/ObxHelper/cart_list_controller.dart';
+import 'package:get/get.dart';
+
+final CartListController cartListController = Get.find<CartListController>();
 
 class Order {
   static var client = http.Client();
@@ -24,6 +28,9 @@ class Order {
       print('success in ordering products');
       print('*********');
       print(response.body);
+      cartListController.fetchAllCartList();
+
+      Get.toNamed('/payment-status-screen');
     } else {
       print('error in orderings products services');
       print(response.reasonPhrase);

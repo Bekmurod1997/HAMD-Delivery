@@ -6,9 +6,7 @@ import 'package:HAMD/services/add_cart_post.dart';
 
 import 'package:HAMD/ui/componants/my_appbar.dart';
 import 'package:HAMD/ui/food_details/widgets/item_description.dart';
-import 'package:HAMD/ui/food_details/widgets/item_position.dart';
 
-import 'package:HAMD/ui/food_details/widgets/price_and_button.dart';
 import 'package:HAMD/ui/food_details/widgets/rating_and_time.dart';
 import 'package:flutter/material.dart';
 import 'package:HAMD/constants/colors.dart';

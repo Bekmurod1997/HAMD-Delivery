@@ -7,6 +7,8 @@ import 'package:HAMD/ObxHelper/item_category_controller.dart';
 import 'package:HAMD/ObxHelper/list_of_orders.dart';
 import 'package:HAMD/ObxHelper/order_detail_view_controller.dart';
 import 'package:HAMD/ObxHelper/payment_type_controller.dart';
+import 'package:HAMD/ObxHelper/plastic_card_type_controller.dart';
+import 'package:HAMD/ObxHelper/platic_card_controller.dart';
 import 'package:HAMD/ObxHelper/product_by_category.dart';
 import 'package:HAMD/ObxHelper/profile_controller.dart';
 import 'package:HAMD/constants/page_list.dart';
@@ -53,7 +55,10 @@ class _MyAppState extends State<MyApp> {
       Get.put(OrderDetailViewController());
   final listOfAllOrdersControllers = Get.put(ListOfAllOrdersControllers());
   final CartListController cartListController = Get.put(CartListController());
-
+  final PlaticCardController platicCardController =
+      Get.put(PlaticCardController());
+  final PlasticCardTypeController plasticCardType =
+      Get.put(PlasticCardTypeController());
   var secondToken = MyPref.secondToken ?? '';
 
   @override
