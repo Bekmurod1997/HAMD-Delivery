@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:HAMD/models/edit_plastic_card_model.dart';
-import 'package:HAMD/models/plastic_card_type_model.dart';
 import 'package:HAMD/services/plastic_card_type.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;

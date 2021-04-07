@@ -604,49 +604,59 @@ class _UserScreenState extends State<UserScreen> {
                                           ),
                                         ],
                                       ),
+                                      const SizedBox(height: 25.0),
                                       loading
                                           ? CircularProgressIndicator()
                                           : selectedCard == 1
-                                              ? RaisedButton(
-                                                  child: plasticCardTypeController
-                                                          .plasticCardTypeList
-                                                          .isNotEmpty
-                                                      ? Text('edit UzCard')
-                                                      : Text('submiit'),
-                                                  onPressed: () {
-                                                    setState(() {
-                                                      loading = true;
-                                                    });
-                                                    plasticCardTypeController
-                                                            .plasticCardTypeList
-                                                            .isNotEmpty
-                                                        ? EditPlasticCard
-                                                            .editPlasticCard(
-                                                            id: plasticCardTypeController
+                                              ? SizedBox(
+                                                  width: 250.0,
+                                                  height: 50.0,
+                                                  child: RaisedButton(
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(24.0),
+                                                      ),
+                                                      color: ColorPalatte
+                                                          .strongRedColor,
+                                                      child: plasticCardTypeController
+                                                              .plasticCardTypeList
+                                                              .isNotEmpty
+                                                          ? Text(
+                                                              'Изменить',
+                                                              style: TextStyle(
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: 18.0,
+                                                              ),
+                                                            )
+                                                          : Text(
+                                                              'Отправить',
+                                                              style: TextStyle(
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: 18.0,
+                                                              ),
+                                                            ),
+                                                      onPressed: () {
+                                                        setState(() {
+                                                          loading = true;
+                                                        });
+                                                        plasticCardTypeController
                                                                 .plasticCardTypeList
-                                                                .first
-                                                                .id,
-                                                            typeId: plasticCardTypeController
-                                                                .plasticCardTypeList
-                                                                .first
-                                                                .paymentType
-                                                                .id,
-                                                            cardNumber:
-                                                                uzCardController
-                                                                    .text,
-                                                            cardPhoneNumber:
-                                                                phoneUzController
-                                                                    .text,
-                                                            cardExpire:
-                                                                dateController
-                                                                    .text,
-                                                          ).then((value) {
-                                                            setState(() {
-                                                              loading = false;
-                                                            });
-                                                          })
-                                                        : AddPlasticCardType.addPlasticCardType(
-                                                                typeId: 14,
+                                                                .isNotEmpty
+                                                            ? EditPlasticCard
+                                                                .editPlasticCard(
+                                                                id: plasticCardTypeController
+                                                                    .plasticCardTypeList
+                                                                    .first
+                                                                    .id,
+                                                                typeId: plasticCardTypeController
+                                                                    .plasticCardTypeList
+                                                                    .first
+                                                                    .paymentType
+                                                                    .id,
                                                                 cardNumber:
                                                                     uzCardController
                                                                         .text,
@@ -655,71 +665,116 @@ class _UserScreenState extends State<UserScreen> {
                                                                         .text,
                                                                 cardExpire:
                                                                     dateController
-                                                                        .text)
-                                                            .then((value) {
-                                                            setState(() {
-                                                              loading = false;
-                                                            });
-                                                          });
-                                                  })
-                                              : RaisedButton(
-                                                  child: plasticCardHumoController
-                                                          .plasticCardTypeList
-                                                          .isNotEmpty
-                                                      ? Text('edit HumoCard')
-                                                      : Text('submiit'),
-                                                  onPressed: () {
-                                                    setState(() {
-                                                      loading = true;
-                                                    });
-
-                                                    plasticCardHumoController
+                                                                        .text,
+                                                              ).then((value) {
+                                                                setState(() {
+                                                                  loading =
+                                                                      false;
+                                                                });
+                                                              })
+                                                            : AddPlasticCardType.addPlasticCardType(
+                                                                    typeId: 14,
+                                                                    cardNumber:
+                                                                        uzCardController
+                                                                            .text,
+                                                                    cardPhoneNumber:
+                                                                        phoneUzController
+                                                                            .text,
+                                                                    cardExpire:
+                                                                        dateController
+                                                                            .text)
+                                                                .then((value) {
+                                                                setState(() {
+                                                                  loading =
+                                                                      false;
+                                                                });
+                                                              });
+                                                      }),
+                                                )
+                                              : SizedBox(
+                                                  width: 250.0,
+                                                  height: 50.0,
+                                                  child: RaisedButton(
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              24.0),
+                                                    ),
+                                                    color: ColorPalatte
+                                                        .strongRedColor,
+                                                    child: plasticCardHumoController
                                                             .plasticCardTypeList
                                                             .isNotEmpty
-                                                        ? EditPlasticCard
-                                                            .editPlasticCard(
-                                                            id: plasticCardHumoController
-                                                                .plasticCardTypeList
-                                                                .first
-                                                                .id,
-                                                            typeId: plasticCardHumoController
-                                                                .plasticCardTypeList
-                                                                .first
-                                                                .paymentType
-                                                                .id,
-                                                            cardNumber:
-                                                                humoController
-                                                                    .text,
-                                                            cardPhoneNumber:
-                                                                phoneHumoController
-                                                                    .text,
-                                                            cardExpire:
-                                                                dateHumoController
-                                                                    .text,
-                                                          ).then(
-                                                            (value) =>
-                                                                setState(() {
-                                                              loading = false;
-                                                            }),
+                                                        ? Text(
+                                                            'Изменить',
+                                                            style: TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontSize: 18.0,
+                                                            ),
                                                           )
-                                                        : AddPlasticCardType.addPlasticCardType(
-                                                                typeId: 15,
-                                                                cardNumber:
-                                                                    humoController
-                                                                        .text,
-                                                                cardPhoneNumber:
-                                                                    humoController
-                                                                        .text,
-                                                                cardExpire:
-                                                                    dateHumoController
-                                                                        .text)
-                                                            .then(
-                                                            (value) =>
-                                                                setState(() {
-                                                              loading = false;
-                                                            }),
-                                                          );
-                                                  },
+                                                        : Text(
+                                                            'Отправить',
+                                                            style: TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontSize: 18.0,
+                                                            ),
+                                                          ),
+                                                    onPressed: () {
+                                                      setState(() {
+                                                        loading = true;
+                                                      });
+
+                                                      plasticCardHumoController
+                                                              .plasticCardTypeList
+                                                              .isNotEmpty
+                                                          ? EditPlasticCard
+                                                              .editPlasticCard(
+                                                              id: plasticCardHumoController
+                                                                  .plasticCardTypeList
+                                                                  .first
+                                                                  .id,
+                                                              typeId: plasticCardHumoController
+                                                                  .plasticCardTypeList
+                                                                  .first
+                                                                  .paymentType
+                                                                  .id,
+                                                              cardNumber:
+                                                                  humoController
+                                                                      .text,
+                                                              cardPhoneNumber:
+                                                                  phoneHumoController
+                                                                      .text,
+                                                              cardExpire:
+                                                                  dateHumoController
+                                                                      .text,
+                                                            ).then(
+                                                              (value) =>
+                                                                  setState(() {
+                                                                loading = false;
+                                                              }),
+                                                            )
+                                                          : AddPlasticCardType.addPlasticCardType(
+                                                                  typeId: 15,
+                                                                  cardNumber:
+                                                                      humoController
+                                                                          .text,
+                                                                  cardPhoneNumber:
+                                                                      humoController
+                                                                          .text,
+                                                                  cardExpire:
+                                                                      dateHumoController
+                                                                          .text)
+                                                              .then(
+                                                              (value) =>
+                                                                  setState(() {
+                                                                loading = false;
+                                                              }),
+                                                            );
+                                                    },
+                                                  ),
                                                 )
                                     ],
                                   ),
