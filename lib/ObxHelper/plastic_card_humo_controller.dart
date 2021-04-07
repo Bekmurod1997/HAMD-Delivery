@@ -2,17 +2,17 @@ import 'package:HAMD/models/plastic_card_type_model.dart';
 import 'package:HAMD/services/plastic_card_type.dart';
 import 'package:get/get.dart';
 
-class PlasticCardTypeController extends GetxController {
+class PlasticCardHumoController extends GetxController {
   var plasticCardTypeList = List<Data>().obs;
   var isLoading = true.obs;
 
   @override
   void onInit() {
-    fetchPlasticCardType(14);
+    fetchPlasticCardHumo(15);
     super.onInit();
   }
 
-  Future fetchPlasticCardType(int id) async {
+  Future fetchPlasticCardHumo(int id) async {
     print('fetching plastic card');
     try {
       isLoading(true);

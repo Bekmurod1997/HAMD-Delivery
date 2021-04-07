@@ -63,17 +63,20 @@ class _PriceAndButtonState extends State<PriceAndButton> {
                           ),
                   )),
               onTap: () {
-                counterClass.onFetching();
+                if (!counterClass.loading.value) {
+                  counterClass.onFetching();
 
-                int amount = counterClass.count.value;
+                  int amount = counterClass.count.value;
 
-                print('adding to car id:');
-                print(widget.id);
-                print('amount');
-                print(amount);
+                  print('adding to car id:');
+                  print(widget.id);
+                  print('amount');
+                  print(amount);
 
-                AddCartPostService.addCartPostService(
-                    amount: amount, productId: widget.id);
+                  AddCartPostService.addCartPostService(
+                      amount: amount, productId: widget.id);
+                }
+                return null;
                 // Get.to(CartScreen());
               }),
         ],

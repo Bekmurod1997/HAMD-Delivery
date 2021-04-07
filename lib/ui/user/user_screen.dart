@@ -1,8 +1,11 @@
+import 'package:HAMD/ObxHelper/plastic_card_humo_controller.dart';
 import 'package:HAMD/ObxHelper/plastic_card_type_controller.dart';
 import 'package:HAMD/ObxHelper/platic_card_controller.dart';
 import 'package:HAMD/constants/colors.dart';
 
 import 'package:HAMD/constants/fonts.dart';
+import 'package:HAMD/services/add_card_type.dart';
+import 'package:HAMD/services/edit_plastic_card.dart';
 import 'package:HAMD/services/plastic_card_type.dart';
 import 'package:HAMD/ui/componants/header.dart';
 
@@ -24,6 +27,8 @@ class _UserScreenState extends State<UserScreen> {
       Get.find<PlaticCardController>();
   final PlasticCardTypeController plasticCardTypeController =
       Get.find<PlasticCardTypeController>();
+  final PlasticCardHumoController plasticCardHumoController =
+      Get.find<PlasticCardHumoController>();
   TextEditingController dateController = TextEditingController();
   TextEditingController dateHumoController = TextEditingController();
   TextEditingController phoneUzController = TextEditingController();
@@ -33,24 +38,44 @@ class _UserScreenState extends State<UserScreen> {
   int selectedIndex = 0;
   int selectedCard = 1;
   int active = 0;
-  int selectedRadio;
+  int selectedRadio = 1;
+  bool autFocus;
+  FocusNode cardNumber;
+  FocusNode cardPhoneNumber;
+  FocusNode expireDate;
+  bool loading = false;
 
-  void initState() {
-    print('this is init state');
+  @override
+  void didChangeDependencies() async {
+    super.didChangeDependencies();
+    await plasticCardTypeController.fetchPlasticCardType(14);
+    await plasticCardHumoController.fetchPlasticCardHumo(15);
+    setState(() {
+      if (plasticCardTypeController.plasticCardTypeList.isNotEmpty) {
+        print(plasticCardTypeController.plasticCardTypeList.first.cardNumber);
+        uzCardController.text =
+            plasticCardTypeController.plasticCardTypeList.first.cardNumber;
+        dateController.text =
+            plasticCardTypeController.plasticCardTypeList.first.cardExpire;
+        phoneUzController.text =
+            plasticCardTypeController.plasticCardTypeList.first.cardPhoneNumber;
+      }
+      if (plasticCardHumoController.plasticCardTypeList.isNotEmpty) {
+        humoController.text =
+            plasticCardHumoController.plasticCardTypeList.first.cardNumber;
+        dateHumoController.text =
+            plasticCardHumoController.plasticCardTypeList.first.cardExpire;
+        phoneHumoController.text =
+            plasticCardHumoController.plasticCardTypeList.first.cardPhoneNumber;
+      }
+    });
+  }
 
-    super.initState();
-
-    selectedRadio = 1;
-    if (plasticCardTypeController.plasticCardTypeList.isNotEmpty) {
-      uzCardController.text =
-          plasticCardTypeController.plasticCardTypeList.first.cardNumber;
-      dateController.text =
-          plasticCardTypeController.plasticCardTypeList.first.cardExpire;
-      phoneUzController.text =
-          plasticCardTypeController.plasticCardTypeList.first.cardPhoneNumber;
-    }
-    // uzCardController
-    //   ..text = plasticCardTypeController.plasticCardTypeList?.first?.cardNumber;
+  void dispose() {
+    cardNumber.dispose();
+    cardPhoneNumber.dispose();
+    expireDate.dispose();
+    super.dispose();
   }
 
   selectedRadioValue(int val) {
@@ -230,9 +255,29 @@ class _UserScreenState extends State<UserScreen> {
 
                                                                   print(
                                                                       'changing zapros to plastic card');
-                                                                  PlasticCardType
+                                                                  await PlasticCardType
                                                                       .fetchPlasticCardType(
                                                                           14);
+
+                                                                  if (plasticCardTypeController
+                                                                      .plasticCardTypeList
+                                                                      .isNotEmpty) {
+                                                                    setState(
+                                                                        () {
+                                                                      uzCardController.text = plasticCardTypeController
+                                                                          .plasticCardTypeList
+                                                                          .first
+                                                                          .cardNumber;
+                                                                      dateController.text = plasticCardTypeController
+                                                                          .plasticCardTypeList
+                                                                          .first
+                                                                          .cardExpire;
+                                                                      phoneUzController.text = plasticCardTypeController
+                                                                          .plasticCardTypeList
+                                                                          .first
+                                                                          .cardPhoneNumber;
+                                                                    });
+                                                                  }
                                                                   if (selectedCard ==
                                                                       2) {
                                                                     setState(
@@ -295,29 +340,21 @@ class _UserScreenState extends State<UserScreen> {
                                                                       .fetchPlasticCardType(
                                                                           15);
 
-                                                                  if (plasticCardTypeController
+                                                                  if (plasticCardHumoController
                                                                       .plasticCardTypeList
                                                                       .isNotEmpty) {
                                                                     setState(
                                                                         () {
-                                                                      humoController.text = plasticCardTypeController
+                                                                      humoController.text = plasticCardHumoController
                                                                           .plasticCardTypeList
                                                                           .first
                                                                           .cardNumber;
-                                                                      print(
-                                                                          'card number');
-                                                                      print(humoController
-                                                                          .text);
-                                                                      dateHumoController.text = plasticCardTypeController
+                                                                      dateHumoController.text = plasticCardHumoController
                                                                           .plasticCardTypeList
                                                                           .first
                                                                           .cardExpire;
-                                                                      print(
-                                                                          'expire date');
-                                                                      print(dateHumoController
-                                                                          .text);
-                                                                      phoneHumoController.text = platicCardController
-                                                                          .plasticCardList
+                                                                      phoneHumoController.text = plasticCardHumoController
+                                                                          .plasticCardTypeList
                                                                           .first
                                                                           .cardPhoneNumber;
                                                                     });
@@ -382,7 +419,8 @@ class _UserScreenState extends State<UserScreen> {
                               ],
                             ),
                             Obx(() {
-                              if (plasticCardTypeController.isLoading.value) {
+                              if (plasticCardTypeController.isLoading.value ||
+                                  plasticCardHumoController.isLoading.value) {
                                 return Center(
                                   child: CircularProgressIndicator(),
                                 );
@@ -406,7 +444,7 @@ class _UserScreenState extends State<UserScreen> {
                                         height: 14,
                                       ),
                                       TextFormField(
-                                        controller: selectedRadio == 1
+                                        controller: selectedCard == 1
                                             ? uzCardController
                                             : humoController,
                                         inputFormatters: selectedRadio == 1
@@ -565,7 +603,124 @@ class _UserScreenState extends State<UserScreen> {
                                             ),
                                           ),
                                         ],
-                                      )
+                                      ),
+                                      loading
+                                          ? CircularProgressIndicator()
+                                          : selectedCard == 1
+                                              ? RaisedButton(
+                                                  child: plasticCardTypeController
+                                                          .plasticCardTypeList
+                                                          .isNotEmpty
+                                                      ? Text('edit UzCard')
+                                                      : Text('submiit'),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      loading = true;
+                                                    });
+                                                    plasticCardTypeController
+                                                            .plasticCardTypeList
+                                                            .isNotEmpty
+                                                        ? EditPlasticCard
+                                                            .editPlasticCard(
+                                                            id: plasticCardTypeController
+                                                                .plasticCardTypeList
+                                                                .first
+                                                                .id,
+                                                            typeId: plasticCardTypeController
+                                                                .plasticCardTypeList
+                                                                .first
+                                                                .paymentType
+                                                                .id,
+                                                            cardNumber:
+                                                                uzCardController
+                                                                    .text,
+                                                            cardPhoneNumber:
+                                                                phoneUzController
+                                                                    .text,
+                                                            cardExpire:
+                                                                dateController
+                                                                    .text,
+                                                          ).then((value) {
+                                                            setState(() {
+                                                              loading = false;
+                                                            });
+                                                          })
+                                                        : AddPlasticCardType.addPlasticCardType(
+                                                                typeId: 14,
+                                                                cardNumber:
+                                                                    uzCardController
+                                                                        .text,
+                                                                cardPhoneNumber:
+                                                                    phoneUzController
+                                                                        .text,
+                                                                cardExpire:
+                                                                    dateController
+                                                                        .text)
+                                                            .then((value) {
+                                                            setState(() {
+                                                              loading = false;
+                                                            });
+                                                          });
+                                                  })
+                                              : RaisedButton(
+                                                  child: plasticCardHumoController
+                                                          .plasticCardTypeList
+                                                          .isNotEmpty
+                                                      ? Text('edit HumoCard')
+                                                      : Text('submiit'),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      loading = true;
+                                                    });
+
+                                                    plasticCardHumoController
+                                                            .plasticCardTypeList
+                                                            .isNotEmpty
+                                                        ? EditPlasticCard
+                                                            .editPlasticCard(
+                                                            id: plasticCardHumoController
+                                                                .plasticCardTypeList
+                                                                .first
+                                                                .id,
+                                                            typeId: plasticCardHumoController
+                                                                .plasticCardTypeList
+                                                                .first
+                                                                .paymentType
+                                                                .id,
+                                                            cardNumber:
+                                                                humoController
+                                                                    .text,
+                                                            cardPhoneNumber:
+                                                                phoneHumoController
+                                                                    .text,
+                                                            cardExpire:
+                                                                dateHumoController
+                                                                    .text,
+                                                          ).then(
+                                                            (value) =>
+                                                                setState(() {
+                                                              loading = false;
+                                                            }),
+                                                          )
+                                                        : AddPlasticCardType.addPlasticCardType(
+                                                                typeId: 15,
+                                                                cardNumber:
+                                                                    humoController
+                                                                        .text,
+                                                                cardPhoneNumber:
+                                                                    humoController
+                                                                        .text,
+                                                                cardExpire:
+                                                                    dateHumoController
+                                                                        .text)
+                                                            .then(
+                                                            (value) =>
+                                                                setState(() {
+                                                              loading = false;
+                                                            }),
+                                                          );
+                                                  },
+                                                )
                                     ],
                                   ),
                                 );
