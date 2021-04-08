@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
             height1: 10,
             width1: 10,
             onpress1: () => Get.to(UserScreen()),
-            title: 'Лаваш Средний',
+            title: 'Главная',
             icon2Url: 'assets/icons/shopping-cart.svg',
             width2: 25,
             height2: 25,

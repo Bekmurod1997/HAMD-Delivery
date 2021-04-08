@@ -55,6 +55,8 @@ AppBar customAppBar(
             ),
             isCart
                 ? Container(
+                    width: 50,
+                    height: 50,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                       color: Colors.white,
