@@ -16,6 +16,7 @@ class PaymentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var recievedIndex = Get.arguments;
+    var recieve = ModalRoute.of(context).settings.arguments;
     final screenSize = MediaQuery.of(context).size;
 
     print('recieved index is: $recievedIndex');

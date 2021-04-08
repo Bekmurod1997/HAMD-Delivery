@@ -12,6 +12,7 @@ class OrderButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
+    var recievedAddress = ModalRoute.of(context).settings.arguments;
     return SizedBox(
       width: screenSize.width * 0.86,
       height: 63,

@@ -358,50 +358,51 @@ class PaymentStatusScreen extends StatelessWidget {
                         iconUrl: 'assets/icons/clock-alt.svg',
                         smallTitle: '09:23 AM, 15 November 2019',
                       ),
-                      Container(
-                        margin: EdgeInsets.symmetric(vertical: 5),
-                        width: 30.0,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: List.generate(
-                            4,
-                            (index) => Container(
-                              height: 8,
-                              width: 2,
-                              color: Color(0xffFB6A43),
-                              margin:
-                                  EdgeInsets.only(bottom: 2, left: 20, top: 2),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Stages(
-                        bigTitle: 'Заказ готов',
-                        iconUrl: 'assets/icons/flag.svg',
-                        smallTitle: '09:23 AM, 15 November 2019',
-                      ),
-                      Container(
-                        margin: EdgeInsets.symmetric(vertical: 5),
-                        width: 30.0,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: List.generate(
-                            4,
-                            (index) => Container(
-                              height: 8,
-                              width: 2,
-                              color: Color(0xffFB6A43),
-                              margin:
-                                  EdgeInsets.only(bottom: 2, left: 20, top: 2),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Stages(
-                        bigTitle: 'Передан на доставку',
-                        iconUrl: 'assets/icons/deliver-alt.svg',
-                        smallTitle: '09:23 AM, 15 November 2019',
-                      ),
+                      // Container(
+                      //   margin: EdgeInsets.symmetric(vertical: 5),
+                      //   width: 30.0,
+                      //   child: Column(
+                      //     crossAxisAlignment: CrossAxisAlignment.center,
+                      //     children: List.generate(
+                      //       4,
+                      //       (index) => Container(
+                      //         height: 8,
+                      //         width: 2,
+                      //         color: Color(0xffFB6A43),
+                      //         margin:
+                      //             EdgeInsets.only(bottom: 2, left: 20, top: 2),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
+                      // Stages(
+                      //   bigTitle: 'Заказ готов',
+                      //   iconUrl: 'assets/icons/flag.svg',
+                      //   smallTitle: '09:23 AM, 15 November 2019',
+                      // ),
+                      // Container(
+                      //   margin: EdgeInsets.symmetric(vertical: 5),
+                      //   width: 30.0,
+                      //   child: Column(
+                      //     crossAxisAlignment: CrossAxisAlignment.center,
+                      //     children: List.generate(
+                      //       4,
+                      //       (index) => Container(
+                      //         height: 8,
+                      //         width: 2,
+                      //         color: Color(0xffFB6A43),
+                      //         margin:
+                      //             EdgeInsets.only(bottom: 2, left: 20, top: 2),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
+                      // Stages(
+                      //   bigTitle: 'Передан на доставку',
+                      //   iconUrl: 'assets/icons/deliver-alt.svg',
+                      //   smallTitle: '09:23 AM, 15 November 2019',
+                      // ),
+
                       SizedBox(
                         height: 55,
                       ),

@@ -2,7 +2,7 @@ import 'package:HAMD/ObxHelper/add_cart_controller.dart';
 import 'package:HAMD/constants/colors.dart';
 import 'package:HAMD/ui/componants/header.dart';
 
-import 'package:HAMD/ui/payment/widgets/custom_radio_buttons.dart';
+import 'package:HAMD/ui/cart/widgets/custom_radio_buttons.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
