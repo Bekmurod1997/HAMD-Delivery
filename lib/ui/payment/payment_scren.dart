@@ -1,3 +1,4 @@
+import 'package:HAMD/ObxHelper/plastic_card_universal_controller.dart';
 import 'package:HAMD/constants/colors.dart';
 
 import 'package:HAMD/constants/fonts.dart';
@@ -13,6 +14,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PaymentScreen extends StatelessWidget {
+  final PlasticCardUniversalController plasticCardUniversalController =
+      Get.find<PlasticCardUniversalController>();
   @override
   Widget build(BuildContext context) {
     var recievedIndex = Get.arguments;

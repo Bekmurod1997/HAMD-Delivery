@@ -1,9 +1,11 @@
+import 'package:HAMD/ObxHelper/plastic_card_universal_controller.dart';
 import 'package:HAMD/constants/fonts.dart';
 import 'package:HAMD/ui/masks/mask_format.dart';
 
 import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class AddressField extends StatefulWidget {
   //changed to final
@@ -14,13 +16,46 @@ class AddressField extends StatefulWidget {
 }
 
 class _AddressFieldState extends State<AddressField> {
+  final PlasticCardUniversalController plasticCardUniversalController =
+      Get.find<PlasticCardUniversalController>();
   final _formKey = GlobalKey<FormState>();
   TextEditingController uzCardController = TextEditingController();
   TextEditingController humoController = TextEditingController();
-  TextEditingController dateController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
+  TextEditingController dateUzController = TextEditingController();
+  TextEditingController dateHumoController = TextEditingController();
+  TextEditingController phoneUzController = TextEditingController();
+  TextEditingController phoneHumoController = TextEditingController();
 
   int selected = 0;
+  @override
+  void didChangeDependencies() async {
+    await plasticCardUniversalController.fetchPlasticUzCard();
+    await plasticCardUniversalController.fetchPlasticHumoCard();
+
+    setState(() {
+      if (plasticCardUniversalController.plasticUzCardList.isNotEmpty) {
+        print(plasticCardUniversalController
+            .plasticHumoCardList.first.cardPhoneNumber);
+        uzCardController.text =
+            plasticCardUniversalController.plasticUzCardList.first.cardNumber;
+        dateUzController.text =
+            plasticCardUniversalController.plasticUzCardList.first.cardExpire;
+        phoneUzController.text = plasticCardUniversalController
+            .plasticUzCardList.first.cardPhoneNumber;
+      }
+      if (plasticCardUniversalController.plasticHumoCardList.isNotEmpty) {
+        print(plasticCardUniversalController
+            .plasticHumoCardList.first.cardNumber);
+        humoController.text =
+            plasticCardUniversalController.plasticHumoCardList.first.cardNumber;
+        dateHumoController.text =
+            plasticCardUniversalController.plasticHumoCardList.first.cardExpire;
+        phoneHumoController.text = plasticCardUniversalController
+            .plasticHumoCardList.first.cardPhoneNumber;
+      }
+    });
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -267,7 +302,9 @@ class _AddressFieldState extends State<AddressField> {
                             flex: 3,
                             child: TextFormField(
                               inputFormatters: [InputMask.maskPhoneNumber],
-                              controller: phoneController,
+                              controller: selected == 0
+                                  ? phoneUzController
+                                  : phoneHumoController,
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
                                 hintText: '998',
@@ -305,7 +342,9 @@ class _AddressFieldState extends State<AddressField> {
                             flex: 1,
                             child: TextFormField(
                               inputFormatters: [InputMask.maskDate],
-                              controller: dateController,
+                              controller: selected == 0
+                                  ? dateUzController
+                                  : dateHumoController,
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
                                 hintText: '00/00',
