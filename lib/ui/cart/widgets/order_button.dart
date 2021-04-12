@@ -19,11 +19,11 @@ class OrderButton extends StatelessWidget {
       child: RaisedButton(
         elevation: 0,
         color: Color(0xff9F111B),
-        onPressed: () =>
-            Get.toNamed('/payment-screen', arguments: [sendIndex, address]),
+        onPressed: () => print(address),
+        // Get.toNamed('/payment-screen', arguments: [sendIndex, address]),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         child: Text(
-          'ЗАКАЗАТЬ',
+          'sadasd',
           style: TextStyle(
               color: Colors.white, fontSize: FontPalatte.nextButtonSize),
         ),
