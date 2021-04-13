@@ -1,3 +1,4 @@
+import 'package:HAMD/ObxHelper/list_of_orders.dart';
 import 'package:HAMD/ObxHelper/plastic_card_humo_controller.dart';
 import 'package:HAMD/ObxHelper/plastic_card_type_controller.dart';
 import 'package:HAMD/ObxHelper/platic_card_controller.dart';
@@ -29,6 +30,8 @@ class _UserScreenState extends State<UserScreen> {
       Get.find<PlasticCardTypeController>();
   final PlasticCardHumoController plasticCardHumoController =
       Get.find<PlasticCardHumoController>();
+  final ListOfAllOrdersControllers listOfAllOrdersControllers =
+      Get.find<ListOfAllOrdersControllers>();
   TextEditingController dateController = TextEditingController();
   TextEditingController dateHumoController = TextEditingController();
   TextEditingController phoneUzController = TextEditingController();
@@ -120,11 +123,14 @@ class _UserScreenState extends State<UserScreen> {
                                   selectedIndex = 0;
                                 });
                               }
+                              listOfAllOrdersControllers.fetchListOfOrders();
                             },
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(25)),
                             child: Text(
                               'Мои заказы',
+                              // listOfAllOrdersControllers.orderList.length
+                              //     .toString(),
                               style: FontStyles.boldStyle(
                                   fontSize: 15,
                                   fontFamily: 'Montserrat',
