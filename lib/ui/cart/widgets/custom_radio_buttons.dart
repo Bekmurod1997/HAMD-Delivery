@@ -3,7 +3,6 @@ import 'package:HAMD/constants/colors.dart';
 import 'package:HAMD/constants/fontSize.dart';
 import 'package:HAMD/constants/fonts.dart';
 import 'package:HAMD/ui/cart/widgets/bill.dart';
-import 'package:HAMD/ui/cart/widgets/google_map_creen.dart';
 import 'package:HAMD/ui/cart/widgets/order_button.dart';
 import 'package:HAMD/ui/cart/widgets/order_list.dart';
 import 'package:flutter/material.dart';
@@ -145,37 +144,37 @@ class _CustomRadioButtonsState extends State<CustomRadioButtons> {
                                         ),
                                         onPressed: () {
                                           // Get.to(MapSample());
-                                          return showDialog(
-                                              context: context,
-                                              builder: (context) {
-                                                return AlertDialog(
-                                                  insetPadding: EdgeInsets.zero,
-                                                  backgroundColor: Colors.white,
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            15),
-                                                  ),
-                                                  content: Container(
-                                                    height: 440,
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            .75,
-                                                    // child: Text('map'),
-                                                    child: GoogleMap(
-                                                      onMapCreated:
-                                                          _onMapCreated,
-                                                      initialCameraPosition:
-                                                          CameraPosition(
-                                                        target: _center,
-                                                        zoom: 11.0,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                );
-                                              });
+                                          // return showDialog(
+                                          //     context: context,
+                                          //     builder: (context) {
+                                          //       return AlertDialog(
+                                          //         insetPadding: EdgeInsets.zero,
+                                          //         backgroundColor: Colors.white,
+                                          //         shape: RoundedRectangleBorder(
+                                          //           borderRadius:
+                                          //               BorderRadius.circular(
+                                          //                   15),
+                                          //         ),
+                                          //         content: Container(
+                                          //           height: 440,
+                                          //           width:
+                                          //               MediaQuery.of(context)
+                                          //                       .size
+                                          //                       .width *
+                                          //                   .75,
+                                          //           // child: Text('map'),
+                                          //           child: GoogleMap(
+                                          //             onMapCreated:
+                                          //                 _onMapCreated,
+                                          //             initialCameraPosition:
+                                          //                 CameraPosition(
+                                          //               target: _center,
+                                          //               zoom: 11.0,
+                                          //             ),
+                                          //           ),
+                                          //         ),
+                                          //       );
+                                          //     });
                                         },
                                       ),
                                       // Icon(
