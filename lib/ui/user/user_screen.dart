@@ -71,12 +71,12 @@ class _UserScreenState extends State<UserScreen> {
     });
   }
 
-  void dispose() {
-    cardNumber.dispose();
-    cardPhoneNumber.dispose();
-    expireDate.dispose();
-    super.dispose();
-  }
+  // void dispose() {
+  //   cardNumber.dispose();
+  //   cardPhoneNumber.dispose();
+  //   expireDate.dispose();
+  //   super.dispose();
+  // }
 
   selectedRadioValue(int val) {
     selectedRadio = val;
