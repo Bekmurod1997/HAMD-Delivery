@@ -3,19 +3,15 @@ import 'package:HAMD/constants/colors.dart';
 import 'package:HAMD/constants/fontSize.dart';
 import 'package:HAMD/constants/fonts.dart';
 import 'package:HAMD/ui/cart/widgets/bill.dart';
-import 'package:HAMD/ui/cart/widgets/order_button.dart';
+import 'package:HAMD/ui/cart/widgets/google_map_creen.dart';
 import 'package:HAMD/ui/cart/widgets/order_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'dart:async';
 
 class CustomRadioButtons extends StatefulWidget {
   @override
   _CustomRadioButtonsState createState() => _CustomRadioButtonsState();
 }
-
-enum CustomRadioString { hamd, delivery }
 
 class _CustomRadioButtonsState extends State<CustomRadioButtons> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -26,23 +22,16 @@ class _CustomRadioButtonsState extends State<CustomRadioButtons> {
   int selectedRadio;
   final DelivertyTypeController delivertyTypeController =
       Get.find<DelivertyTypeController>();
+
   @override
   void initState() {
     super.initState();
+
     selectedRadio = 2;
   }
 
   selectedRadioValue(int val) {
     selectedRadio = val;
-  }
-
-  //google map
-  Completer<GoogleMapController> _controller = Completer();
-
-  static const LatLng _center = const LatLng(45.521563, -122.677433);
-
-  void _onMapCreated(GoogleMapController controller) {
-    _controller.complete(controller);
   }
 
   @override
@@ -142,45 +131,56 @@ class _CustomRadioButtonsState extends State<CustomRadioButtons> {
                                           Icons.location_on,
                                           color: Colors.grey,
                                         ),
-                                        onPressed: () {
-                                          // Get.to(MapSample());
-                                          // return showDialog(
-                                          //     context: context,
-                                          //     builder: (context) {
-                                          //       return AlertDialog(
-                                          //         insetPadding: EdgeInsets.zero,
-                                          //         backgroundColor: Colors.white,
-                                          //         shape: RoundedRectangleBorder(
-                                          //           borderRadius:
-                                          //               BorderRadius.circular(
-                                          //                   15),
+                                        onPressed: () async {
+                                          dynamic result =
+                                              await Get.to(MapSample());
+                                          addressController
+                                            ..text = result['address'] ?? '';
+                                          // Get.dialog(
+                                          //   Scaffold(
+                                          //     body: Stack(
+                                          //       children: [
+                                          //         GoogleMap(
+                                          //           myLocationEnabled: true,
+                                          //           myLocationButtonEnabled:
+                                          //               false,
+                                          //           zoomControlsEnabled: false,
+                                          //           onMapCreated: _onMapCreated,
+                                          //           initialCameraPosition:
+                                          //               _initialCameraPosition,
+                                          //           onCameraMove: (position) =>
+                                          //               _getAddressFromLatLngOnMove(
+                                          //                   position),
                                           //         ),
-                                          //         content: Container(
-                                          //           height: 440,
-                                          //           width:
-                                          //               MediaQuery.of(context)
-                                          //                       .size
-                                          //                       .width *
-                                          //                   .75,
-                                          //           // child: Text('map'),
-                                          //           child: GoogleMap(
-                                          //             onMapCreated:
-                                          //                 _onMapCreated,
-                                          //             initialCameraPosition:
-                                          //                 CameraPosition(
-                                          //               target: _center,
-                                          //               zoom: 11.0,
-                                          //             ),
+                                          //         Text(
+                                          //             '$_currentAddress' ?? ''),
+                                          //         Center(
+                                          //           child: Icon(
+                                          //             Icons.place,
+                                          //             size: 50.0,
+                                          //             color: ColorPalatte
+                                          //                 .strongRedColor,
                                           //           ),
                                           //         ),
-                                          //       );
-                                          //     });
+                                          //       ],
+                                          //     ),
+                                          //     floatingActionButton:
+                                          //         FloatingActionButton(
+                                          //             backgroundColor:
+                                          //                 Colors.white,
+                                          //             foregroundColor:
+                                          //                 ColorPalatte
+                                          //                     .strongRedColor,
+                                          //             child: Icon(
+                                          //               Icons.near_me,
+                                          //               size: 30.0,
+                                          //             ),
+                                          //             onPressed: () =>
+                                          //                 getCurrentPosition()),
+                                          //   ),
+                                          // );
                                         },
                                       ),
-                                      // Icon(
-                                      //   Icons.location_on,
-                                      //   color: Colors.grey,
-                                      // ),
                                       hintText: 'ул. Умарова, д.18',
                                       hintStyle: FontStyles.regularStyle(
                                         fontSize: 14,
