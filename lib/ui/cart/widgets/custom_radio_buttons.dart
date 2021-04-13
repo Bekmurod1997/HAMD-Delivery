@@ -6,10 +6,7 @@ import 'package:HAMD/ui/cart/widgets/bill.dart';
 import 'package:HAMD/ui/cart/widgets/google_map_creen.dart';
 import 'package:HAMD/ui/cart/widgets/order_list.dart';
 import 'package:flutter/material.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class CustomRadioButtons extends StatefulWidget {
   @override
