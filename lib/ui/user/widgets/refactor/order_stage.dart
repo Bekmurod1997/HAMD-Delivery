@@ -2,6 +2,8 @@ import 'package:HAMD/ObxHelper/order_detail_view_controller.dart';
 import 'package:HAMD/constants/colors.dart';
 import 'package:HAMD/constants/fonts.dart';
 import 'package:HAMD/ui/componants/header.dart';
+import 'package:HAMD/ui/home/home_screen.dart';
+import 'package:HAMD/ui/pamentStatus/widgets/stages.dart';
 
 import 'package:flutter/material.dart';
 
@@ -25,6 +27,8 @@ class _OrderStageScreenState extends State<OrderStageScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print('id is');
+    print(orderDetailViewController.orderDetailViewList.first.id);
     return Scaffold(
       backgroundColor: ColorPalatte.mainPageColor,
       body: Column(
@@ -49,244 +53,164 @@ class _OrderStageScreenState extends State<OrderStageScreen> {
                 } else {
                   return orderDetailViewController
                           .orderDetailViewList.first.orderProducts.isNotEmpty
-                      ? Column(
+                      ? ListView(
                           children: [
-                            ListView.separated(
-                              separatorBuilder: (context, index) => SizedBox(
-                                height: 20,
-                              ),
-                              physics: NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              itemCount: orderDetailViewController
-                                  .orderDetailViewList
-                                  .first
-                                  .orderProducts
-                                  .length,
-                              itemBuilder: (context, index) => Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 20),
-                                child: InkWell(
-                                  // onTap: () => Get.to(PaymentStatusScreen()),
-                                  child: Container(
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.8,
-                                    height: 150,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(25),
-                                        color: Colors.white),
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 20),
-                                      child: Row(
-                                        children: [
-                                          Expanded(
-                                            flex: 2,
-                                            child: Container(
-                                              child: Image.network(
-                                                  'http://hamd.loko.uz/' +
-                                                      orderDetailViewController
-                                                          .orderDetailViewList
-                                                          .first
-                                                          .orderProducts[index]
-                                                          .product
-                                                          .photo),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            flex: 3,
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 10),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  SizedBox(height: 20),
-                                                  Align(
-                                                    alignment:
-                                                        Alignment.centerLeft,
-                                                    child: Text(
-                                                      orderDetailViewController
-                                                          .orderDetailViewList
-                                                          .first
-                                                          .orderProducts[index]
-                                                          .product
-                                                          .name,
-                                                      style:
-                                                          FontStyles.boldStyle(
-                                                        fontSize: 18,
-                                                        fontFamily:
-                                                            'Montserrat',
-                                                        color:
-                                                            Color(0xff222E54),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 15,
-                                                  ),
-                                                  Align(
-                                                    alignment:
-                                                        Alignment.centerLeft,
-                                                    child: Text(
-                                                      orderDetailViewController
-                                                          .orderDetailViewList
-                                                          .first
-                                                          .orderProducts[index]
-                                                          .product
-                                                          .name,
-                                                      style: FontStyles
-                                                          .regularStyle(
-                                                        fontSize: 10,
-                                                        fontFamily: 'Popins',
-                                                        color:
-                                                            Color(0xffA4ABB9),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 15,
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        orderDetailViewController
-                                                                .orderDetailViewList
-                                                                .first
-                                                                .orderProducts[
-                                                                    index]
-                                                                .count
-                                                                .toString() +
-                                                            ' x ' +
-                                                            orderDetailViewController
-                                                                .orderDetailViewList
-                                                                .first
-                                                                .orderProducts[
-                                                                    index]
-                                                                .product
-                                                                .price
-                                                                .toString() +
-                                                            'сум',
-                                                        style: FontStyles
-                                                            .semiBoldStyle(
-                                                          fontSize: 18,
-                                                          fontFamily: 'Poppins',
-                                                          color:
-                                                              Color(0xff222E54),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                            Center(
+                              child: Container(
+                                height: 45,
+                                width: 80,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(40),
+                                  color: ColorPalatte.strongRedColor,
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'D ' +
+                                        orderDetailViewController
+                                            .orderDetailViewList.first.id
+                                            .toString(),
+                                    style: FontStyles.boldStyle(
+                                      fontSize: 18,
+                                      fontFamily: 'Product Sans',
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ),
                               ),
                             ),
+                            SizedBox(
+                              height: 20,
+                            ),
                             Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 10),
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 15),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(25),
-                                  color: Colors.white,
-                                ),
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          'Стоимость блюд',
-                                          style: FontStyles.mediumStyle(
-                                            fontSize: 14,
-                                            fontFamily: 'Montserrat',
-                                            color: Color(0xff494D6D),
-                                          ),
-                                        ),
-                                        Text(
-                                          orderDetailViewController
-                                                  .orderDetailViewList
-                                                  .first
-                                                  .productTotalSum
-                                                  .toString() +
-                                              ' сум ',
-                                          style: FontStyles.mediumStyle(
-                                            fontSize: 14,
-                                            fontFamily: 'Montserrat',
-                                            color: Color(0xff494D6D),
-                                          ),
-                                        ),
-                                      ],
+                              padding: EdgeInsets.symmetric(horizontal: 38),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 11),
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          .65,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              .18,
+                                      child:
+                                          Image.asset('assets/food/lavash.png'),
                                     ),
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          'Доставка',
-                                          style: FontStyles.mediumStyle(
-                                            fontSize: 14,
-                                            fontFamily: 'Montserrat',
-                                            color: Color(0xff494D6D),
+                                  ),
+                                  SizedBox(
+                                    height: 35,
+                                  ),
+                                  Stages(
+                                    bigTitle: 'Заказ принят',
+                                    iconUrl: 'assets/icons/clock-alt.svg',
+                                    smallTitle: orderDetailViewController
+                                        .orderDetailViewList.first.date
+                                        .toString(),
+                                  ),
+                                  orderDetailViewController.orderDetailViewList
+                                              .first.status ==
+                                          2
+                                      ? Container(
+                                          margin:
+                                              EdgeInsets.symmetric(vertical: 5),
+                                          width: 30.0,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: List.generate(
+                                              4,
+                                              (index) => Container(
+                                                height: 8,
+                                                width: 2,
+                                                color: Color(0xffFB6A43),
+                                                margin: EdgeInsets.only(
+                                                    bottom: 2,
+                                                    left: 20,
+                                                    top: 2),
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                        Text(
-                                          '10 000 сум ',
-                                          style: FontStyles.mediumStyle(
-                                            fontSize: 14,
-                                            fontFamily: 'Montserrat',
-                                            color: Color(0xff494D6D),
+                                        )
+                                      : Container(),
+                                  orderDetailViewController.orderDetailViewList
+                                              .first.status ==
+                                          2
+                                      ? Stages(
+                                          bigTitle: 'Заказ готов',
+                                          iconUrl: 'assets/icons/flag.svg',
+                                          smallTitle: orderDetailViewController
+                                              .orderDetailViewList.first.date
+                                              .toString(),
+                                        )
+                                      : Container(),
+                                  orderDetailViewController.orderDetailViewList
+                                              .first.status ==
+                                          2
+                                      ? Container(
+                                          margin:
+                                              EdgeInsets.symmetric(vertical: 5),
+                                          width: 30.0,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: List.generate(
+                                              4,
+                                              (index) => Container(
+                                                height: 8,
+                                                width: 2,
+                                                color: Color(0xffFB6A43),
+                                                margin: EdgeInsets.only(
+                                                    bottom: 2,
+                                                    left: 20,
+                                                    top: 2),
+                                              ),
+                                            ),
                                           ),
+                                        )
+                                      : Container(),
+                                  orderDetailViewController.orderDetailViewList
+                                              .first.status ==
+                                          2
+                                      ? Stages(
+                                          bigTitle: 'Передан на доставку',
+                                          iconUrl:
+                                              'assets/icons/deliver-alt.svg',
+                                          smallTitle: orderDetailViewController
+                                              .orderDetailViewList.first.date
+                                              .toString(),
+                                        )
+                                      : Container(),
+                                  SizedBox(
+                                    height: 55,
+                                  ),
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.86,
+                                    height: 63,
+                                    child: RaisedButton(
+                                      elevation: 0,
+                                      color: Color(0xff9F111B),
+                                      onPressed: () => Get.to(HomeScreen()),
+                                      // onPressed: () => _showSnackBar(context),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15)),
+                                      child: Text(
+                                        'на главную'.toUpperCase(),
+                                        style: FontStyles.mediumStyle(
+                                          fontSize: 20,
+                                          fontFamily: 'Montserrat',
+                                          color: Colors.white,
                                         ),
-                                      ],
+                                      ),
                                     ),
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          'Итого',
-                                          style: FontStyles.semiBoldStyle(
-                                            fontSize: 18,
-                                            fontFamily: 'Montserrat',
-                                            color: Color(0xff9F111B),
-                                          ),
-                                        ),
-                                        Text(
-                                          orderDetailViewController
-                                                  .orderDetailViewList
-                                                  .first
-                                                  .productTotalSum
-                                                  .toString() +
-                                              ' сум ',
-                                          style: FontStyles.semiBoldStyle(
-                                            fontSize: 18,
-                                            fontFamily: 'Montserrat',
-                                            color: Color(0xff9F111B),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                  SizedBox(
+                                    height: 40,
+                                  ),
+                                ],
                               ),
                             ),
                           ],
