@@ -8,14 +8,15 @@ final CartListController cartListController = Get.find<CartListController>();
 
 class Order {
   static var client = http.Client();
-  static Future makeOrders({String address, int deliveryType}) async {
+  static Future makeOrders(
+      {String address, int deliveryType, String location}) async {
     final token = MyPref.secondToken ?? '';
     var response =
         await client.post('http://hamd.loko.uz/api/order/send', headers: {
       HttpHeaders.authorizationHeader: 'Bearer $token'
     }, body: {
       'address': address,
-      'map_location': '41.329139, 69.242315',
+      'map_location': location,
       'comment': 'Хорошего вам дня!',
       'payment_type_id': '10',
       'delivery_type_id': deliveryType.toString(),

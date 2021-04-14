@@ -2,6 +2,7 @@ import 'package:HAMD/ObxHelper/list_of_orders.dart';
 import 'package:HAMD/constants/fonts.dart';
 
 import 'package:HAMD/ui/user/widgets/order_detail_screen.dart';
+import 'package:HAMD/ui/user/widgets/refactor/order_stage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -27,9 +28,12 @@ class MyOrders extends StatelessWidget {
             ),
             child: InkWell(
               onTap: () => Get.to(
-                  OrderDetailScreen(
+                  OrderStageScreen(
                     id: listOfAllOrdersControllers.orderList[index].id,
                   ),
+                  // OrderDetailScreen(
+                  //   id: listOfAllOrdersControllers.orderList[index].id,
+                  // ),
                   arguments: listOfAllOrdersControllers.orderList[index].id),
               child: Row(
                 mainAxisSize: MainAxisSize.max,

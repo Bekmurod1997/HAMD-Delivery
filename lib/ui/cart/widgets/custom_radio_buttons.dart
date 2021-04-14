@@ -7,6 +7,7 @@ import 'package:HAMD/ui/cart/widgets/google_map_creen.dart';
 import 'package:HAMD/ui/cart/widgets/order_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class CustomRadioButtons extends StatefulWidget {
   @override
@@ -34,6 +35,10 @@ class _CustomRadioButtonsState extends State<CustomRadioButtons> {
     selectedRadio = val;
   }
 
+  String lat;
+  String lng;
+  String addressLatLng;
+  LatLng recievedLatLng;
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -73,7 +78,6 @@ class _CustomRadioButtonsState extends State<CustomRadioButtons> {
                       ),
                     ),
                   ),
-
                   RadioListTile(
                     dense: true,
                     activeColor: Color(0xff9F111B),
@@ -95,7 +99,6 @@ class _CustomRadioButtonsState extends State<CustomRadioButtons> {
                       ),
                     ),
                   ),
-
                   selectedRadio == 1
                       ? Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 26),
@@ -112,9 +115,6 @@ class _CustomRadioButtonsState extends State<CustomRadioButtons> {
                           ),
                         )
                       : Container(),
-                  // SizedBox(
-                  //   height: 23,
-                  // ),
                   selectedRadio == 1
                       ? Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 26),
@@ -136,49 +136,12 @@ class _CustomRadioButtonsState extends State<CustomRadioButtons> {
                                               await Get.to(MapSample());
                                           addressController
                                             ..text = result['address'] ?? '';
-                                          // Get.dialog(
-                                          //   Scaffold(
-                                          //     body: Stack(
-                                          //       children: [
-                                          //         GoogleMap(
-                                          //           myLocationEnabled: true,
-                                          //           myLocationButtonEnabled:
-                                          //               false,
-                                          //           zoomControlsEnabled: false,
-                                          //           onMapCreated: _onMapCreated,
-                                          //           initialCameraPosition:
-                                          //               _initialCameraPosition,
-                                          //           onCameraMove: (position) =>
-                                          //               _getAddressFromLatLngOnMove(
-                                          //                   position),
-                                          //         ),
-                                          //         Text(
-                                          //             '$_currentAddress' ?? ''),
-                                          //         Center(
-                                          //           child: Icon(
-                                          //             Icons.place,
-                                          //             size: 50.0,
-                                          //             color: ColorPalatte
-                                          //                 .strongRedColor,
-                                          //           ),
-                                          //         ),
-                                          //       ],
-                                          //     ),
-                                          //     floatingActionButton:
-                                          //         FloatingActionButton(
-                                          //             backgroundColor:
-                                          //                 Colors.white,
-                                          //             foregroundColor:
-                                          //                 ColorPalatte
-                                          //                     .strongRedColor,
-                                          //             child: Icon(
-                                          //               Icons.near_me,
-                                          //               size: 30.0,
-                                          //             ),
-                                          //             onPressed: () =>
-                                          //                 getCurrentPosition()),
-                                          //   ),
-                                          // );
+
+                                          setState(() {
+                                            recievedLatLng = result['position'];
+                                            addressLatLng =
+                                                '${recievedLatLng.latitude}, ${recievedLatLng.longitude}';
+                                          });
                                         },
                                       ),
                                       hintText: 'ул. Умарова, д.18',
@@ -215,7 +178,6 @@ class _CustomRadioButtonsState extends State<CustomRadioButtons> {
                           ),
                         )
                       : Container(),
-
                   SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 26),
@@ -229,38 +191,42 @@ class _CustomRadioButtonsState extends State<CustomRadioButtons> {
                     ),
                   ),
                   SizedBox(height: 16),
+                  // Text(lat),
+                  // Text(lng),
+                  // Text(recievedLatLng.latitude.toString()),
+                  // Text(recievedLatLng.longitude.toString()),
+                  // Text(addressLatLng.toString()),
+
                   Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 26),
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.86,
-                        height: 63,
-                        child: RaisedButton(
-                          elevation: 0,
-                          color: Color(0xff9F111B),
-                          onPressed: () =>
-                              Get.toNamed('/payment-screen', arguments: [
+                    padding: const EdgeInsets.symmetric(horizontal: 26),
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.86,
+                      height: 63,
+                      child: RaisedButton(
+                        elevation: 0,
+                        color: Color(0xff9F111B),
+                        onPressed: () {
+                          Get.toNamed('/payment-screen', arguments: [
                             selectedRadio,
                             selectedRadio == 1
                                 ? addressController.text
                                 : 'Самовывоз из HAMD',
-                          ]),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15)),
-                          child: Text(
-                            'ЗАКАЗАТЬ',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: FontPalatte.nextButtonSize),
-                          ),
+                            selectedRadio == 1
+                                ? addressLatLng.toString()
+                                : '0, 0',
+                          ]);
+                        },
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15)),
+                        child: Text(
+                          'ЗАКАЗАТЬ',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: FontPalatte.nextButtonSize),
                         ),
-                      )
-                      // OrderButton(
-                      //   selectedRadio == 1
-                      //       ? addressController.text
-                      //       : 'Самовывоз из HAMD',
-                      //   sendIndex: selectedRadio,
-                      // ),
                       ),
+                    ),
+                  ),
                 ],
               ),
             );
