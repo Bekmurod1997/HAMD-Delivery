@@ -1,6 +1,7 @@
 import 'package:HAMD/constants/colors.dart';
 import 'package:HAMD/constants/fonts.dart';
 import 'package:HAMD/custom-icons/hamd_icons.dart';
+import 'package:HAMD/ui/home/home_screen.dart';
 import 'package:HAMD/ui/pamentStatus/widgets/stages.dart';
 import 'package:flutter/material.dart';
 import 'package:HAMD/ui/componants/header.dart';
@@ -412,11 +413,12 @@ class PaymentStatusScreen extends StatelessWidget {
                         child: RaisedButton(
                           elevation: 0,
                           color: Color(0xff9F111B),
-                          onPressed: () => _showSnackBar(context),
+                          onPressed: () => Get.to(HomeScreen()),
+                          // onPressed: () => _showSnackBar(context),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15)),
                           child: Text(
-                            'ЗАКАЗАТЬ',
+                            'на главную'.toUpperCase(),
                             style: FontStyles.mediumStyle(
                               fontSize: 20,
                               fontFamily: 'Montserrat',

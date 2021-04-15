@@ -7,6 +7,7 @@ import 'package:HAMD/ui/cart/widgets/google_map_creen.dart';
 import 'package:HAMD/ui/cart/widgets/order_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class CustomRadioButtons extends StatefulWidget {
   @override
@@ -17,8 +18,7 @@ class _CustomRadioButtonsState extends State<CustomRadioButtons> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final TextEditingController addressController = TextEditingController();
-  // final _formKey = GlobalKey<FormState>();
-  // CustomRadioString _site = CustomRadioString.delivery;
+
   int selectedRadio;
   final DelivertyTypeController delivertyTypeController =
       Get.find<DelivertyTypeController>();
@@ -34,6 +34,10 @@ class _CustomRadioButtonsState extends State<CustomRadioButtons> {
     selectedRadio = val;
   }
 
+  String lat;
+  String lng;
+  String addressLatLng;
+  LatLng recievedLatLng;
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -73,7 +77,6 @@ class _CustomRadioButtonsState extends State<CustomRadioButtons> {
                       ),
                     ),
                   ),
-
                   RadioListTile(
                     dense: true,
                     activeColor: Color(0xff9F111B),
@@ -95,7 +98,6 @@ class _CustomRadioButtonsState extends State<CustomRadioButtons> {
                       ),
                     ),
                   ),
-
                   selectedRadio == 1
                       ? Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 26),
@@ -112,9 +114,6 @@ class _CustomRadioButtonsState extends State<CustomRadioButtons> {
                           ),
                         )
                       : Container(),
-                  // SizedBox(
-                  //   height: 23,
-                  // ),
                   selectedRadio == 1
                       ? Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 26),
@@ -219,7 +218,6 @@ class _CustomRadioButtonsState extends State<CustomRadioButtons> {
                           ),
                         )
                       : Container(),
-
                   SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 26),
@@ -234,37 +232,35 @@ class _CustomRadioButtonsState extends State<CustomRadioButtons> {
                   ),
                   SizedBox(height: 16),
                   Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 26),
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.86,
-                        height: 63,
-                        child: RaisedButton(
-                          elevation: 0,
-                          color: Color(0xff9F111B),
-                          onPressed: () =>
-                              Get.toNamed('/payment-screen', arguments: [
+                    padding: const EdgeInsets.symmetric(horizontal: 26),
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.86,
+                      height: 63,
+                      child: RaisedButton(
+                        elevation: 0,
+                        color: Color(0xff9F111B),
+                        onPressed: () {
+                          Get.toNamed('/payment-screen', arguments: [
                             selectedRadio,
                             selectedRadio == 1
                                 ? addressController.text
                                 : 'Самовывоз из HAMD',
-                          ]),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15)),
-                          child: Text(
-                            'ЗАКАЗАТЬ',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: FontPalatte.nextButtonSize),
-                          ),
+                            selectedRadio == 1
+                                ? addressLatLng.toString()
+                                : '0, 0',
+                          ]);
+                        },
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15)),
+                        child: Text(
+                          'ЗАКАЗАТЬ',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: FontPalatte.nextButtonSize),
                         ),
-                      )
-                      // OrderButton(
-                      //   selectedRadio == 1
-                      //       ? addressController.text
-                      //       : 'Самовывоз из HAMD',
-                      //   sendIndex: selectedRadio,
-                      // ),
                       ),
+                    ),
+                  ),
                 ],
               ),
             );

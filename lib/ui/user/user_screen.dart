@@ -1,3 +1,5 @@
+import 'package:HAMD/ObxHelper/list_of_orders.dart';
+import 'package:HAMD/ObxHelper/order_detail_view_controller.dart';
 import 'package:HAMD/ObxHelper/plastic_card_humo_controller.dart';
 import 'package:HAMD/ObxHelper/plastic_card_type_controller.dart';
 import 'package:HAMD/ObxHelper/platic_card_controller.dart';
@@ -11,6 +13,7 @@ import 'package:HAMD/ui/componants/header.dart';
 
 import 'package:HAMD/ui/user/widgets/my_orders.dart';
 import 'package:HAMD/ui/user/widgets/user_data_item.dart';
+import 'package:HAMD/ui/user/widgets/user_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -23,12 +26,16 @@ class UserScreen extends StatefulWidget {
 }
 
 class _UserScreenState extends State<UserScreen> {
+  final OrderDetailViewController orderDetailViewController =
+      Get.find<OrderDetailViewController>();
   final PlaticCardController platicCardController =
       Get.find<PlaticCardController>();
   final PlasticCardTypeController plasticCardTypeController =
       Get.find<PlasticCardTypeController>();
   final PlasticCardHumoController plasticCardHumoController =
       Get.find<PlasticCardHumoController>();
+  final ListOfAllOrdersControllers listOfAllOrdersControllers =
+      Get.find<ListOfAllOrdersControllers>();
   TextEditingController dateController = TextEditingController();
   TextEditingController dateHumoController = TextEditingController();
   TextEditingController phoneUzController = TextEditingController();
@@ -44,6 +51,12 @@ class _UserScreenState extends State<UserScreen> {
   FocusNode cardPhoneNumber;
   FocusNode expireDate;
   bool loading = false;
+  @override
+  void initState() {
+    print('init state in user screen');
+    listOfAllOrdersControllers.fetchListOfOrders();
+    super.initState();
+  }
 
   @override
   void didChangeDependencies() async {
@@ -100,7 +113,9 @@ class _UserScreenState extends State<UserScreen> {
           Expanded(
             child: ListView(
               children: [
-                UserDataItem(),
+                // Text('dasdas'),
+                UserInfo(),
+                // UserDataItem(),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: Row(
@@ -120,11 +135,14 @@ class _UserScreenState extends State<UserScreen> {
                                   selectedIndex = 0;
                                 });
                               }
+                              listOfAllOrdersControllers.fetchListOfOrders();
                             },
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(25)),
                             child: Text(
                               'Мои заказы',
+                              // listOfAllOrdersControllers.orderList.length
+                              //     .toString(),
                               style: FontStyles.boldStyle(
                                   fontSize: 15,
                                   fontFamily: 'Montserrat',

@@ -23,18 +23,20 @@ class ListOfOrdersModel {
 
 class Data {
   int id;
-  Null productTotalSum;
-  Null productCount;
+  Courier courier;
+  int productTotalSum;
+  int productCount;
   String address;
   String mapLocation;
   int status;
-  PaymentType paymentType;
-  PaymentType deliveryType;
+  Null paymentType;
+  DeliveryType deliveryType;
   List<OrderProducts> orderProducts;
   String date;
 
   Data(
       {this.id,
+      this.courier,
       this.productTotalSum,
       this.productCount,
       this.address,
@@ -47,16 +49,16 @@ class Data {
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    courier =
+        json['courier'] != null ? new Courier.fromJson(json['courier']) : null;
     productTotalSum = json['product_total_sum'];
     productCount = json['product_count'];
     address = json['address'];
     mapLocation = json['map_location'];
     status = json['status'];
-    paymentType = json['paymentType'] != null
-        ? new PaymentType.fromJson(json['paymentType'])
-        : null;
+    paymentType = json['paymentType'];
     deliveryType = json['deliveryType'] != null
-        ? new PaymentType.fromJson(json['deliveryType'])
+        ? new DeliveryType.fromJson(json['deliveryType'])
         : null;
     if (json['orderProducts'] != null) {
       orderProducts = new List<OrderProducts>();
@@ -70,14 +72,15 @@ class Data {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
+    if (this.courier != null) {
+      data['courier'] = this.courier.toJson();
+    }
     data['product_total_sum'] = this.productTotalSum;
     data['product_count'] = this.productCount;
     data['address'] = this.address;
     data['map_location'] = this.mapLocation;
     data['status'] = this.status;
-    if (this.paymentType != null) {
-      data['paymentType'] = this.paymentType.toJson();
-    }
+    data['paymentType'] = this.paymentType;
     if (this.deliveryType != null) {
       data['deliveryType'] = this.deliveryType.toJson();
     }
@@ -90,15 +93,68 @@ class Data {
   }
 }
 
-class PaymentType {
+class Courier {
+  int id;
+  String token;
+  String language;
+  String phone;
+  Null name;
+  Null lastname;
+  String photo;
+  int rating;
+  String passportPhoto;
+  String driverLicensePhoto;
+
+  Courier(
+      {this.id,
+      this.token,
+      this.language,
+      this.phone,
+      this.name,
+      this.lastname,
+      this.photo,
+      this.rating,
+      this.passportPhoto,
+      this.driverLicensePhoto});
+
+  Courier.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    token = json['token'];
+    language = json['language'];
+    phone = json['phone'];
+    name = json['name'];
+    lastname = json['lastname'];
+    photo = json['photo'];
+    rating = json['rating'];
+    passportPhoto = json['passportPhoto'];
+    driverLicensePhoto = json['driverLicensePhoto'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['token'] = this.token;
+    data['language'] = this.language;
+    data['phone'] = this.phone;
+    data['name'] = this.name;
+    data['lastname'] = this.lastname;
+    data['photo'] = this.photo;
+    data['rating'] = this.rating;
+    data['passportPhoto'] = this.passportPhoto;
+    data['driverLicensePhoto'] = this.driverLicensePhoto;
+    return data;
+  }
+}
+
+class DeliveryType {
   int id;
   String name;
   String description;
   String photo;
 
-  PaymentType({this.id, this.name, this.description, this.photo});
+  DeliveryType({this.id, this.name, this.description, this.photo});
 
-  PaymentType.fromJson(Map<String, dynamic> json) {
+  DeliveryType.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     description = json['description'];
@@ -146,6 +202,7 @@ class Product {
   String description;
   String parameters;
   int price;
+  int rating;
   String photo;
   List<Gallery> gallery;
 
@@ -155,6 +212,7 @@ class Product {
       this.description,
       this.parameters,
       this.price,
+      this.rating,
       this.photo,
       this.gallery});
 
@@ -164,6 +222,7 @@ class Product {
     description = json['description'];
     parameters = json['parameters'];
     price = json['price'];
+    rating = json['rating'];
     photo = json['photo'];
     if (json['gallery'] != null) {
       gallery = new List<Gallery>();
@@ -180,6 +239,7 @@ class Product {
     data['description'] = this.description;
     data['parameters'] = this.parameters;
     data['price'] = this.price;
+    data['rating'] = this.rating;
     data['photo'] = this.photo;
     if (this.gallery != null) {
       data['gallery'] = this.gallery.map((v) => v.toJson()).toList();

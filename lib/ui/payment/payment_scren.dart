@@ -23,6 +23,8 @@ class PaymentScreen extends StatelessWidget {
     final screenSize = MediaQuery.of(context).size;
 
     print('recieved index is: $recievedIndex');
+    print('recived lat and ling');
+    print(recievedIndex[2]);
     return Scaffold(
       backgroundColor: ColorPalatte.mainPageColor,
       body: Column(
@@ -65,7 +67,9 @@ class PaymentScreen extends StatelessWidget {
                           delivery = 13;
                         }
                         Order.makeOrders(
-                            address: recievedIndex[1], deliveryType: delivery);
+                            address: recievedIndex[1],
+                            deliveryType: delivery,
+                            location: recievedIndex[2]);
                       },
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15)),

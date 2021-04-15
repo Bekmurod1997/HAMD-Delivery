@@ -32,7 +32,7 @@ class MapSampleState extends State<MapSample> {
   }
 
   static const _initialCameraPosition = CameraPosition(
-    target: LatLng(45.521563, -122.677433),
+    target: LatLng(41.26465, 69.21627),
     zoom: 11.5,
   );
 
@@ -136,7 +136,7 @@ class MapSampleState extends State<MapSample> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 20.0),
+              padding: const EdgeInsets.only(bottom: 20.0, right: 20),
               child: SizedBox(
                 width: 240.0,
                 height: 50.0,
@@ -153,12 +153,19 @@ class MapSampleState extends State<MapSample> {
                       letterSpacing: 1.1,
                     ),
                   ),
-                  onPressed: () => Get.back(
-                    result: {
-                      'address': _currentAddress,
-                      'position': _finalPosition
-                    },
-                  ),
+                  onPressed: () {
+                    print(_finalPosition);
+                    print(_finalPosition.latitude);
+                    print(_finalPosition.longitude);
+                    Get.back(
+                      result: {
+                        'address': _currentAddress,
+                        'position': _finalPosition,
+                        // 'lat': _finalPosition.latitude.toString(),
+                        // 'lng': _finalPosition.longitude.toString(),
+                      },
+                    );
+                  },
                 ),
               ),
             ),
