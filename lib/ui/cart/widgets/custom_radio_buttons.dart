@@ -18,8 +18,7 @@ class _CustomRadioButtonsState extends State<CustomRadioButtons> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final TextEditingController addressController = TextEditingController();
-  // final _formKey = GlobalKey<FormState>();
-  // CustomRadioString _site = CustomRadioString.delivery;
+
   int selectedRadio;
   final DelivertyTypeController delivertyTypeController =
       Get.find<DelivertyTypeController>();
@@ -191,12 +190,6 @@ class _CustomRadioButtonsState extends State<CustomRadioButtons> {
                     ),
                   ),
                   SizedBox(height: 16),
-                  // Text(lat),
-                  // Text(lng),
-                  // Text(recievedLatLng.latitude.toString()),
-                  // Text(recievedLatLng.longitude.toString()),
-                  // Text(addressLatLng.toString()),
-
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 26),
                     child: SizedBox(

@@ -12,7 +12,7 @@ class ListOfAllOrdersControllers extends GetxController {
     super.onInit();
   }
 
-  void fetchListOfOrders() async {
+  Future fetchListOfOrders() async {
     try {
       isLoading(true);
       var orders = await ListOfOrders.fetchListOfOrder();

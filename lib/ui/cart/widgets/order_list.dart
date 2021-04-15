@@ -102,24 +102,6 @@ class _OrderListState extends State<OrderList> {
                                           color: Color(0xff222E54),
                                         ),
                                       ),
-                                      // Text(
-                                      //   cartListController
-                                      //           .allCartList[index].amount
-                                      //           .toString() +
-                                      //       ' x ' +
-                                      //       cartListController
-                                      //           .allCartList[index].productPrice
-                                      //           .toString() +
-                                      //       ' сум ',
-                                      //   style: FontStyles.semiBoldStyle(
-                                      //     fontSize: 18,
-                                      //     fontFamily: 'Poppins',
-                                      //     color: Color(0xff222E54),
-                                      //   ),
-                                      // ),
-                                      //
-                                      //
-                                      //
                                       Row(
                                         children: [
                                           GestureDetector(
@@ -189,96 +171,10 @@ class _OrderListState extends State<OrderList> {
                               ),
                             ),
                           ),
-                          // Expanded(
-                          //   flex: 1,
-                          //   child: Column(
-                          //     mainAxisAlignment: MainAxisAlignment.start,
-                          //     children: [
-                          //       IconButton(
-                          //         icon: Icon(
-                          //           Icons.delete,
-                          //           color: ColorPalatte.strongRedColor,
-                          //         ),
-                          //         onPressed: () async {
-                          //           await DeleteFromCart.deleteFromCart(
-                          //               cartListController
-                          //                   .allCartList[index].productId
-                          //                   .toString());
-                          //           cartListController.fetchAllCartList();
-                          //         },
-                          //       ),
-                          //       GestureDetector(
-                          //         onTap: () {
-                          //           setState(() {
-                          //             if (cartListController
-                          //                     .allCartList[index].amount >
-                          //                 1) {
-                          //               cartListController
-                          //                   .allCartList[index].amount--;
-                          //             }
-                          //           });
-                          //           AddCartPostService.addCartPostService(
-                          //             amount: cartListController
-                          //                 .allCartList[index].amount,
-                          //             productId: cartListController
-                          //                 .allCartList[index].productId,
-                          //           );
-                          //         },
-                          //         child: SvgPicture.asset(
-                          //           'assets/icons/minus.svg',
-                          //           height: 25,
-                          //         ),
-                          //       ),
-                          //       SizedBox(
-                          //         width: 8,
-                          //       ),
-                          //       Text(
-                          //         cartListController.allCartList[index].amount
-                          //             .toString(),
-                          //         style: TextStyle(fontSize: 18),
-                          //       ),
-                          //       SizedBox(
-                          //         width: 8,
-                          //       ),
-                          //       GestureDetector(
-                          //         onTap: () {
-                          //           setState(() {
-                          //             cartListController
-                          //                 .allCartList[index].amount++;
-                          //           });
-                          //           AddCartPostService.addCartPostService(
-                          //             amount: cartListController
-                          //                 .allCartList[index].amount,
-                          //             productId: cartListController
-                          //                 .allCartList[index].productId,
-                          //           );
-                          //         },
-                          //         child: SvgPicture.asset(
-                          //           'assets/icons/plus.svg',
-                          //           height: 27,
-                          //         ),
-                          //       ),
-                          //     ],
-                          //   ),
-                          // ),
                         ],
                       ),
                     ),
                   ),
-                  // Positioned(
-                  //     top: -5,
-                  //     right: -5,
-                  //     child: IconButton(
-                  //       iconSize: 30.0,
-                  //       color: ColorPalatte.strongRedColor,
-                  //       icon: Icon(Icons.cancel),
-                  //       onPressed: () async {
-                  //         await DeleteFromCart.deleteFromCart(cartListController
-                  //             .allCartList[index].productId
-                  //             .toString());
-                  //         cartListController.fetchAllCartList();
-                  //       },
-                  //     ))
                 ],
               );
             },

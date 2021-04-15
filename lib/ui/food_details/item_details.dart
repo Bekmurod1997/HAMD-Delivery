@@ -166,7 +166,14 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                                                 alignment: Alignment.topRight,
                                                 child: counterState
                                                         .loading.value
-                                                    ? CircularProgressIndicator()
+                                                    ? CircularProgressIndicator(
+                                                        valueColor:
+                                                            AlwaysStoppedAnimation<
+                                                                Color>(
+                                                          ColorPalatte
+                                                              .strongRedColor,
+                                                        ),
+                                                      )
                                                     : SvgPicture.asset(
                                                         'assets/icons/plus.svg',
                                                         width: 50,

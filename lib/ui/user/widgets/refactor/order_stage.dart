@@ -27,8 +27,6 @@ class _OrderStageScreenState extends State<OrderStageScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print('id is');
-    print(orderDetailViewController.orderDetailViewList.first.id);
     return Scaffold(
       backgroundColor: ColorPalatte.mainPageColor,
       body: Column(
@@ -48,7 +46,11 @@ class _OrderStageScreenState extends State<OrderStageScreen> {
               () {
                 if (orderDetailViewController.isLoading.value) {
                   return Center(
-                    child: CircularProgressIndicator(),
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        ColorPalatte.strongRedColor,
+                      ),
+                    ),
                   );
                 } else {
                   return orderDetailViewController
