@@ -35,7 +35,7 @@ dependencies:
   flutter_rating_bar: ^3.2.0+1
   smooth_star_rating: ^1.1.1
   flutter_launcher_icons: ^0.8.1
-  image_picker: ^0.6.7+22 
+  image_picker: ^0.6.7+22
   google_maps_flutter: ^1.2.0
   flutter_statusbarcolor: ^0.2.3
   mask_text_input_formatter: ^1.2.1
@@ -127,6 +127,7 @@ flutter:
     - family: Hamd
       fonts:
         - asset: assets/fonts/Hamd.ttf
+
         
 
       

@@ -18,12 +18,7 @@ class MapSampleState extends State<MapSample> {
   Position _currentPosition;
   String _currentAddress;
   LatLng _finalPosition;
-
-  @override
-  void initState() {
-    getCurrentPosition();
-    super.initState();
-  }
+  Marker _origin;
 
   @override
   void dispose() {
@@ -33,6 +28,7 @@ class MapSampleState extends State<MapSample> {
 
   void _onMapCreated(GoogleMapController controller) {
     _googleMapController = controller;
+    getCurrentPosition();
   }
 
   static const _initialCameraPosition = CameraPosition(
@@ -82,19 +78,17 @@ class MapSampleState extends State<MapSample> {
     }
   }
 
-  _getAddressFromLatLngOnMove(CameraPosition position) async {
+  _getAddressFromLatLngOnMove(LatLng position) async {
     try {
-      List<Placemark> placemarks = await placemarkFromCoordinates(
-          position.target.latitude, position.target.longitude);
+      List<Placemark> placemarks =
+          await placemarkFromCoordinates(position.latitude, position.longitude);
 
       Placemark place = placemarks[0];
 
       setState(() {
         _currentAddress = "${place.thoroughfare}, ${place.subThoroughfare}";
-        _finalPosition =
-            LatLng(position.target.latitude, position.target.longitude);
+        _finalPosition = LatLng(position.latitude, position.longitude);
       });
-      print(_currentAddress);
     } catch (e) {
       print(e);
     }
@@ -111,7 +105,10 @@ class MapSampleState extends State<MapSample> {
             zoomControlsEnabled: false,
             onMapCreated: _onMapCreated,
             initialCameraPosition: _initialCameraPosition,
-            onCameraMove: (position) => _getAddressFromLatLngOnMove(position),
+            markers: {
+              if (_origin != null) _origin,
+            },
+            onTap: (LatLng pos) => _addMarker(pos),
           ),
           SafeArea(
               child: Container(
@@ -136,16 +133,6 @@ class MapSampleState extends State<MapSample> {
               ],
             ),
           )),
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 10.0),
-              child: Icon(
-                Icons.place,
-                size: 50.0,
-                color: ColorPalatte.strongRedColor,
-              ),
-            ),
-          ),
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
@@ -178,14 +165,34 @@ class MapSampleState extends State<MapSample> {
           )
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.white,
-          foregroundColor: ColorPalatte.strongRedColor,
-          child: Icon(
-            Icons.near_me,
-            size: 30.0,
-          ),
-          onPressed: () => getCurrentPosition()),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 50.0),
+        child: FloatingActionButton(
+            backgroundColor: Colors.white,
+            foregroundColor: ColorPalatte.strongRedColor,
+            child: Icon(
+              Icons.near_me,
+              size: 30.0,
+            ),
+            onPressed: () => getCurrentPosition()),
+      ),
     );
+  }
+
+  void _addMarker(LatLng pos) {
+    setState(() {
+      _origin = null;
+    });
+    if (_origin == null) {
+      setState(() {
+        _origin = Marker(
+          markerId: MarkerId('origin'),
+          infoWindow: InfoWindow(title: 'Origin'),
+          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+          position: pos,
+        );
+      });
+      _getAddressFromLatLngOnMove(pos);
+    }
   }
 }

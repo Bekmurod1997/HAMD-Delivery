@@ -132,10 +132,14 @@ class _CustomRadioButtonsState extends State<CustomRadioButtons> {
                                           color: Colors.grey,
                                         ),
                                         onPressed: () async {
+                                          FocusScope.of(context)
+                                              .requestFocus(FocusNode());
                                           dynamic result =
                                               await Get.to(MapSample());
-                                          addressController
-                                            ..text = result['address'] ?? '';
+                                          if (result != null) {
+                                            addressController
+                                              ..text = result['address'] ?? '';
+                                          }
                                           // Get.dialog(
                                           //   Scaffold(
                                           //     body: Stack(
