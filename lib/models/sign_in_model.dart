@@ -42,9 +42,10 @@ class Code {
   String phone;
   String code;
   int smsExpire;
+  String deviceToken;
   int id;
 
-  Code({this.userId, this.phone, this.code, this.smsExpire, this.id});
+  Code({this.userId, this.phone, this.code, this.smsExpire, this.id, this.deviceToken});
 
   Code.fromJson(Map<String, dynamic> json) {
     userId = json['user_id'];
@@ -52,6 +53,7 @@ class Code {
     code = json['code'];
     smsExpire = json['sms_expire'];
     id = json['id'];
+	deviceToken = json['device_token'];
   }
 
   Map<String, dynamic> toJson() {
@@ -61,6 +63,7 @@ class Code {
     data['code'] = this.code;
     data['sms_expire'] = this.smsExpire;
     data['id'] = this.id;
+	data['device_token'] = this.deviceToken;
     return data;
   }
 }

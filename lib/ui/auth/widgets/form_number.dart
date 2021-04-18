@@ -6,6 +6,7 @@ import 'package:HAMD/ui/masks/mask_format.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class FormNumber extends StatefulWidget {
   @override
@@ -14,6 +15,15 @@ class FormNumber extends StatefulWidget {
 
 class _FormNumberState extends State<FormNumber> {
   TextEditingController smsController = TextEditingController();
+  FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+  String fcmToken;
+  configureFCM() async {
+    var token = await _firebaseMessaging.getToken();
+    setState(() {
+      fcmToken = token;
+    });
+  }
+
   final _formKey = GlobalKey<FormState>();
   void validateAndSave() async {
     final FormState form = _formKey.currentState;
@@ -68,7 +78,7 @@ class _FormNumberState extends State<FormNumber> {
       //       );
       //     });
 
-      SignIn.signInUser(userNumber: smsController.text);
+      SignIn.signInUser(userNumber: smsController.text, fcmToken: fcmToken);
 
       //   var response = await http.post(ApiUrl.signIn, body: {
       //     'phone': smsController.text,

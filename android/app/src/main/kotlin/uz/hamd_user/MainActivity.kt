@@ -1,4 +1,4 @@
-package com.example.HAMD
+package uz.hamd_user
 
 import io.flutter.embedding.android.FlutterActivity
 
