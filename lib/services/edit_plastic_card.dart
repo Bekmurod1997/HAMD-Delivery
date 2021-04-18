@@ -34,8 +34,12 @@ class EditPlasticCard {
       print('success in  plastic card edit service ');
       print('*********');
       print(response.body);
-      Get.snackbar('ваши данные были успешно изменены', '',
-          colorText: Colors.white, backgroundColor: Colors.grey[500]);
+      Get.snackbar(null, null,
+          messageText: Text(
+            'Ваши данные сохранены!',
+            style: TextStyle(color: Colors.white),
+          ),
+          backgroundColor: Color(0xff007E33));
       await PlasticCardType.fetchPlasticCardType(typeId);
 
       var jsonString =
