@@ -120,11 +120,12 @@ class _MyPageViewState extends State<MyPageView> {
                       currentPage == 2
                           ? Container()
                           : TextButton(
-                              onPressed: () => _pageController.animateToPage(
-                                    2,
-                                    duration: Duration(milliseconds: 500),
-                                    curve: Curves.ease,
-                                  ),
+                              onPressed: () => Get.to(AuthScreen()),
+                              // onPressed: () => _pageController.animateToPage(
+                              //       2,
+                              //       duration: Duration(milliseconds: 500),
+                              //       curve: Curves.ease,
+                              //     ),
                               child: Text(
                                 'Пропустить' ?? '',
                                 style: FontStyles.boldStyle(

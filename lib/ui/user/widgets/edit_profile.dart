@@ -324,10 +324,12 @@ class _EditProfileState extends State<EditProfile> {
                                   );
                                   if (response.statusCode == 200) {
                                     print('okayy');
-                                    g.Get.snackbar(
-                                        'ваши данные были успешно изменены', '',
-                                        colorText: Colors.white,
-                                        backgroundColor: Colors.grey[500]);
+                                    g.Get.snackbar(null, null,
+                                        messageText: Text(
+                                          'Ваши данные сохранены!',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                        backgroundColor: Color(0xff007E33));
                                     usrController.fetchProfileData();
                                   }
                                 },
