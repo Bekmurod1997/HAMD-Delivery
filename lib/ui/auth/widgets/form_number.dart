@@ -21,7 +21,14 @@ class _FormNumberState extends State<FormNumber> {
     var token = await _firebaseMessaging.getToken();
     setState(() {
       fcmToken = token;
+      print('fcmTokem: $fcmToken');
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    configureFCM();
   }
 
   final _formKey = GlobalKey<FormState>();
@@ -79,24 +86,6 @@ class _FormNumberState extends State<FormNumber> {
       //     });
 
       SignIn.signInUser(userNumber: smsController.text, fcmToken: fcmToken);
-
-      //   var response = await http.post(ApiUrl.signIn, body: {
-      //     'phone': smsController.text,
-      //     'role': '3',
-      //   });
-      //   if (response.statusCode == 200) {
-      //     var body = SignUpModel.fromJson(json.decode(response.body));
-      //     print(response.body);
-      //     print('bu yearda toke');
-      //     print(body.data.token);
-      //     print('bu yearda code');
-      //     print(body.data.code.code);
-
-      //     MyPref.token = body.data.token;
-      //     MyPref.code = body.data.code.code;
-      //   }
-      // } else {
-      // print('Form is invalid');
     } else {
       print('Form is invalid');
     }

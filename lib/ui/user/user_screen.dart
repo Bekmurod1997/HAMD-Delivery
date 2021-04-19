@@ -549,6 +549,7 @@ class _UserScreenState extends State<UserScreen> {
                                               keyboardType:
                                                   TextInputType.number,
                                               decoration: InputDecoration(
+                                                hintText: '+998',
                                                 filled: true,
                                                 fillColor: Colors.white,
                                                 focusedBorder:
@@ -592,6 +593,7 @@ class _UserScreenState extends State<UserScreen> {
                                               keyboardType:
                                                   TextInputType.number,
                                               decoration: InputDecoration(
+                                                hintText: '00 / 00',
                                                 filled: true,
                                                 fillColor: Colors.white,
                                                 focusedBorder:

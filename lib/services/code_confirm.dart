@@ -11,7 +11,7 @@ class ConfirmCode {
   static UserProfileController pController = Get.find<UserProfileController>();
 
   static var client = http.Client();
-  static Future codeConfirmFunction({String code}) async {
+  static Future codeConfirmFunction({String code, String fcmToken}) async {
     final token = MyPref.token ?? '';
     var response = await client.post(
       ApiUrl.sendSmsCode,
