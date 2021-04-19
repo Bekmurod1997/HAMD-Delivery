@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:HAMD/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
