@@ -14,9 +14,9 @@ class UserInfo extends StatelessWidget {
       } else if (!ppController.isLoading.value &&
           ppController.profileList.isNotEmpty) {
         return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            // mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CircleAvatar(
@@ -25,14 +25,17 @@ class UserInfo extends StatelessWidget {
                     'http://hamd.loko.uz/' +
                         ppController.profileList.first.photo,
                   )),
-              // SizedBox(height: 12),
+              SizedBox(width: 15),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // SizedBox(height: 8),
-                  Text(
-                    ppController.profileList.first.name ?? '',
-                    style: TextStyle(fontSize: 22),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Text(
+                      ppController.profileList.first.name ?? '',
+                      style: TextStyle(fontSize: 22),
+                    ),
                   ),
                   SizedBox(height: 4),
                   Text(
@@ -40,14 +43,6 @@ class UserInfo extends StatelessWidget {
                   SizedBox(height: 44),
                 ],
               ),
-              // Text(
-              //   ppController.profileList.first.name ?? '',
-              //   style: TextStyle(fontSize: 22),
-              // ),
-              // SizedBox(height: 8),
-              // Text(
-              //     '${ppController.profileList.first.phone}   ID: ${ppController.profileList.first.id}'),
-              // SizedBox(height: 44),
             ],
           ),
         );

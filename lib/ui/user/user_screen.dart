@@ -54,14 +54,21 @@ class _UserScreenState extends State<UserScreen> {
   void initState() {
     print('init state in user screen');
     listOfAllOrdersControllers.fetchListOfOrders();
+    // callPlasticCard();
+
     super.initState();
+  }
+
+  callPlasticCard() async {
+    await plasticCardTypeController.fetchPlasticCardType(14);
+    await plasticCardHumoController.fetchPlasticCardHumo(15);
   }
 
   @override
   void didChangeDependencies() async {
     super.didChangeDependencies();
-    await plasticCardTypeController.fetchPlasticCardType(14);
-    await plasticCardHumoController.fetchPlasticCardHumo(15);
+    // await plasticCardTypeController.fetchPlasticCardType(14);
+    // await plasticCardHumoController.fetchPlasticCardHumo(15);
     setState(() {
       if (plasticCardTypeController.plasticCardTypeList.isNotEmpty) {
         print(plasticCardTypeController.plasticCardTypeList.first.cardNumber);
@@ -110,544 +117,652 @@ class _UserScreenState extends State<UserScreen> {
             width2: 18,
           ),
           Expanded(
-            child: ListView(
-              children: [
-                // Text('dasdas'),
-                UserInfo(),
-                // UserDataItem(),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: SizedBox(
-                          height: 44,
-                          child: RaisedButton(
-                            elevation: 0,
-                            color: selectedIndex == 0
-                                ? Color(0xffE9DCE0)
-                                : Colors.transparent,
-                            onPressed: () {
-                              if (selectedIndex == 1) {
-                                setState(() {
-                                  selectedIndex = 0;
-                                });
-                              }
-                              listOfAllOrdersControllers.fetchListOfOrders();
-                            },
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(25)),
-                            child: Text(
-                              'Мои заказы',
-                              // listOfAllOrdersControllers.orderList.length
-                              //     .toString(),
-                              style: FontStyles.boldStyle(
-                                  fontSize: 15,
-                                  fontFamily: 'Montserrat',
-                                  color: Colors.black),
+            child: MediaQuery.removePadding(
+              removeTop: true,
+              context: context,
+              child: ListView(
+                children: [
+                  UserInfo(),
+                  // UserDataItem(),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: SizedBox(
+                            height: 44,
+                            child: RaisedButton(
+                              elevation: 0,
+                              color: selectedIndex == 0
+                                  ? Color(0xffE9DCE0)
+                                  : Colors.transparent,
+                              onPressed: () {
+                                if (selectedIndex == 1) {
+                                  setState(() {
+                                    selectedIndex = 0;
+                                  });
+                                }
+                                listOfAllOrdersControllers.fetchListOfOrders();
+                              },
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(25)),
+                              child: Text(
+                                'Мои заказы',
+                                // listOfAllOrdersControllers.orderList.length
+                                //     .toString(),
+                                style: FontStyles.boldStyle(
+                                    fontSize: 15,
+                                    fontFamily: 'Montserrat',
+                                    color: Colors.black),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 4,
-                      ),
-                      Expanded(
-                        child: SizedBox(
-                          height: 44,
-                          child: RaisedButton(
-                            elevation: 0,
-                            color: selectedIndex == 1
-                                ? Color(0xffE9DCE0)
-                                : Colors.transparent,
-                            onPressed: () async {
-                              PlasticCardType.fetchPlasticCardType(14);
-                              if (selectedIndex == 0) {
-                                setState(() {
-                                  selectedIndex = 1;
-                                });
-                              }
-                            },
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(25)),
-                            child: Text(
-                              'Методы оплат',
-                              style: FontStyles.boldStyle(
-                                  fontSize: 15,
-                                  fontFamily: 'Montserrat',
-                                  color: Colors.black),
+                        SizedBox(
+                          width: 4,
+                        ),
+                        Expanded(
+                          child: SizedBox(
+                            height: 44,
+                            child: RaisedButton(
+                              elevation: 0,
+                              color: selectedIndex == 1
+                                  ? Color(0xffE9DCE0)
+                                  : Colors.transparent,
+                              onPressed: () async {
+                                PlasticCardType.fetchPlasticCardType(14);
+                                if (selectedIndex == 0) {
+                                  setState(() {
+                                    selectedIndex = 1;
+                                  });
+                                }
+                              },
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(25)),
+                              child: Text(
+                                'Методы оплат',
+                                style: FontStyles.boldStyle(
+                                    fontSize: 15,
+                                    fontFamily: 'Montserrat',
+                                    color: Colors.black),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                selectedIndex == 0
-                    ? Container(
-                        padding: EdgeInsets.only(right: 20, left: 20, top: 20),
-                        height: 500,
-                        child: MyOrders(),
-                      )
-                    : Container(
-                        margin: EdgeInsets.only(top: 50),
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  width: 40,
-                                  height: 40,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(12),
-                                    color: ColorPalatte.strongRedColor,
-                                  ),
-                                  child: Center(
-                                    child: IconButton(
-                                      icon: Icon(
-                                        Icons.add,
-                                        color: Colors.white,
-                                      ),
-                                      onPressed: () {
-                                        showModalBottomSheet(
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(20),
-                                                topRight: Radius.circular(20),
+                  selectedIndex == 0
+                      ? Container(
+                          padding:
+                              EdgeInsets.only(right: 20, left: 20, top: 20),
+                          height: 500,
+                          child: MyOrders(),
+                        )
+                      : Container(
+                          margin: EdgeInsets.only(top: 50),
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    width: 40,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12),
+                                      color: ColorPalatte.strongRedColor,
+                                    ),
+                                    child: Center(
+                                      child: IconButton(
+                                        icon: Icon(
+                                          Icons.add,
+                                          color: Colors.white,
+                                        ),
+                                        onPressed: () {
+                                          showModalBottomSheet(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(20),
+                                                  topRight: Radius.circular(20),
+                                                ),
                                               ),
-                                            ),
-                                            context: context,
-                                            builder: (context) {
-                                              return StatefulBuilder(
-                                                builder: (context,
-                                                    StateSetter state) {
-                                                  return Container(
-                                                    padding: EdgeInsets.only(
-                                                        top: 10,
-                                                        left: 20,
-                                                        right: 20),
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
-                                                      children: [
-                                                        Text(
-                                                          ' Добавить новую карту',
-                                                          style: FontStyles
-                                                              .mediumStyle(
-                                                            fontSize: 20,
-                                                            fontFamily:
-                                                                'Montserrat',
-                                                            color: Color(
-                                                                0xff0E0E0E),
+                                              context: context,
+                                              builder: (context) {
+                                                return StatefulBuilder(
+                                                  builder: (context,
+                                                      StateSetter state) {
+                                                    return Container(
+                                                      padding: EdgeInsets.only(
+                                                          top: 10,
+                                                          left: 20,
+                                                          right: 20),
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        children: [
+                                                          Text(
+                                                            ' Добавить новую карту',
+                                                            style: FontStyles
+                                                                .mediumStyle(
+                                                              fontSize: 20,
+                                                              fontFamily:
+                                                                  'Montserrat',
+                                                              color: Color(
+                                                                  0xff0E0E0E),
+                                                            ),
                                                           ),
-                                                        ),
-                                                        Row(
-                                                          children: [
-                                                            Container(
-                                                              child: SvgPicture
-                                                                  .asset(
-                                                                'assets/icons/uzcard.svg',
-                                                                width: 40,
+                                                          Row(
+                                                            children: [
+                                                              Container(
+                                                                child:
+                                                                    SvgPicture
+                                                                        .asset(
+                                                                  'assets/icons/uzcard.svg',
+                                                                  width: 40,
+                                                                ),
                                                               ),
-                                                            ),
-                                                            Expanded(
-                                                              child:
-                                                                  RadioListTile(
-                                                                activeColor: Color(
-                                                                    0xffFFBC41),
-                                                                controlAffinity:
-                                                                    ListTileControlAffinity
-                                                                        .trailing,
-                                                                value: 1,
-                                                                groupValue:
-                                                                    selectedRadio,
-                                                                onChanged:
-                                                                    (val) async {
-                                                                  print(
-                                                                      'Radio $val');
-
-                                                                  print(
-                                                                      'changing zapros to plastic card');
-                                                                  await PlasticCardType
-                                                                      .fetchPlasticCardType(
-                                                                          14);
-
-                                                                  if (plasticCardTypeController
-                                                                      .plasticCardTypeList
-                                                                      .isNotEmpty) {
-                                                                    setState(
-                                                                        () {
-                                                                      uzCardController.text = plasticCardTypeController
-                                                                          .plasticCardTypeList
-                                                                          .first
-                                                                          .cardNumber;
-                                                                      dateController.text = plasticCardTypeController
-                                                                          .plasticCardTypeList
-                                                                          .first
-                                                                          .cardExpire;
-                                                                      phoneUzController.text = plasticCardTypeController
-                                                                          .plasticCardTypeList
-                                                                          .first
-                                                                          .cardPhoneNumber;
-                                                                    });
-                                                                  }
-                                                                  if (selectedCard ==
-                                                                      2) {
-                                                                    setState(
-                                                                        () {
-                                                                      selectedCard =
-                                                                          1;
-                                                                    });
+                                                              Expanded(
+                                                                child:
+                                                                    RadioListTile(
+                                                                  activeColor:
+                                                                      Color(
+                                                                          0xffFFBC41),
+                                                                  controlAffinity:
+                                                                      ListTileControlAffinity
+                                                                          .trailing,
+                                                                  value: 1,
+                                                                  groupValue:
+                                                                      selectedRadio,
+                                                                  onChanged:
+                                                                      (val) async {
                                                                     print(
-                                                                        'your selecte Card: $selectedCard');
-                                                                  }
-                                                                  state(() {
+                                                                        'Radio $val');
+
                                                                     print(
-                                                                        'your selected radio is: $selectedRadio');
-                                                                    selectedRadioValue(
-                                                                        val);
-                                                                  });
-                                                                  Get.back();
-                                                                },
-                                                                title: Text(
-                                                                  'UzCard',
-                                                                  style: FontStyles
-                                                                      .mediumStyle(
-                                                                    fontSize:
-                                                                        18,
-                                                                    fontFamily:
-                                                                        'Montserrat',
-                                                                    color: Color(
-                                                                        0xff0E0E0E),
+                                                                        'changing zapros to plastic card');
+                                                                    await PlasticCardType
+                                                                        .fetchPlasticCardType(
+                                                                            14);
+
+                                                                    if (plasticCardTypeController
+                                                                        .plasticCardTypeList
+                                                                        .isNotEmpty) {
+                                                                      setState(
+                                                                          () {
+                                                                        uzCardController.text = plasticCardTypeController
+                                                                            .plasticCardTypeList
+                                                                            .first
+                                                                            .cardNumber;
+                                                                        dateController.text = plasticCardTypeController
+                                                                            .plasticCardTypeList
+                                                                            .first
+                                                                            .cardExpire;
+                                                                        phoneUzController.text = plasticCardTypeController
+                                                                            .plasticCardTypeList
+                                                                            .first
+                                                                            .cardPhoneNumber;
+                                                                      });
+                                                                    }
+                                                                    if (selectedCard ==
+                                                                        2) {
+                                                                      setState(
+                                                                          () {
+                                                                        selectedCard =
+                                                                            1;
+                                                                      });
+                                                                      print(
+                                                                          'your selecte Card: $selectedCard');
+                                                                    }
+                                                                    state(() {
+                                                                      print(
+                                                                          'your selected radio is: $selectedRadio');
+                                                                      selectedRadioValue(
+                                                                          val);
+                                                                    });
+                                                                    Get.back();
+                                                                  },
+                                                                  title: Text(
+                                                                    'UzCard',
+                                                                    style: FontStyles
+                                                                        .mediumStyle(
+                                                                      fontSize:
+                                                                          18,
+                                                                      fontFamily:
+                                                                          'Montserrat',
+                                                                      color: Color(
+                                                                          0xff0E0E0E),
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        Row(
-                                                          children: [
-                                                            Container(
-                                                              child:
-                                                                  Image.asset(
-                                                                'assets/images/humo.png',
-                                                                width: 40,
+                                                            ],
+                                                          ),
+                                                          Row(
+                                                            children: [
+                                                              Container(
+                                                                child:
+                                                                    Image.asset(
+                                                                  'assets/images/humo.png',
+                                                                  width: 40,
+                                                                ),
                                                               ),
-                                                            ),
-                                                            Expanded(
-                                                              child:
-                                                                  RadioListTile(
-                                                                activeColor: Color(
-                                                                    0xffFFBC41),
-                                                                controlAffinity:
-                                                                    ListTileControlAffinity
-                                                                        .trailing,
-                                                                value: 2,
-                                                                groupValue:
-                                                                    selectedRadio,
-                                                                onChanged:
-                                                                    (val) async {
-                                                                  print(
-                                                                      'changing zapros to plastic card');
-                                                                  await PlasticCardType
-                                                                      .fetchPlasticCardType(
-                                                                          15);
+                                                              Expanded(
+                                                                child:
+                                                                    RadioListTile(
+                                                                  activeColor:
+                                                                      Color(
+                                                                          0xffFFBC41),
+                                                                  controlAffinity:
+                                                                      ListTileControlAffinity
+                                                                          .trailing,
+                                                                  value: 2,
+                                                                  groupValue:
+                                                                      selectedRadio,
+                                                                  onChanged:
+                                                                      (val) async {
+                                                                    print(
+                                                                        'changing zapros to plastic card');
+                                                                    await PlasticCardType
+                                                                        .fetchPlasticCardType(
+                                                                            15);
 
-                                                                  if (plasticCardHumoController
-                                                                      .plasticCardTypeList
-                                                                      .isNotEmpty) {
-                                                                    setState(
-                                                                        () {
-                                                                      humoController.text = plasticCardHumoController
-                                                                          .plasticCardTypeList
-                                                                          .first
-                                                                          .cardNumber;
-                                                                      dateHumoController.text = plasticCardHumoController
-                                                                          .plasticCardTypeList
-                                                                          .first
-                                                                          .cardExpire;
-                                                                      phoneHumoController.text = plasticCardHumoController
-                                                                          .plasticCardTypeList
-                                                                          .first
-                                                                          .cardPhoneNumber;
-                                                                    });
-                                                                  }
-                                                                  if (selectedCard ==
-                                                                      1) {
-                                                                    setState(
-                                                                        () {
-                                                                      selectedCard =
-                                                                          2;
+                                                                    if (plasticCardHumoController
+                                                                        .plasticCardTypeList
+                                                                        .isNotEmpty) {
+                                                                      setState(
+                                                                          () {
+                                                                        humoController.text = plasticCardHumoController
+                                                                            .plasticCardTypeList
+                                                                            .first
+                                                                            .cardNumber;
+                                                                        dateHumoController.text = plasticCardHumoController
+                                                                            .plasticCardTypeList
+                                                                            .first
+                                                                            .cardExpire;
+                                                                        phoneHumoController.text = plasticCardHumoController
+                                                                            .plasticCardTypeList
+                                                                            .first
+                                                                            .cardPhoneNumber;
+                                                                      });
+                                                                    }
+                                                                    if (selectedCard ==
+                                                                        1) {
+                                                                      setState(
+                                                                          () {
+                                                                        selectedCard =
+                                                                            2;
+                                                                      });
+                                                                      print(
+                                                                          'your selecte Card: $selectedCard');
+                                                                    }
+                                                                    state(() {
+                                                                      print(
+                                                                          'your selected radio is: $selectedRadio');
+                                                                      selectedRadioValue(
+                                                                          val);
                                                                     });
                                                                     print(
-                                                                        'your selecte Card: $selectedCard');
-                                                                  }
-                                                                  state(() {
-                                                                    print(
-                                                                        'your selected radio is: $selectedRadio');
+                                                                        'Radio $val');
                                                                     selectedRadioValue(
                                                                         val);
-                                                                  });
-                                                                  print(
-                                                                      'Radio $val');
-                                                                  selectedRadioValue(
-                                                                      val);
-                                                                  Get.back();
-                                                                },
-                                                                title: Text(
-                                                                  'Humo',
-                                                                  style: FontStyles
-                                                                      .mediumStyle(
-                                                                    fontSize:
-                                                                        18,
-                                                                    fontFamily:
-                                                                        'Montserrat',
-                                                                    color: Color(
-                                                                        0xff0E0E0E),
+                                                                    Get.back();
+                                                                  },
+                                                                  title: Text(
+                                                                    'Humo',
+                                                                    style: FontStyles
+                                                                        .mediumStyle(
+                                                                      fontSize:
+                                                                          18,
+                                                                      fontFamily:
+                                                                          'Montserrat',
+                                                                      color: Color(
+                                                                          0xff0E0E0E),
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  );
-                                                },
-                                              );
-                                            });
-                                      },
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    );
+                                                  },
+                                                );
+                                              });
+                                        },
+                                      ),
                                     ),
                                   ),
-                                ),
-                                selectedCard == 1
-                                    ? Image.asset(
-                                        'assets/images/card-uzcard.png',
-                                        width: 254,
-                                      )
-                                    : Image.asset(
-                                        'assets/images/humoCard.png',
-                                        width: 254,
-                                      )
-                              ],
-                            ),
-                            Obx(() {
-                              if (plasticCardTypeController.isLoading.value ||
-                                  plasticCardHumoController.isLoading.value) {
-                                return Center(
-                                  child: CircularProgressIndicator(),
-                                );
-                              } else {
-                                return Container(
-                                  margin: EdgeInsets.symmetric(vertical: 25),
-                                  child: Column(
-                                    children: [
-                                      Align(
-                                        alignment: Alignment.topLeft,
-                                        child: Text(
-                                          'Введите номер Вашей карты',
+                                  selectedCard == 1
+                                      ? Image.asset(
+                                          'assets/images/card-uzcard.png',
+                                          width: 254,
+                                        )
+                                      : Image.asset(
+                                          'assets/images/humoCard.png',
+                                          width: 254,
+                                        )
+                                ],
+                              ),
+                              Obx(() {
+                                if (plasticCardTypeController.isLoading.value ||
+                                    plasticCardHumoController.isLoading.value) {
+                                  return Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                } else {
+                                  return Container(
+                                    margin: EdgeInsets.symmetric(vertical: 25),
+                                    child: Column(
+                                      children: [
+                                        Align(
+                                          alignment: Alignment.topLeft,
+                                          child: Text(
+                                            'Введите номер Вашей карты',
+                                            style: FontStyles.regularStyle(
+                                              fontSize: 11,
+                                              fontFamily: 'Montserrat',
+                                              color: Color(0xff24253D),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 14,
+                                        ),
+                                        TextFormField(
+                                          controller: selectedCard == 1
+                                              ? uzCardController
+                                              : humoController,
+                                          inputFormatters: selectedRadio == 1
+                                              ? [InputMask.maskUzCard]
+                                              : [InputMask.maskHumo],
+                                          keyboardType: TextInputType.number,
+                                          decoration: InputDecoration(
+                                            hintText: selectedRadio == 1
+                                                ? '8600'
+                                                : '9860',
+                                            hintStyle: FontStyles.regularStyle(
+                                              fontSize: 16,
+                                              fontFamily: 'Ubuntu',
+                                              color: Color(0xff9E9E9E),
+                                            ),
+                                            filled: true,
+                                            fillColor: Colors.white,
+                                            focusedBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15.0),
+                                              borderSide: BorderSide(
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15.0),
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                              ),
+                                            ),
+                                          ),
                                           style: FontStyles.regularStyle(
-                                            fontSize: 11,
+                                            fontSize: 18,
                                             fontFamily: 'Montserrat',
-                                            color: Color(0xff24253D),
+                                            color: Color(0xff0E0900),
                                           ),
                                         ),
-                                      ),
-                                      SizedBox(
-                                        height: 14,
-                                      ),
-                                      TextFormField(
-                                        controller: selectedCard == 1
-                                            ? uzCardController
-                                            : humoController,
-                                        inputFormatters: selectedRadio == 1
-                                            ? [InputMask.maskUzCard]
-                                            : [InputMask.maskHumo],
-                                        keyboardType: TextInputType.number,
-                                        decoration: InputDecoration(
-                                          hintText: selectedRadio == 1
-                                              ? '8600'
-                                              : '9860',
-                                          hintStyle: FontStyles.regularStyle(
-                                            fontSize: 16,
-                                            fontFamily: 'Ubuntu',
-                                            color: Color(0xff9E9E9E),
-                                          ),
-                                          filled: true,
-                                          fillColor: Colors.white,
-                                          focusedBorder: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(15.0),
-                                            borderSide: BorderSide(
-                                              color: Colors.white,
+                                        SizedBox(height: 15),
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              flex: 2,
+                                              child: Align(
+                                                alignment: Alignment.topLeft,
+                                                child: Text(
+                                                  'Номер прикрепленного телефона',
+                                                  style:
+                                                      FontStyles.regularStyle(
+                                                    fontSize: 11,
+                                                    fontFamily: 'Montserrat',
+                                                    color: Color(0xff24253D),
+                                                  ),
+                                                ),
+                                              ),
                                             ),
-                                          ),
-                                          enabledBorder: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(15.0),
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
+                                            Expanded(
+                                              flex: 1,
+                                              child: Align(
+                                                alignment: Alignment.topRight,
+                                                child: Text(
+                                                  'Дата действия',
+                                                  style:
+                                                      FontStyles.regularStyle(
+                                                    fontSize: 11,
+                                                    fontFamily: 'Montserrat',
+                                                    color: Color(0xff24253D),
+                                                  ),
+                                                ),
+                                              ),
                                             ),
-                                          ),
+                                          ],
                                         ),
-                                        style: FontStyles.regularStyle(
-                                          fontSize: 18,
-                                          fontFamily: 'Montserrat',
-                                          color: Color(0xff0E0900),
-                                        ),
-                                      ),
-                                      SizedBox(height: 15),
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                            flex: 2,
-                                            child: Align(
-                                              alignment: Alignment.topLeft,
-                                              child: Text(
-                                                'Номер прикрепленного телефона',
+                                        SizedBox(height: 14),
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              flex: 3,
+                                              child: TextFormField(
+                                                inputFormatters: [
+                                                  InputMask.maskPhoneNumber
+                                                ],
+                                                controller: selectedRadio == 1
+                                                    ? phoneUzController
+                                                    : phoneHumoController,
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                decoration: InputDecoration(
+                                                  hintText: '+998',
+                                                  filled: true,
+                                                  fillColor: Colors.white,
+                                                  focusedBorder:
+                                                      OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15.0),
+                                                    borderSide: BorderSide(
+                                                      color: Colors.white,
+                                                    ),
+                                                  ),
+                                                  enabledBorder:
+                                                      OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15.0),
+                                                    borderSide: BorderSide(
+                                                      color: Colors.transparent,
+                                                    ),
+                                                  ),
+                                                ),
                                                 style: FontStyles.regularStyle(
-                                                  fontSize: 11,
+                                                  fontSize: 18,
                                                   fontFamily: 'Montserrat',
-                                                  color: Color(0xff24253D),
+                                                  color: Color(0xff0E0900),
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                          Expanded(
-                                            flex: 1,
-                                            child: Align(
-                                              alignment: Alignment.topRight,
-                                              child: Text(
-                                                'Дата действия',
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Expanded(
+                                              flex: 1,
+                                              child: TextFormField(
+                                                controller: selectedRadio == 1
+                                                    ? dateController
+                                                    : dateHumoController,
+                                                inputFormatters: [
+                                                  InputMask.maskDate
+                                                ],
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                decoration: InputDecoration(
+                                                  hintText: '00 / 00',
+                                                  filled: true,
+                                                  fillColor: Colors.white,
+                                                  focusedBorder:
+                                                      OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15.0),
+                                                    borderSide: BorderSide(
+                                                      color: Colors.white,
+                                                    ),
+                                                  ),
+                                                  enabledBorder:
+                                                      OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15.0),
+                                                    borderSide: BorderSide(
+                                                      color: Colors.transparent,
+                                                    ),
+                                                  ),
+                                                ),
                                                 style: FontStyles.regularStyle(
-                                                  fontSize: 11,
+                                                  fontSize: 18,
                                                   fontFamily: 'Montserrat',
-                                                  color: Color(0xff24253D),
+                                                  color: Color(0xff0E0900),
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(height: 14),
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                            flex: 3,
-                                            child: TextFormField(
-                                              inputFormatters: [
-                                                InputMask.maskPhoneNumber
-                                              ],
-                                              controller: selectedRadio == 1
-                                                  ? phoneUzController
-                                                  : phoneHumoController,
-                                              keyboardType:
-                                                  TextInputType.number,
-                                              decoration: InputDecoration(
-                                                hintText: '+998',
-                                                filled: true,
-                                                fillColor: Colors.white,
-                                                focusedBorder:
-                                                    OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          15.0),
-                                                  borderSide: BorderSide(
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                                enabledBorder:
-                                                    OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          15.0),
-                                                  borderSide: BorderSide(
-                                                    color: Colors.transparent,
-                                                  ),
-                                                ),
-                                              ),
-                                              style: FontStyles.regularStyle(
-                                                fontSize: 18,
-                                                fontFamily: 'Montserrat',
-                                                color: Color(0xff0E0900),
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: 10,
-                                          ),
-                                          Expanded(
-                                            flex: 1,
-                                            child: TextFormField(
-                                              controller: selectedRadio == 1
-                                                  ? dateController
-                                                  : dateHumoController,
-                                              inputFormatters: [
-                                                InputMask.maskDate
-                                              ],
-                                              keyboardType:
-                                                  TextInputType.number,
-                                              decoration: InputDecoration(
-                                                hintText: '00 / 00',
-                                                filled: true,
-                                                fillColor: Colors.white,
-                                                focusedBorder:
-                                                    OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          15.0),
-                                                  borderSide: BorderSide(
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                                enabledBorder:
-                                                    OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          15.0),
-                                                  borderSide: BorderSide(
-                                                    color: Colors.transparent,
-                                                  ),
-                                                ),
-                                              ),
-                                              style: FontStyles.regularStyle(
-                                                fontSize: 18,
-                                                fontFamily: 'Montserrat',
-                                                color: Color(0xff0E0900),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      loading
-                                          ? CircularProgressIndicator()
-                                          : selectedCard == 1
-                                              ? Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          top: 20),
-                                                  child: SizedBox(
-                                                    height: 63,
-                                                    width: 250,
-                                                    child: RaisedButton(
+                                          ],
+                                        ),
+                                        loading
+                                            ? CircularProgressIndicator()
+                                            : selectedCard == 1
+                                                ? Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 20),
+                                                    child: SizedBox(
+                                                      height: 63,
+                                                      width: 250,
+                                                      child: RaisedButton(
+                                                          elevation: 0,
+                                                          color:
+                                                              Color(0xff9F111B),
+                                                          shape: RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          15)),
+                                                          child: plasticCardTypeController
+                                                                  .plasticCardTypeList
+                                                                  .isNotEmpty
+                                                              ? Text(
+                                                                  'Изменить',
+                                                                  style: FontStyles
+                                                                      .mediumStyle(
+                                                                    fontSize:
+                                                                        20,
+                                                                    fontFamily:
+                                                                        'Montserrat',
+                                                                    color: Colors
+                                                                        .white,
+                                                                  ),
+                                                                )
+                                                              : Text(
+                                                                  'Наполнять ',
+                                                                  style: FontStyles
+                                                                      .mediumStyle(
+                                                                    fontSize:
+                                                                        20,
+                                                                    fontFamily:
+                                                                        'Montserrat',
+                                                                    color: Colors
+                                                                        .white,
+                                                                  ),
+                                                                ),
+                                                          onPressed: () {
+                                                            setState(() {
+                                                              loading = true;
+                                                            });
+                                                            plasticCardTypeController
+                                                                    .plasticCardTypeList
+                                                                    .isNotEmpty
+                                                                ? EditPlasticCard
+                                                                    .editPlasticCard(
+                                                                    id: plasticCardTypeController
+                                                                        .plasticCardTypeList
+                                                                        .first
+                                                                        .id,
+                                                                    typeId: plasticCardTypeController
+                                                                        .plasticCardTypeList
+                                                                        .first
+                                                                        .paymentType
+                                                                        .id,
+                                                                    cardNumber:
+                                                                        uzCardController
+                                                                            .text,
+                                                                    cardPhoneNumber:
+                                                                        phoneUzController
+                                                                            .text,
+                                                                    cardExpire:
+                                                                        dateController
+                                                                            .text,
+                                                                  ).then(
+                                                                    (value) {
+                                                                    setState(
+                                                                        () {
+                                                                      loading =
+                                                                          false;
+                                                                    });
+                                                                  })
+                                                                : AddPlasticCardType.addPlasticCardType(
+                                                                        typeId:
+                                                                            14,
+                                                                        cardNumber:
+                                                                            uzCardController
+                                                                                .text,
+                                                                        cardPhoneNumber:
+                                                                            phoneUzController
+                                                                                .text,
+                                                                        cardExpire:
+                                                                            dateController
+                                                                                .text)
+                                                                    .then(
+                                                                        (value) {
+                                                                    setState(
+                                                                        () {
+                                                                      loading =
+                                                                          false;
+                                                                    });
+                                                                  });
+                                                          }),
+                                                    ),
+                                                  )
+                                                : Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 20),
+                                                    child: SizedBox(
+                                                      height: 63,
+                                                      width: 250,
+                                                      child: RaisedButton(
                                                         elevation: 0,
                                                         color:
                                                             Color(0xff9F111B),
-                                                        shape:
-                                                            RoundedRectangleBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            15)),
-                                                        child: plasticCardTypeController
+                                                        shape: RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        15)),
+                                                        child: plasticCardHumoController
                                                                 .plasticCardTypeList
                                                                 .isNotEmpty
-                                                            ? Text(
-                                                                'Изменить',
+                                                            ? Text('Изменить',
                                                                 style: FontStyles
                                                                     .mediumStyle(
                                                                   fontSize: 20,
@@ -655,10 +770,8 @@ class _UserScreenState extends State<UserScreen> {
                                                                       'Montserrat',
                                                                   color: Colors
                                                                       .white,
-                                                                ),
-                                                              )
-                                                            : Text(
-                                                                'Наполнять ',
+                                                                ))
+                                                            : Text('Наполнять',
                                                                 style: FontStyles
                                                                     .mediumStyle(
                                                                   fontSize: 20,
@@ -666,168 +779,77 @@ class _UserScreenState extends State<UserScreen> {
                                                                       'Montserrat',
                                                                   color: Colors
                                                                       .white,
-                                                                ),
-                                                              ),
+                                                                )),
                                                         onPressed: () {
                                                           setState(() {
                                                             loading = true;
                                                           });
-                                                          plasticCardTypeController
+
+                                                          plasticCardHumoController
                                                                   .plasticCardTypeList
                                                                   .isNotEmpty
                                                               ? EditPlasticCard
                                                                   .editPlasticCard(
-                                                                  id: plasticCardTypeController
+                                                                  id: plasticCardHumoController
                                                                       .plasticCardTypeList
                                                                       .first
                                                                       .id,
-                                                                  typeId: plasticCardTypeController
+                                                                  typeId: plasticCardHumoController
                                                                       .plasticCardTypeList
                                                                       .first
                                                                       .paymentType
                                                                       .id,
                                                                   cardNumber:
-                                                                      uzCardController
+                                                                      humoController
                                                                           .text,
                                                                   cardPhoneNumber:
-                                                                      phoneUzController
+                                                                      phoneHumoController
                                                                           .text,
                                                                   cardExpire:
-                                                                      dateController
+                                                                      dateHumoController
                                                                           .text,
-                                                                ).then((value) {
-                                                                  setState(() {
+                                                                ).then(
+                                                                  (value) =>
+                                                                      setState(
+                                                                          () {
                                                                     loading =
                                                                         false;
-                                                                  });
-                                                                })
+                                                                  }),
+                                                                )
                                                               : AddPlasticCardType.addPlasticCardType(
                                                                       typeId:
-                                                                          14,
+                                                                          15,
                                                                       cardNumber:
-                                                                          uzCardController
+                                                                          humoController
                                                                               .text,
                                                                       cardPhoneNumber:
-                                                                          phoneUzController
+                                                                          humoController
                                                                               .text,
                                                                       cardExpire:
-                                                                          dateController
+                                                                          dateHumoController
                                                                               .text)
                                                                   .then(
-                                                                      (value) {
-                                                                  setState(() {
+                                                                  (value) =>
+                                                                      setState(
+                                                                          () {
                                                                     loading =
                                                                         false;
-                                                                  });
-                                                                });
-                                                        }),
-                                                  ),
-                                                )
-                                              : Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          top: 20),
-                                                  child: SizedBox(
-                                                    height: 63,
-                                                    width: 250,
-                                                    child: RaisedButton(
-                                                      elevation: 0,
-                                                      color: Color(0xff9F111B),
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          15)),
-                                                      child: plasticCardHumoController
-                                                              .plasticCardTypeList
-                                                              .isNotEmpty
-                                                          ? Text('Изменить',
-                                                              style: FontStyles
-                                                                  .mediumStyle(
-                                                                fontSize: 20,
-                                                                fontFamily:
-                                                                    'Montserrat',
-                                                                color: Colors
-                                                                    .white,
-                                                              ))
-                                                          : Text('Наполнять',
-                                                              style: FontStyles
-                                                                  .mediumStyle(
-                                                                fontSize: 20,
-                                                                fontFamily:
-                                                                    'Montserrat',
-                                                                color: Colors
-                                                                    .white,
-                                                              )),
-                                                      onPressed: () {
-                                                        setState(() {
-                                                          loading = true;
-                                                        });
-
-                                                        plasticCardHumoController
-                                                                .plasticCardTypeList
-                                                                .isNotEmpty
-                                                            ? EditPlasticCard
-                                                                .editPlasticCard(
-                                                                id: plasticCardHumoController
-                                                                    .plasticCardTypeList
-                                                                    .first
-                                                                    .id,
-                                                                typeId: plasticCardHumoController
-                                                                    .plasticCardTypeList
-                                                                    .first
-                                                                    .paymentType
-                                                                    .id,
-                                                                cardNumber:
-                                                                    humoController
-                                                                        .text,
-                                                                cardPhoneNumber:
-                                                                    phoneHumoController
-                                                                        .text,
-                                                                cardExpire:
-                                                                    dateHumoController
-                                                                        .text,
-                                                              ).then(
-                                                                (value) =>
-                                                                    setState(
-                                                                        () {
-                                                                  loading =
-                                                                      false;
-                                                                }),
-                                                              )
-                                                            : AddPlasticCardType.addPlasticCardType(
-                                                                    typeId: 15,
-                                                                    cardNumber:
-                                                                        humoController
-                                                                            .text,
-                                                                    cardPhoneNumber:
-                                                                        humoController
-                                                                            .text,
-                                                                    cardExpire:
-                                                                        dateHumoController
-                                                                            .text)
-                                                                .then(
-                                                                (value) =>
-                                                                    setState(
-                                                                        () {
-                                                                  loading =
-                                                                      false;
-                                                                }),
-                                                              );
-                                                      },
+                                                                  }),
+                                                                );
+                                                        },
+                                                      ),
                                                     ),
-                                                  ),
-                                                )
-                                    ],
-                                  ),
-                                );
-                              }
-                            }),
-                          ],
+                                                  )
+                                      ],
+                                    ),
+                                  );
+                                }
+                              }),
+                            ],
+                          ),
                         ),
-                      ),
-              ],
+                ],
+              ),
             ),
           )
         ],
