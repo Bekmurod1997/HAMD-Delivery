@@ -63,9 +63,10 @@ class PaymentScreen extends StatelessWidget {
                       color: Color(0xff9F111B),
                       onPressed: () async {
                         var delivery = 12;
-                        if (recievedIndex == 1) {
+                        if (recievedIndex[0] == 2) {
                           delivery = 13;
                         }
+                        print('this is $delivery');
                         Order.makeOrders(
                             address: recievedIndex[1],
                             deliveryType: delivery,

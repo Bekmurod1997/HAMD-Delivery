@@ -29,7 +29,7 @@ class Data {
   String address;
   String mapLocation;
   int status;
-  Null paymentType;
+  dynamic paymentType;
   DeliveryType deliveryType;
   List<OrderProducts> orderProducts;
   String date;

@@ -5,6 +5,7 @@ import 'package:HAMD/constants/fonts.dart';
 import 'package:HAMD/ui/cart/widgets/bill.dart';
 import 'package:HAMD/ui/cart/widgets/google_map_creen.dart';
 import 'package:HAMD/ui/cart/widgets/order_list.dart';
+import 'package:HAMD/ui/payment/payment_scren.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -34,8 +35,8 @@ class _CustomRadioButtonsState extends State<CustomRadioButtons> {
     selectedRadio = val;
   }
 
-  String lat;
-  String lng;
+  double lat;
+  double lng;
   String addressLatLng;
   LatLng recievedLatLng;
   @override
@@ -138,50 +139,15 @@ class _CustomRadioButtonsState extends State<CustomRadioButtons> {
                                           if (result != null) {
                                             addressController
                                               ..text = result['address'] ?? '';
+
+                                            setState(() {
+                                              lat = result['position'].latitude;
+                                              lng =
+                                                  result['position'].longitude;
+
+                                              addressLatLng = '${lat}, ${lng}';
+                                            });
                                           }
-                                          // Get.dialog(
-                                          //   Scaffold(
-                                          //     body: Stack(
-                                          //       children: [
-                                          //         GoogleMap(
-                                          //           myLocationEnabled: true,
-                                          //           myLocationButtonEnabled:
-                                          //               false,
-                                          //           zoomControlsEnabled: false,
-                                          //           onMapCreated: _onMapCreated,
-                                          //           initialCameraPosition:
-                                          //               _initialCameraPosition,
-                                          //           onCameraMove: (position) =>
-                                          //               _getAddressFromLatLngOnMove(
-                                          //                   position),
-                                          //         ),
-                                          //         Text(
-                                          //             '$_currentAddress' ?? ''),
-                                          //         Center(
-                                          //           child: Icon(
-                                          //             Icons.place,
-                                          //             size: 50.0,
-                                          //             color: ColorPalatte
-                                          //                 .strongRedColor,
-                                          //           ),
-                                          //         ),
-                                          //       ],
-                                          //     ),
-                                          //     floatingActionButton:
-                                          //         FloatingActionButton(
-                                          //             backgroundColor:
-                                          //                 Colors.white,
-                                          //             foregroundColor:
-                                          //                 ColorPalatte
-                                          //                     .strongRedColor,
-                                          //             child: Icon(
-                                          //               Icons.near_me,
-                                          //               size: 30.0,
-                                          //             ),
-                                          //             onPressed: () =>
-                                          //                 getCurrentPosition()),
-                                          //   ),
-                                          // );
                                         },
                                       ),
                                       hintText: 'ул. Умарова, д.18',
@@ -240,14 +206,14 @@ class _CustomRadioButtonsState extends State<CustomRadioButtons> {
                         elevation: 0,
                         color: Color(0xff9F111B),
                         onPressed: () {
-                          Get.toNamed('/payment-screen', arguments: [
+                          Get.to(PaymentScreen(), arguments: [
                             selectedRadio,
                             selectedRadio == 1
                                 ? addressController.text
                                 : 'Самовывоз из HAMD',
                             selectedRadio == 1
                                 ? addressLatLng.toString()
-                                : '0, 0',
+                                : '0.0, 0.0',
                           ]);
                         },
                         shape: RoundedRectangleBorder(
