@@ -34,7 +34,7 @@ class SignIn {
       }
       return;
     } catch (e) {
-      return Get.snackbar('error', e);
+      print('error in auth');
     }
   }
 }

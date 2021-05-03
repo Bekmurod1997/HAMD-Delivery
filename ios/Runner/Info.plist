@@ -49,5 +49,20 @@
 
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>This app needs access to location when open and in the background.</string>
+
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>App needs permission for the photo library.</string>
+
+	<key>NSCameraUsageDescription</key>
+	<string>App needs access to the camera.</string>
+	
+	<key>NSMicrophoneUsageDescription</key>
+	<string>App needs access to the microphone, if you intend to record videos.</string>
+	
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app needs access to location when open.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This app needs access to location when in the background.</string>
+
 </dict>
 </plist>

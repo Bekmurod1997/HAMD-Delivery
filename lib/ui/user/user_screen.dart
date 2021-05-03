@@ -67,8 +67,8 @@ class _UserScreenState extends State<UserScreen> {
   @override
   void didChangeDependencies() async {
     super.didChangeDependencies();
-    // await plasticCardTypeController.fetchPlasticCardType(14);
-    // await plasticCardHumoController.fetchPlasticCardHumo(15);
+    await plasticCardTypeController.fetchPlasticCardType(14);
+    await plasticCardHumoController.fetchPlasticCardHumo(15);
     setState(() {
       if (plasticCardTypeController.plasticCardTypeList.isNotEmpty) {
         print(plasticCardTypeController.plasticCardTypeList.first.cardNumber);
@@ -89,13 +89,6 @@ class _UserScreenState extends State<UserScreen> {
       }
     });
   }
-
-  // void dispose() {
-  //   cardNumber.dispose();
-  //   cardPhoneNumber.dispose();
-  //   expireDate.dispose();
-  //   super.dispose();
-  // }
 
   selectedRadioValue(int val) {
     selectedRadio = val;
