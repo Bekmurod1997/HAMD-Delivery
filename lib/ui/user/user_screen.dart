@@ -52,21 +52,20 @@ class _UserScreenState extends State<UserScreen> {
   bool loading = false;
   @override
   void initState() {
+    super.initState();
     print('init state in user screen');
     listOfAllOrdersControllers.fetchListOfOrders();
-    // callPlasticCard();
-
-    super.initState();
-  }
-
-  callPlasticCard() async {
-    await plasticCardTypeController.fetchPlasticCardType(14);
-    await plasticCardHumoController.fetchPlasticCardHumo(15);
   }
 
   @override
   void didChangeDependencies() async {
     super.didChangeDependencies();
+    if (uzCardController.text == '' || humoController.text == '') {
+      callPlasticCard();
+    }
+  }
+
+  callPlasticCard() async {
     await plasticCardTypeController.fetchPlasticCardType(14);
     await plasticCardHumoController.fetchPlasticCardHumo(15);
     setState(() {
@@ -88,6 +87,7 @@ class _UserScreenState extends State<UserScreen> {
             plasticCardHumoController.plasticCardTypeList.first.cardPhoneNumber;
       }
     });
+    return;
   }
 
   selectedRadioValue(int val) {
