@@ -33,7 +33,7 @@ class AddPlasticCardType {
       print('*********');
       print(response.body);
       Get.snackbar('ваши данные были успешно изменены', '',
-          colorText: Colors.white, backgroundColor: Colors.grey[500]);
+          colorText: Colors.white, backgroundColor: Color(0xff007E33));
       await PlasticCardType.fetchPlasticCardType(typeId);
 
       var jsonString =

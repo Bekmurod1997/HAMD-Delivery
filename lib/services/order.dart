@@ -1,10 +1,13 @@
 import 'dart:io';
+import 'package:HAMD/ObxHelper/orderLoader.dart';
 import 'package:HAMD/utils/my_prefs.dart';
 import 'package:http/http.dart' as http;
 import 'package:HAMD/ObxHelper/cart_list_controller.dart';
 import 'package:get/get.dart';
 
 final CartListController cartListController = Get.find<CartListController>();
+final OrderLoaderController orderLoaderController =
+    Get.find<OrderLoaderController>();
 
 class Order {
   static var client = http.Client();
@@ -30,6 +33,7 @@ class Order {
       print('*********');
       print(response.body);
       cartListController.fetchAllCartList();
+      orderLoaderController.onSuccess();
 
       Get.toNamed('/payment-status-screen');
     } else {

@@ -118,15 +118,6 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                                     ),
                                     SizedBox(height: 20),
                                     Spacer(),
-                                    // PriceAndButton(
-                                    //   id: productByCategoryController
-                                    //       .productByCategoryList[recievedIndex]
-                                    //       .id,
-                                    //   price: productByCategoryController
-                                    //       .productByCategoryList[recievedIndex]
-                                    //       .price
-                                    //       .toString(),
-                                    // ),
                                     Container(
                                       margin: EdgeInsets.only(bottom: 10),
                                       child: Row(
@@ -288,25 +279,6 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                                           ],
                                         ),
                                       ),
-                                      Container(
-                                          height: 50,
-                                          width: 50,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(50),
-                                            color: Colors.white,
-                                          ),
-                                          child: Obx(
-                                            () => IconButton(
-                                                icon: Icon(Icons.favorite),
-                                                color:
-                                                    favoriteState.favorite.value
-                                                        ? Color(0xff9F111B)
-                                                        : Colors.grey,
-                                                onPressed: () {
-                                                  favoriteState.doFavotie();
-                                                }),
-                                          )),
                                     ],
                                   ),
                                 ),

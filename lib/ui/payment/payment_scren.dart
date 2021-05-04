@@ -1,3 +1,5 @@
+import 'package:HAMD/ObxHelper/counterState.dart';
+import 'package:HAMD/ObxHelper/orderLoader.dart';
 import 'package:HAMD/ObxHelper/plastic_card_universal_controller.dart';
 import 'package:HAMD/constants/colors.dart';
 
@@ -16,6 +18,8 @@ import 'package:get/get.dart';
 class PaymentScreen extends StatelessWidget {
   final PlasticCardUniversalController plasticCardUniversalController =
       Get.find<PlasticCardUniversalController>();
+  final OrderLoaderController orderLoaderController =
+      Get.find<OrderLoaderController>();
   @override
   Widget build(BuildContext context) {
     var recievedIndex = Get.arguments;
@@ -58,30 +62,42 @@ class PaymentScreen extends StatelessWidget {
                   SizedBox(
                     width: screenSize.width * 0.86,
                     height: 63,
-                    child: RaisedButton(
-                      elevation: 0,
-                      color: Color(0xff9F111B),
-                      onPressed: () async {
-                        var delivery = 12;
-                        if (recievedIndex[0] == 2) {
-                          delivery = 13;
-                        }
-                        print('this is $delivery');
-                        Order.makeOrders(
-                            address: recievedIndex[1],
-                            deliveryType: delivery,
-                            location: recievedIndex[2]);
+                    child: Obx(
+                      () {
+                        return RaisedButton(
+                          elevation: 0,
+                          color: Color(0xff9F111B),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15)),
+                          child: orderLoaderController.loading.value
+                              ? CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    Colors.white,
+                                  ),
+                                )
+                              : Text(
+                                  'ЗАКАЗАТЬ',
+                                  style: FontStyles.mediumStyle(
+                                    fontSize: 20,
+                                    fontFamily: 'Montserrat',
+                                    color: Colors.white,
+                                  ),
+                                ),
+                          onPressed: () async {
+                            var delivery = 12;
+                            if (recievedIndex[0] == 2) {
+                              delivery = 13;
+                            }
+                            print('this is $delivery');
+                            await orderLoaderController.onFetching();
+
+                            Order.makeOrders(
+                                address: recievedIndex[1],
+                                deliveryType: delivery,
+                                location: recievedIndex[2]);
+                          },
+                        );
                       },
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)),
-                      child: Text(
-                        'ЗАКАЗАТЬ',
-                        style: FontStyles.mediumStyle(
-                          fontSize: 20,
-                          fontFamily: 'Montserrat',
-                          color: Colors.white,
-                        ),
-                      ),
                     ),
                   ),
                   SizedBox(height: 20),

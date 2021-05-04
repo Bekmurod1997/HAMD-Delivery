@@ -1,3 +1,4 @@
+import 'package:HAMD/ObxHelper/list_of_orders.dart';
 import 'package:HAMD/constants/colors.dart';
 import 'package:HAMD/constants/fonts.dart';
 import 'package:HAMD/custom-icons/hamd_icons.dart';
@@ -10,8 +11,21 @@ import 'package:get/get.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 // ignore: must_be_immutable
-class PaymentStatusScreen extends StatelessWidget {
+class PaymentStatusScreen extends StatefulWidget {
+  @override
+  _PaymentStatusScreenState createState() => _PaymentStatusScreenState();
+}
+
+class _PaymentStatusScreenState extends State<PaymentStatusScreen> {
+  final ListOfAllOrdersControllers listOfAllOrdersControllers =
+      Get.find<ListOfAllOrdersControllers>();
   final _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    listOfAllOrdersControllers.fetchListOfOrders();
+    super.initState();
+  }
 
   String extraComments;
 
@@ -24,6 +38,7 @@ class PaymentStatusScreen extends StatelessWidget {
     RatingButtons(id: 6, title: 'Упаковка'),
     RatingButtons(id: 7, title: 'Десерт'),
   ];
+
   _showSnackBar(BuildContext context) {
     int filledStars;
     return showDialog(
@@ -311,131 +326,93 @@ class PaymentStatusScreen extends StatelessWidget {
             height2: 18,
             width2: 18,
           ),
-          Expanded(
-            child: ListView(
-              children: [
-                Center(
-                  child: Container(
-                    height: 45,
-                    width: 80,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(40),
-                      color: ColorPalatte.strongRedColor,
-                    ),
-                    child: Center(
-                      child: Text(
-                        'D 234',
-                        style: FontStyles.boldStyle(
-                          fontSize: 18,
-                          fontFamily: 'Product Sans',
-                          color: Colors.white,
+          Obx(() {
+            if (listOfAllOrdersControllers.isLoading.value) {
+              return Container();
+            } else {
+              return Expanded(
+                child: ListView(
+                  children: [
+                    Center(
+                      child: Container(
+                        height: 45,
+                        width: 80,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(40),
+                          color: ColorPalatte.strongRedColor,
                         ),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 38),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 11),
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * .65,
-                          height: MediaQuery.of(context).size.height * .18,
-                          child: Image.asset('assets/food/lavash.png'),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 35,
-                      ),
-                      Stages(
-                        bigTitle: 'Заказ принят',
-                        iconUrl: 'assets/icons/clock-alt.svg',
-                        smallTitle: '09:23 AM, 15 November 2019',
-                      ),
-                      // Container(
-                      //   margin: EdgeInsets.symmetric(vertical: 5),
-                      //   width: 30.0,
-                      //   child: Column(
-                      //     crossAxisAlignment: CrossAxisAlignment.center,
-                      //     children: List.generate(
-                      //       4,
-                      //       (index) => Container(
-                      //         height: 8,
-                      //         width: 2,
-                      //         color: Color(0xffFB6A43),
-                      //         margin:
-                      //             EdgeInsets.only(bottom: 2, left: 20, top: 2),
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
-                      // Stages(
-                      //   bigTitle: 'Заказ готов',
-                      //   iconUrl: 'assets/icons/flag.svg',
-                      //   smallTitle: '09:23 AM, 15 November 2019',
-                      // ),
-                      // Container(
-                      //   margin: EdgeInsets.symmetric(vertical: 5),
-                      //   width: 30.0,
-                      //   child: Column(
-                      //     crossAxisAlignment: CrossAxisAlignment.center,
-                      //     children: List.generate(
-                      //       4,
-                      //       (index) => Container(
-                      //         height: 8,
-                      //         width: 2,
-                      //         color: Color(0xffFB6A43),
-                      //         margin:
-                      //             EdgeInsets.only(bottom: 2, left: 20, top: 2),
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
-                      // Stages(
-                      //   bigTitle: 'Передан на доставку',
-                      //   iconUrl: 'assets/icons/deliver-alt.svg',
-                      //   smallTitle: '09:23 AM, 15 November 2019',
-                      // ),
-
-                      SizedBox(
-                        height: 55,
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.86,
-                        height: 63,
-                        child: RaisedButton(
-                          elevation: 0,
-                          color: Color(0xff9F111B),
-                          onPressed: () => Get.to(HomeScreen()),
-                          // onPressed: () => _showSnackBar(context),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15)),
+                        child: Center(
                           child: Text(
-                            'на главную'.toUpperCase(),
-                            style: FontStyles.mediumStyle(
-                              fontSize: 20,
-                              fontFamily: 'Montserrat',
+                            'D ${listOfAllOrdersControllers.orderList.first.id}',
+                            style: FontStyles.boldStyle(
+                              fontSize: 18,
+                              fontFamily: 'Product Sans',
                               color: Colors.white,
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: 40,
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 38),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 11),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * .65,
+                              height: MediaQuery.of(context).size.height * .18,
+                              child: Image.asset('assets/food/lavash.png'),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 35,
+                          ),
+                          Stages(
+                            bigTitle: 'Заказ принят',
+                            iconUrl: 'assets/icons/clock-alt.svg',
+                            smallTitle:
+                                listOfAllOrdersControllers.orderList.first.date,
+                          ),
+                          SizedBox(
+                            height: 55,
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.86,
+                            height: 63,
+                            child: RaisedButton(
+                              elevation: 0,
+                              color: Color(0xff9F111B),
+                              onPressed: () => Get.to(HomeScreen()),
+                              // onPressed: () => _showSnackBar(context),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15)),
+                              child: Text(
+                                'на главную'.toUpperCase(),
+                                style: FontStyles.mediumStyle(
+                                  fontSize: 20,
+                                  fontFamily: 'Montserrat',
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 40,
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          )
+              );
+            }
+          }),
         ],
       ),
     );

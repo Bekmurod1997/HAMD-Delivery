@@ -5,6 +5,7 @@ import 'package:HAMD/ObxHelper/counterState.dart';
 import 'package:HAMD/ObxHelper/delivert_type_controller.dart';
 import 'package:HAMD/ObxHelper/item_category_controller.dart';
 import 'package:HAMD/ObxHelper/list_of_orders.dart';
+import 'package:HAMD/ObxHelper/orderLoader.dart';
 import 'package:HAMD/ObxHelper/order_detail_view_controller.dart';
 import 'package:HAMD/ObxHelper/payment_type_controller.dart';
 import 'package:HAMD/ObxHelper/plastic_card_humo_controller.dart';
@@ -65,6 +66,8 @@ class _MyAppState extends State<MyApp> {
       Get.put(PlasticCardHumoController());
   final PlasticCardUniversalController plasticCardUniversalController =
       Get.put(PlasticCardUniversalController());
+  final OrderLoaderController orderLoaderController =
+      Get.put(OrderLoaderController());
   var secondToken = MyPref.secondToken ?? '';
 
   @override
