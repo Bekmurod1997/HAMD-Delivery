@@ -15,7 +15,9 @@ class UserProfileController extends GetxController {
       if (profile != null) {
         profileList.clear();
         profileList.add(profile.data);
+        print('this is profile info');
         print(profile);
+        print(profileList.first.phone);
       }
     } finally {
       isLoading(false);

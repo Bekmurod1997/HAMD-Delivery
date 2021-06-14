@@ -24,4 +24,23 @@ class CartListController extends GetxController {
       isLoading(false);
     }
   }
+
+  Future clearCart() async {
+    try {
+      isLoading(true);
+      var allCart = await CartList.fetchCartList();
+      if (allCart != null) {
+        // print('data $allCart');
+        // allCartList.assignAll(allCart.data);
+        allCartList.clear();
+      }
+    } finally {
+      isLoading(false);
+    }
+  }
+  //this was added
+
+  // void clearCart() async {
+  //   allCartList.clear();
+  // }
 }

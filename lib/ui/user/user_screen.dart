@@ -39,8 +39,8 @@ class _UserScreenState extends State<UserScreen> {
   TextEditingController dateHumoController = TextEditingController();
   TextEditingController phoneUzController = TextEditingController();
   TextEditingController phoneHumoController = TextEditingController();
-  TextEditingController humoController = TextEditingController();
-  TextEditingController uzCardController = TextEditingController();
+  TextEditingController humoController = TextEditingController(text: '9860');
+  TextEditingController uzCardController = TextEditingController(text: '8600');
   int selectedIndex = 0;
   int active = 0;
 

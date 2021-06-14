@@ -1,3 +1,4 @@
+import 'package:HAMD/ObxHelper/cart_list_controller.dart';
 import 'package:HAMD/ObxHelper/list_of_orders.dart';
 import 'package:HAMD/constants/colors.dart';
 import 'package:HAMD/constants/fonts.dart';
@@ -19,6 +20,7 @@ class PaymentStatusScreen extends StatefulWidget {
 class _PaymentStatusScreenState extends State<PaymentStatusScreen> {
   final ListOfAllOrdersControllers listOfAllOrdersControllers =
       Get.find<ListOfAllOrdersControllers>();
+  final CartListController cartListController = Get.find<CartListController>();
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -388,7 +390,10 @@ class _PaymentStatusScreenState extends State<PaymentStatusScreen> {
                             child: RaisedButton(
                               elevation: 0,
                               color: Color(0xff9F111B),
-                              onPressed: () => Get.to(HomeScreen()),
+                              onPressed: () async {
+                                await cartListController.clearCart();
+                                Get.to(HomeScreen());
+                              },
                               // onPressed: () => _showSnackBar(context),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15)),

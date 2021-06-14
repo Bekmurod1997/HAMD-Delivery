@@ -12,6 +12,7 @@ class FormSms extends StatefulWidget {
 }
 
 class _FormSmsState extends State<FormSms> {
+  String errorMessage = '';
   final _formKey = GlobalKey<FormState>();
   final TextEditingController codeController = TextEditingController();
   void validateAndSave() async {
@@ -93,15 +94,29 @@ class _FormSmsState extends State<FormSms> {
                       ),
                       validator: (value) {
                         if (value.isEmpty) {
-                          return "Value can not be empty";
+                          setState(() {
+                            errorMessage = 'Поле не может быть пустым';
+                          });
+                          return '';
                         } else if (value.length < 6) {
-                          return 'Value can not be less than 13';
+                          setState(() {
+                            errorMessage = 'Поле не может быть меньше 6 цифр';
+                          });
+                          return '';
                         }
                         return null;
                       },
                     ),
                   ),
                 ],
+              ),
+            ),
+            errorMessage.isEmpty ? Container() : SizedBox(height: 10),
+            Text(
+              errorMessage,
+              style: TextStyle(
+                fontSize: 12,
+                color: ColorPalatte.strongRedColor,
               ),
             ),
             SizedBox(

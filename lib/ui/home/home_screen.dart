@@ -113,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
             );
           } else {
             return Center(
-              child: Text('error'),
+              child: Text('error in home screen'),
             );
           }
         },

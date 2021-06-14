@@ -14,7 +14,8 @@ class FormNumber extends StatefulWidget {
 }
 
 class _FormNumberState extends State<FormNumber> {
-  TextEditingController smsController = TextEditingController();
+  String errorMessage = '';
+  TextEditingController smsController = TextEditingController(text: '+998');
   FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   String fcmToken;
   configureFCM() async {
@@ -122,7 +123,7 @@ class _FormNumberState extends State<FormNumber> {
                     controller: smsController,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                      hintText: "+998",
+                      // hintText: "+998",
                       contentPadding: const EdgeInsets.only(left: 15.0),
                       border: InputBorder.none,
                     ),
@@ -132,9 +133,15 @@ class _FormNumberState extends State<FormNumber> {
                     ),
                     validator: (value) {
                       if (value.isEmpty) {
-                        return "Value can not be empty";
+                        setState(() {
+                          errorMessage = 'Поле не может быть пустым';
+                        });
+                        return '';
                       } else if (value.length < 17) {
-                        return 'Value can not be less than 13';
+                        setState(() {
+                          errorMessage = 'Поле не может быть меньше 12 цифр';
+                        });
+                        return '';
                       }
                       return null;
                     },
@@ -143,9 +150,15 @@ class _FormNumberState extends State<FormNumber> {
               ],
             ),
           ),
-          SizedBox(
-            height: 20,
+          errorMessage.isEmpty ? Container() : SizedBox(height: 10),
+          Text(
+            errorMessage,
+            style: TextStyle(
+              fontSize: 12,
+              color: ColorPalatte.strongRedColor,
+            ),
           ),
+          SizedBox(height: 20),
           SizedBox(
             height: 54,
             width: screenSize.width * 0.8,

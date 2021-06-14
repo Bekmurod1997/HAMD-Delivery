@@ -26,7 +26,7 @@ class SignIn {
         print(body.data.code.code);
         MyPref.token = body.data.token;
         MyPref.code = body.data.code.code;
-
+        MyPref.phoneNumber = body.data.code.phone;
         print('saved token');
         print(MyPref.token);
         Get.back();

@@ -84,15 +84,14 @@ class _FoodCardState extends State<FoodCard> {
                                               BorderRadius.circular(25),
                                           color: Color(0xffEDF0F3),
                                           image: DecorationImage(
-                                            image: NetworkImage(
-                                              'http://hamd.loko.uz/' +
-                                                  productByCategoryController
-                                                      .productByCategoryList[
-                                                          index]
-                                                      .photo,
-                                            ),
-                                            fit: BoxFit.cover,
-                                          ),
+                                              image: NetworkImage(
+                                                'http://hamd.loko.uz/' +
+                                                    productByCategoryController
+                                                        .productByCategoryList[
+                                                            index]
+                                                        .photo,
+                                              ),
+                                              fit: BoxFit.contain),
                                         ),
                                       ),
                                       Positioned(

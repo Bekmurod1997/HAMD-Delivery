@@ -90,10 +90,13 @@ class _EditProfileState extends State<EditProfile> {
                                       onPressed: () {
                                         MyPref.clearToken();
                                         MyPref.clearSecondToken();
+                                        MyPref.clearPhoneNumber();
                                         print('toke after exiting');
                                         print(MyPref.token);
                                         print('second toke after exiting');
                                         print(MyPref.secondToken);
+                                        print('phone number after existing');
+                                        print(MyPref.phoneNumber);
                                         g.Get.offAll(AuthScreen());
                                       },
                                     ),

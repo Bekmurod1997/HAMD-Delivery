@@ -36,6 +36,7 @@ class Order {
       orderLoaderController.onSuccess();
 
       Get.toNamed('/payment-status-screen');
+      // cartListController.clearCart();
     } else {
       print('error in orderings products services');
       print(response.reasonPhrase);

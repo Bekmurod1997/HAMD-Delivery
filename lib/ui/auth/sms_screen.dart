@@ -3,9 +3,12 @@ import 'package:HAMD/constants/fonts.dart';
 import 'package:HAMD/ui/auth/widgets/form_sms.dart';
 import 'package:HAMD/ui/auth/widgets/logo_item.dart';
 import 'package:HAMD/ui/auth/widgets/sms_text_item.dart';
+import 'package:HAMD/utils/my_prefs.dart';
 import 'package:flutter/material.dart';
 
 class SmsScreen extends StatelessWidget {
+  final phoneNumber = MyPref.phoneNumber;
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -28,7 +31,7 @@ class SmsScreen extends StatelessWidget {
                       ),
                       SmsTextItem(
                         myText:
-                            'Сейчас Вы получите 4-значный код верификации,мы отправили его на номер +998 •• ••• ••24',
+                            'Сейчас Вы получите 4-значный код верификации,мы отправили его на номер +998 *** ** ${phoneNumber.substring(14, 17)}',
                       ),
                       SizedBox(height: 40),
                       FormSms(),

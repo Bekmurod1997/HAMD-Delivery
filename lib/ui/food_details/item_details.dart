@@ -35,21 +35,22 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
     print(recievedIndex);
     return Scaffold(
       appBar: PreferredSize(
-          child: customAppBar(
-            context,
-            isCart: true,
-            icon1Url: 'assets/icons/Icon-left.svg',
-            height1: 14,
-            width1: 14,
-            onpress1: () => Get.back(),
-            title: 'Лаваш Средний',
-            icon2Url: 'assets/icons/shopping-cart.svg',
-            width2: 25,
-            height2: 25,
-            onpress2: () => Get.toNamed('/cart-screen'),
-          ),
-          preferredSize: Size.fromHeight(
-              kToolbarHeight + MediaQuery.of(context).viewPadding.top)),
+        child: customAppBar(
+          context,
+          isCart: true,
+          icon1Url: 'assets/icons/Icon-left.svg',
+          height1: 14,
+          width1: 14,
+          onpress1: () => Get.back(),
+          title: 'Лаваш Средний',
+          icon2Url: 'assets/icons/shopping-cart.svg',
+          width2: 25,
+          height2: 25,
+          onpress2: () => Get.toNamed('/cart-screen'),
+        ),
+        preferredSize: Size.fromHeight(
+            kToolbarHeight + MediaQuery.of(context).viewPadding.top),
+      ),
       backgroundColor: ColorPalatte.mainPageColor,
       body: CustomScrollView(
         slivers: [
@@ -76,7 +77,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                                         .productByCategoryList[recievedIndex]
                                         .photo,
                               ),
-                              fit: BoxFit.cover,
+                              fit: BoxFit.contain,
                             ),
                           ),
                         ),
