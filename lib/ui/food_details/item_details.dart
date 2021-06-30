@@ -42,7 +42,8 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
           height1: 14,
           width1: 14,
           onpress1: () => Get.back(),
-          title: 'Лаваш Средний',
+          title: productByCategoryController
+              .productByCategoryList[recievedIndex].name,
           icon2Url: 'assets/icons/shopping-cart.svg',
           width2: 25,
           height2: 25,

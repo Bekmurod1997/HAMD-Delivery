@@ -35,7 +35,7 @@ class _OrderStageScreenState extends State<OrderStageScreen> {
             hasAction: false,
             icon1Url: 'assets/icons/Icon-left.svg',
             onpress1: () => Get.back(),
-            title: 'Order Stages',
+            title: 'Статус заказа',
             // icon2Url: 'assets/icons/pencil.svg',
             // onpress2: () => Get.to(EditProfile()),
             height2: 18,
@@ -112,8 +112,13 @@ class _OrderStageScreenState extends State<OrderStageScreen> {
                                         .toString(),
                                   ),
                                   orderDetailViewController.orderDetailViewList
-                                              .first.status ==
-                                          2
+                                                  .first.status ==
+                                              1 ||
+                                          orderDetailViewController
+                                                  .orderDetailViewList
+                                                  .first
+                                                  .status ==
+                                              2
                                       ? Container(
                                           margin:
                                               EdgeInsets.symmetric(vertical: 5),
@@ -137,10 +142,15 @@ class _OrderStageScreenState extends State<OrderStageScreen> {
                                         )
                                       : Container(),
                                   orderDetailViewController.orderDetailViewList
-                                              .first.status ==
-                                          2
+                                                  .first.status ==
+                                              1 ||
+                                          orderDetailViewController
+                                                  .orderDetailViewList
+                                                  .first
+                                                  .status ==
+                                              2
                                       ? Stages(
-                                          bigTitle: 'Заказ готов',
+                                          bigTitle: 'В процессе',
                                           iconUrl: 'assets/icons/flag.svg',
                                           smallTitle: orderDetailViewController
                                               .orderDetailViewList.first.date

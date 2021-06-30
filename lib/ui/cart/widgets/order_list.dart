@@ -46,6 +46,7 @@ class _OrderListState extends State<OrderList> {
               return Stack(
                 children: [
                   Dismissible(
+                    direction: DismissDirection.endToStart,
                     key: Key(cartListController.allCartList[index].productName),
                     // child: ListTile(
                     //   title: Text('aaaa'),

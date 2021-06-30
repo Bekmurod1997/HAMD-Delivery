@@ -122,7 +122,7 @@ class MapSampleState extends State<MapSample> {
                 ),
                 const SizedBox(height: 5.0),
                 Text(
-                  '$_currentAddress' ?? '',
+                  '$_currentAddress' ?? 'укажите адрес',
                   style: TextStyle(
                     fontSize: 16.0,
                     fontWeight: FontWeight.w600,
