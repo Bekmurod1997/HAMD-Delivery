@@ -45,6 +45,7 @@ dependencies:
   geocoding: ^1.0.5
   firebase_messaging: ^7.0.3
   provider: ^4.3.2+3
+  auto_size_text: ^2.1.0
   
 flutter_icons:
   android: true

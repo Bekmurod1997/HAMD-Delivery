@@ -37,7 +37,7 @@ class _MyOrdersState extends State<MyOrders> {
             ? ListView.separated(
                 itemBuilder: (context, index) {
                   return Container(
-                    height: 125,
+                    // height: 125,
                     width: MediaQuery.of(context).size.width * 8,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25),

@@ -333,7 +333,7 @@ class _PaymentStatusScreenState extends State<PaymentStatusScreen> {
               return Container();
             } else {
               return Expanded(
-                child: ListView(
+                child: Column(
                   children: [
                     Center(
                       child: Container(
@@ -358,7 +358,7 @@ class _PaymentStatusScreenState extends State<PaymentStatusScreen> {
                     // SizedBox(
                     //   height: 20,
                     // ),
-                    Spacer(),
+
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 38),
                       child: Column(
@@ -385,34 +385,35 @@ class _PaymentStatusScreenState extends State<PaymentStatusScreen> {
                           SizedBox(
                             height: 55,
                           ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.86,
-                            height: 63,
-                            child: RaisedButton(
-                              elevation: 0,
-                              color: Color(0xff9F111B),
-                              onPressed: () async {
-                                await cartListController.clearCart();
-                                Get.to(HomeScreen());
-                              },
-                              // onPressed: () => _showSnackBar(context),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15)),
-                              child: Text(
-                                'goHomeScreen'.tr,
-                                style: FontStyles.mediumStyle(
-                                  fontSize: 20,
-                                  fontFamily: 'Montserrat',
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 40,
-                          ),
                         ],
                       ),
+                    ),
+                    Spacer(),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.86,
+                      height: 63,
+                      child: RaisedButton(
+                        elevation: 0,
+                        color: Color(0xff9F111B),
+                        onPressed: () async {
+                          await cartListController.clearCart();
+                          Get.to(HomeScreen());
+                        },
+                        // onPressed: () => _showSnackBar(context),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15)),
+                        child: Text(
+                          'goHomeScreen'.tr,
+                          style: FontStyles.mediumStyle(
+                            fontSize: 20,
+                            fontFamily: 'Montserrat',
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 40,
                     ),
                   ],
                 ),

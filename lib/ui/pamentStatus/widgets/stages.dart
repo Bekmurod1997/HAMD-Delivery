@@ -1,6 +1,7 @@
 import 'package:HAMD/constants/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class Stages extends StatelessWidget {
   final String bigTitle;
@@ -31,14 +32,25 @@ class Stages extends StatelessWidget {
           children: [
             Align(
               alignment: Alignment.topLeft,
-              child: Text(
-                bigTitle,
-                style: FontStyles.boldStyle(
-                  fontSize: 18,
-                  fontFamily: 'Ubuntu',
-                  color: Color(0xff414141),
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  bigTitle,
+                  style: FontStyles.boldStyle(
+                    fontSize: 15,
+                    fontFamily: 'Ubuntu',
+                    color: Color(0xff414141),
+                  ),
                 ),
               ),
+              // child: Text(
+              //   bigTitle,
+              //   style: FontStyles.boldStyle(
+              //     fontSize: 18,
+              //     fontFamily: 'Ubuntu',
+              //     color: Color(0xff414141),
+              //   ),
+              // ),
             ),
             Row(
               children: [

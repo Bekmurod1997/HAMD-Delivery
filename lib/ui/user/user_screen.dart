@@ -105,7 +105,7 @@ class _UserScreenState extends State<UserScreen> {
                                 // listOfAllOrdersControllers.orderList.length
                                 //     .toString(),
                                 style: FontStyles.boldStyle(
-                                    fontSize: 15,
+                                    fontSize: 14,
                                     fontFamily: 'Montserrat',
                                     color: Colors.black),
                               ),
@@ -135,7 +135,7 @@ class _UserScreenState extends State<UserScreen> {
                               child: Text(
                                 'paymentMethod'.tr,
                                 style: FontStyles.boldStyle(
-                                    fontSize: 15,
+                                    fontSize: 14,
                                     fontFamily: 'Montserrat',
                                     color: Colors.black),
                               ),

@@ -60,7 +60,7 @@ class _FormNumberState extends State<FormNumber> {
                   Text(
                     'pleaseWait'.tr,
                     style: FontStyles.lightStyle(
-                      fontSize: 19,
+                      fontSize: 15,
                       fontFamily: 'Ubuntu',
                     ),
                   ),
