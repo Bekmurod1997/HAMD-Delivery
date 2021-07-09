@@ -64,7 +64,7 @@ class _UserScreenState extends State<UserScreen> {
           Header(
             icon1Url: 'assets/icons/Icon-left.svg',
             onpress1: () => Get.back(),
-            title: 'Мой профиль',
+            title: 'profileTitle'.tr,
             icon2Url: 'assets/icons/pencil.svg',
             onpress2: () => Get.toNamed('/edit-profile-screen'),
             height2: 18,
@@ -101,7 +101,7 @@ class _UserScreenState extends State<UserScreen> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(25)),
                               child: Text(
-                                'Мои заказы',
+                                'myOrders'.tr,
                                 // listOfAllOrdersControllers.orderList.length
                                 //     .toString(),
                                 style: FontStyles.boldStyle(
@@ -133,7 +133,7 @@ class _UserScreenState extends State<UserScreen> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(25)),
                               child: Text(
-                                'Методы оплат',
+                                'paymentMethod'.tr,
                                 style: FontStyles.boldStyle(
                                     fontSize: 15,
                                     fontFamily: 'Montserrat',
@@ -266,7 +266,7 @@ class _UserPaymentTypeState extends State<UserPaymentType> {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Text(
-                                      ' Добавить новую карту',
+                                      'addNewCard'.tr,
                                       style: FontStyles.mediumStyle(
                                         fontSize: 20,
                                         fontFamily: 'Montserrat',
@@ -450,7 +450,7 @@ class _UserPaymentTypeState extends State<UserPaymentType> {
                   Align(
                     alignment: Alignment.topLeft,
                     child: Text(
-                      'Введите номер Вашей карты',
+                      'writeCardNumber'.tr,
                       style: FontStyles.regularStyle(
                         fontSize: 11,
                         fontFamily: 'Montserrat',
@@ -504,7 +504,7 @@ class _UserPaymentTypeState extends State<UserPaymentType> {
                         child: Align(
                           alignment: Alignment.topLeft,
                           child: Text(
-                            'Номер прикрепленного телефона',
+                            'enteredNumber'.tr,
                             style: FontStyles.regularStyle(
                               fontSize: 11,
                               fontFamily: 'Montserrat',
@@ -518,7 +518,7 @@ class _UserPaymentTypeState extends State<UserPaymentType> {
                         child: Align(
                           alignment: Alignment.topRight,
                           child: Text(
-                            'Дата действия',
+                            'exprireDate'.tr,
                             style: FontStyles.regularStyle(
                               fontSize: 11,
                               fontFamily: 'Montserrat',
@@ -576,7 +576,7 @@ class _UserPaymentTypeState extends State<UserPaymentType> {
                           inputFormatters: [InputMask.maskDate],
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
-                            hintText: '00 / 00',
+                            hintText: '.. / ..',
                             filled: true,
                             fillColor: Colors.white,
                             focusedBorder: OutlineInputBorder(
@@ -618,7 +618,7 @@ class _UserPaymentTypeState extends State<UserPaymentType> {
                                     child: plasticCardTypeController
                                             .plasticCardTypeList.isNotEmpty
                                         ? Text(
-                                            'Изменить',
+                                            'change'.tr,
                                             style: FontStyles.mediumStyle(
                                               fontSize: 20,
                                               fontFamily: 'Montserrat',
@@ -626,7 +626,7 @@ class _UserPaymentTypeState extends State<UserPaymentType> {
                                             ),
                                           )
                                         : Text(
-                                            'Наполнять ',
+                                            'enter'.tr,
                                             style: FontStyles.mediumStyle(
                                               fontSize: 20,
                                               fontFamily: 'Montserrat',
@@ -686,13 +686,13 @@ class _UserPaymentTypeState extends State<UserPaymentType> {
                                       borderRadius: BorderRadius.circular(15)),
                                   child: plasticCardHumoController
                                           .plasticCardTypeList.isNotEmpty
-                                      ? Text('Изменить',
+                                      ? Text('change'.tr,
                                           style: FontStyles.mediumStyle(
                                             fontSize: 20,
                                             fontFamily: 'Montserrat',
                                             color: Colors.white,
                                           ))
-                                      : Text('Наполнять',
+                                      : Text('enter'.tr,
                                           style: FontStyles.mediumStyle(
                                             fontSize: 20,
                                             fontFamily: 'Montserrat',

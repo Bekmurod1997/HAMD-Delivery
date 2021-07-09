@@ -36,13 +36,17 @@ class _FoodCardState extends State<FoodCard> {
         } else {
           return productByCategoryController.productByCategoryList.length > 0
               ? Container(
-                  height: 370.0,
+                  height: 400.0,
                   child: ListView.separated(
                     itemCount: productByCategoryController
                         .productByCategoryList.length,
                     separatorBuilder: (context, index) => SizedBox(width: 0),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
+                      String productName = productByCategoryController
+                          .productByCategoryList[index].name;
+                      var myArr = productName.split(' ');
+
                       return GestureDetector(
                         onTap: () {
                           print('index');
@@ -110,7 +114,7 @@ class _FoodCardState extends State<FoodCard> {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.center,
                                             children: [
-                                              Text('4.5'),
+                                              Text('5.0'),
                                               SizedBox(width: 3.0),
                                               SvgPicture.asset(
                                                 'assets/icons/star.svg',
@@ -132,15 +136,153 @@ class _FoodCardState extends State<FoodCard> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text(
-                                            productByCategoryController
-                                                .productByCategoryList[index]
-                                                .name,
-                                            style: FontStyles.semiBoldStyle(
-                                              fontSize: 16,
-                                              fontFamily: 'Ubuntu',
-                                              color: Color(0xff222E54),
-                                            ),
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              if (myArr.length == 1 ||
+                                                  myArr.length == 2)
+                                                Text(
+                                                  productByCategoryController
+                                                      .productByCategoryList[
+                                                          index]
+                                                      .name,
+                                                  style:
+                                                      FontStyles.semiBoldStyle(
+                                                    fontSize: 16,
+                                                    fontFamily: 'Ubuntu',
+                                                    color: Color(0xff222E54),
+                                                  ),
+                                                ),
+                                              if (myArr.length == 3)
+                                                Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      myArr[0] + ' ' + myArr[1],
+                                                      style: FontStyles
+                                                          .semiBoldStyle(
+                                                        fontSize: 16,
+                                                        fontFamily: 'Ubuntu',
+                                                        color:
+                                                            Color(0xff222E54),
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      myArr[2],
+                                                      style: FontStyles
+                                                          .semiBoldStyle(
+                                                        fontSize: 16,
+                                                        fontFamily: 'Ubuntu',
+                                                        color:
+                                                            Color(0xff222E54),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              if (myArr.length == 4)
+                                                Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      myArr[0] + ' ' + myArr[1],
+                                                      style: FontStyles
+                                                          .semiBoldStyle(
+                                                        fontSize: 16,
+                                                        fontFamily: 'Ubuntu',
+                                                        color:
+                                                            Color(0xff222E54),
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      myArr[2] + ' ' + myArr[3],
+                                                      style: FontStyles
+                                                          .semiBoldStyle(
+                                                        fontSize: 16,
+                                                        fontFamily: 'Ubuntu',
+                                                        color:
+                                                            Color(0xff222E54),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              if (myArr.length == 5)
+                                                Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      myArr[0] + ' ' + myArr[1],
+                                                      style: FontStyles
+                                                          .semiBoldStyle(
+                                                        fontSize: 16,
+                                                        fontFamily: 'Ubuntu',
+                                                        color:
+                                                            Color(0xff222E54),
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      myArr[2] + ' ' + myArr[3],
+                                                      style: FontStyles
+                                                          .semiBoldStyle(
+                                                        fontSize: 16,
+                                                        fontFamily: 'Ubuntu',
+                                                        color:
+                                                            Color(0xff222E54),
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      myArr[4],
+                                                      style: FontStyles
+                                                          .semiBoldStyle(
+                                                        fontSize: 16,
+                                                        fontFamily: 'Ubuntu',
+                                                        color:
+                                                            Color(0xff222E54),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              if (myArr.length == 6)
+                                                Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      myArr[0] + ' ' + myArr[1],
+                                                      style: FontStyles
+                                                          .semiBoldStyle(
+                                                        fontSize: 16,
+                                                        fontFamily: 'Ubuntu',
+                                                        color:
+                                                            Color(0xff222E54),
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      myArr[2] + ' ' + myArr[3],
+                                                      style: FontStyles
+                                                          .semiBoldStyle(
+                                                        fontSize: 16,
+                                                        fontFamily: 'Ubuntu',
+                                                        color:
+                                                            Color(0xff222E54),
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      myArr[4] + ' ' + myArr[5],
+                                                      style: FontStyles
+                                                          .semiBoldStyle(
+                                                        fontSize: 16,
+                                                        fontFamily: 'Ubuntu',
+                                                        color:
+                                                            Color(0xff222E54),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                            ],
                                           ),
                                           Text(
                                             productByCategoryController
@@ -148,7 +290,8 @@ class _FoodCardState extends State<FoodCard> {
                                                         index]
                                                     .price
                                                     .toString() +
-                                                ' сум',
+                                                ' ' +
+                                                'sum'.tr,
                                             style: FontStyles.semiBoldStyle(
                                               fontSize: 16,
                                               fontFamily: 'Ubuntu',
@@ -160,7 +303,9 @@ class _FoodCardState extends State<FoodCard> {
                                       SizedBox(height: 10),
                                       SizedBox(
                                         child: Text(
-                                          'Ближневосточное блюдо из мяса, обжаренного на вертеле, завёрнутого в лаваш, с добавлением специй, соусов и салата из свежих овощей. Употребляется без использования столовых приборов.',
+                                          productByCategoryController
+                                              .productByCategoryList[index]
+                                              .description,
                                           style: FontStyles.semiBoldStyle(
                                             fontSize: 12,
                                             fontFamily: 'Montserrat',
@@ -170,57 +315,61 @@ class _FoodCardState extends State<FoodCard> {
                                           overflow: TextOverflow.ellipsis,
                                         ),
                                       ),
-                                      SizedBox(height: 20),
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              SvgPicture.asset(
-                                                  'assets/icons/deliver.svg'),
-                                              SizedBox(width: 5),
-                                              Text(
-                                                'От 10 000 сум',
-                                                style: FontStyles.regularStyle(
-                                                  fontSize: 11,
-                                                  fontFamily: 'Ubuntu',
-                                                  color: Color(0xff494D6D),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Row(
-                                            children: [
-                                              SvgPicture.asset(
-                                                  'assets/icons/clock.svg'),
-                                              SizedBox(width: 5),
-                                              Text(
-                                                '10-15 мин',
-                                                style: FontStyles.regularStyle(
-                                                  fontSize: 11,
-                                                  fontFamily: 'Ubuntu',
-                                                  color: Color(0xff494D6D),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Row(
-                                            children: [
-                                              SvgPicture.asset(
-                                                'assets/icons/plus.svg',
-                                                width: 35,
-                                                height: 35,
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(height: 10),
                                     ],
                                   ),
                                 ),
+                                Spacer(),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 20, right: 20),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          SvgPicture.asset(
+                                              'assets/icons/deliver.svg'),
+                                          SizedBox(width: 5),
+                                          Text(
+                                            'От 10 000 ' + 'sum'.tr,
+                                            style: FontStyles.regularStyle(
+                                              fontSize: 11,
+                                              fontFamily: 'Ubuntu',
+                                              color: Color(0xff494D6D),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          SvgPicture.asset(
+                                              'assets/icons/clock.svg'),
+                                          SizedBox(width: 5),
+                                          Text(
+                                            '10-15 ' + 'minutes'.tr,
+                                            style: FontStyles.regularStyle(
+                                              fontSize: 11,
+                                              fontFamily: 'Ubuntu',
+                                              color: Color(0xff494D6D),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          SvgPicture.asset(
+                                            'assets/icons/plus.svg',
+                                            width: 35,
+                                            height: 35,
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(height: 10),
                               ],
                             ),
                           ),

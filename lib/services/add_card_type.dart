@@ -32,7 +32,7 @@ class AddPlasticCardType {
       print('success in  add plastic card  service ');
       print('*********');
       print(response.body);
-      Get.snackbar('ваши данные были успешно изменены', '',
+      Get.snackbar('yourDateSaved'.tr, '',
           colorText: Colors.white, backgroundColor: Color(0xff007E33));
       await PlasticCardType.fetchPlasticCardType(typeId);
 

@@ -7,7 +7,9 @@ class ProductByCategoryController extends GetxController {
   var isLoading = true.obs;
   @override
   void onInit() {
-    fetchProductByCategory(1);
+    print('this is onInit in ProductByCategory');
+
+    fetchProductByCategory(28);
     super.onInit();
   }
 

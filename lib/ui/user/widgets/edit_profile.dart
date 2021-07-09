@@ -6,6 +6,7 @@ import 'package:HAMD/constants/colors.dart';
 import 'package:HAMD/constants/fonts.dart';
 import 'package:HAMD/ui/auth/auth_screen.dart';
 import 'package:HAMD/ui/componants/header.dart';
+import 'package:HAMD/ui/landing/landing_screen.dart';
 import 'package:HAMD/ui/masks/mask_format.dart';
 import 'package:HAMD/utils/my_prefs.dart';
 import 'package:flutter/material.dart';
@@ -71,33 +72,33 @@ class _EditProfileState extends State<EditProfile> {
                       Header(
                         icon1Url: 'assets/icons/Icon-left.svg',
                         onpress1: () => g.Get.back(),
-                        title: 'Мой профиль',
+                        title: 'profileTitle'.tr,
                         icon2Url: 'assets/icons/logout.svg',
                         onpress2: () {
                           showDialog(
                               context: context,
                               builder: (context) {
                                 return AlertDialog(
-                                  content:
-                                      Text('Вы действительно хотите выйти?'),
+                                  content: Text('exiting'.tr),
                                   actions: [
                                     FlatButton(
                                       onPressed: () => g.Get.back(),
-                                      child: Text('нет'),
+                                      child: Text('no'.tr),
                                     ),
                                     FlatButton(
-                                      child: Text('да'),
+                                      child: Text('yes'.tr),
                                       onPressed: () {
                                         MyPref.clearToken();
                                         MyPref.clearSecondToken();
                                         MyPref.clearPhoneNumber();
+                                        MyPref.clearLang();
                                         print('toke after exiting');
                                         print(MyPref.token);
                                         print('second toke after exiting');
                                         print(MyPref.secondToken);
                                         print('phone number after existing');
                                         print(MyPref.phoneNumber);
-                                        g.Get.offAll(AuthScreen());
+                                        g.Get.offAll(LandingScreen());
                                       },
                                     ),
                                   ],
@@ -145,17 +146,6 @@ class _EditProfileState extends State<EditProfile> {
                                                     backgroundImage:
                                                         FileImage(_userImage),
                                                   )),
-                                        //  Container(
-                                        //     decoration: BoxDecoration(
-                                        //         shape: BoxShape.circle,
-                                        //         color: Colors.white,
-                                        //         image: DecorationImage(
-                                        //             image: Image.file(
-                                        //                     _userImage)
-                                        //                 .image,
-                                        //             fit: BoxFit.cover)),
-                                        //   ),
-
                                         Positioned(
                                           right: 25,
                                           bottom: -10,
@@ -187,7 +177,7 @@ class _EditProfileState extends State<EditProfile> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'Имя',
+                                        'name'.tr,
                                         style: FontStyles.regularStyle(
                                           fontSize: 14,
                                           fontFamily: 'Montserrat',
@@ -199,8 +189,8 @@ class _EditProfileState extends State<EditProfile> {
                                         keyboardType: TextInputType.name,
                                         decoration: InputDecoration(
                                           contentPadding:
-                                              const EdgeInsets.only(left: 15.0),
-                                          hintText: 'Введите ваше имя',
+                                              const EdgeInsets.only(left: 0.0),
+                                          hintText: 'hintName'.tr,
                                           hintStyle: FontStyles.regularStyle(
                                               fontSize: 17,
                                               fontFamily: 'Ubuntu',
@@ -222,7 +212,7 @@ class _EditProfileState extends State<EditProfile> {
                             ),
                             SizedBox(height: 35),
                             Text(
-                              'Ваш номер телефона',
+                              'yourNumber'.tr,
                               style: FontStyles.regularStyle(
                                 fontSize: 15,
                                 fontFamily: 'Montserrat',
@@ -251,6 +241,7 @@ class _EditProfileState extends State<EditProfile> {
                                   ),
                                   Flexible(
                                     child: TextFormField(
+                                      enabled: false,
                                       controller: phoneController,
                                       inputFormatters: [
                                         InputMask.maskPhoneNumber
@@ -259,7 +250,7 @@ class _EditProfileState extends State<EditProfile> {
                                       decoration: InputDecoration(
                                         contentPadding:
                                             const EdgeInsets.only(left: 15.0),
-                                        hintText: 'Введите свой номер телефона',
+                                        hintText: 'enterYourNumber'.tr,
                                         hintStyle: FontStyles.regularStyle(
                                             fontSize: 12,
                                             fontFamily: 'Ubuntu',
@@ -329,7 +320,7 @@ class _EditProfileState extends State<EditProfile> {
                                     print('okayy');
                                     g.Get.snackbar(null, null,
                                         messageText: Text(
-                                          'Ваши данные сохранены!',
+                                          'yourDateSaved'.tr,
                                           style: TextStyle(color: Colors.white),
                                         ),
                                         backgroundColor: Color(0xff007E33));
@@ -339,7 +330,7 @@ class _EditProfileState extends State<EditProfile> {
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15)),
                                 child: Text(
-                                  'СОХРАНИТЬ ИЗМЕНЕНИЯ',
+                                  'saveChanges'.tr,
                                   style: FontStyles.boldStyle(
                                       fontSize: 16,
                                       fontFamily: 'Ubuntu',

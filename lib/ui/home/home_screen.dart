@@ -16,7 +16,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int selectedCategory = 1;
+  int selectedCategory;
   final UserProfileController ppController = Get.find<UserProfileController>();
 
   final CategoryItemController categoryData =
@@ -25,8 +25,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
+    print('this is inti in homepage');
     super.initState();
-
+    selectedCategory = 28;
+    // categoryData.fetchCategories();
     _firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) async {
         print('on message $message');
@@ -38,17 +40,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         );
         Scaffold.of(context).showSnackBar(snackBar);
-        // setState(() {
-        //   _messageTitle = message['notification']['title'];
-        // });
-
-        // showInSnackBar(value: _messageTitle);
-        // showDialog(context: context, child: Text(_messageTitle));
-        // showDialog(context: context, child: Text("RECIEVED"));
       },
       onResume: (message) async {
         print('on resume $message');
-        // showDialog(context: context, child: Text("Resumed"));
       },
     );
   }
@@ -65,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
             height1: 10,
             width1: 10,
             onpress1: () => Get.to(UserScreen()),
-            title: 'Главная',
+            title: 'mainMeny',
             icon2Url: 'assets/icons/shopping-cart.svg',
             width2: 25,
             height2: 25,
@@ -90,8 +84,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
                         Column(
+                          mainAxisSize: MainAxisSize.min,
                           children: [
                             UserWelcomeItem(),
                             SizedBox(height: 20),

@@ -62,12 +62,15 @@ class _MyPageViewState extends State<MyPageView> {
                     },
                     children: [
                       PageViewItem(
-                        mytitle:
-                            'ЗАКАЖИ СВОЙ ЛЮБИМЫЙ  ЛАВАШ В HAMD ЗА ПАРУ КЛИКОВ!',
-                      ),
-                      PageViewItem(mytitle: 'ОТСЛЕЖИВАЙТЕ ВАШИ ЗАКАЗЫ ОНЛАЙН!'),
+                          mytitle:
+                              // 'ЗАКАЖИ СВОЙ ЛЮБИМЫЙ  ЛАВАШ В HAMD ЗА ПАРУ КЛИКОВ!',
+                              'landingWelcomeString1'.tr),
                       PageViewItem(
-                        mytitle: 'ПРИКРЕПЛЯЙТЕ ВАШУ КАРТУ И ПЛАТИТЕ ОНЛАЙН',
+                        mytitle: 'landingWelcomeString2'.tr,
+                        // mytitle: 'ОТСЛЕЖИВАЙТЕ ВАШИ ЗАКАЗЫ ОНЛАЙН!',
+                      ),
+                      PageViewItem(
+                        mytitle: 'landingWelcomeString3'.tr,
                       ),
                     ],
                   ),
@@ -105,8 +108,8 @@ class _MyPageViewState extends State<MyPageView> {
                               borderRadius: BorderRadius.circular(15)),
                           child: Text(
                             currentPage == 2
-                                ? 'ПЕРЕЙТИ К РЕГИСТРАЦИИ'
-                                : 'ДАЛЕЕ',
+                                ? 'authButton'.tr
+                                : 'nextButton'.tr,
                             style: FontStyles.boldStyle(
                                 fontSize: 16,
                                 fontFamily: 'Ubuntu',
@@ -127,7 +130,7 @@ class _MyPageViewState extends State<MyPageView> {
                               //       curve: Curves.ease,
                               //     ),
                               child: Text(
-                                'Пропустить' ?? '',
+                                'skipButton'.tr ?? '',
                                 style: FontStyles.boldStyle(
                                     fontSize: 16,
                                     fontFamily: 'Ubuntu',

@@ -8,6 +8,7 @@ class MyPref {
   static get code => prefs.read(SPKeys.code);
   static get secondToken => prefs.read(SPKeys.secondToken);
   static get phoneNumber => prefs.read(SPKeys.phoneNumber);
+  static get lang => prefs.read(SPKeys.lang);
 
   static set token(String value) => prefs.write(SPKeys.token, value);
   static set phoneNumber(String phoneNumber) =>
@@ -15,9 +16,11 @@ class MyPref {
   static set code(String codeValue) => prefs.write(SPKeys.code, codeValue);
   static set secondToken(String secondTokenvalue) =>
       prefs.write(SPKeys.secondToken, secondTokenvalue);
+  static set lang(String lang) => prefs.write(SPKeys.lang, lang);
 
   static clearToken() => prefs.remove(SPKeys.token);
   static clearSecondToken() => prefs.remove(SPKeys.secondToken);
   static clearCode() => prefs.remove(SPKeys.code);
   static clearPhoneNumber() => prefs.remove(SPKeys.phoneNumber);
+  static clearLang() => prefs.remove(SPKeys.lang);
 }

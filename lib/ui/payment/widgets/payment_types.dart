@@ -67,7 +67,7 @@ class _PaymentTypesState extends State<PaymentTypes> {
     var paymentTitle = [
       'UzCard',
       'Humo',
-      'Наличка',
+      'cash'.tr,
     ];
 
     return Padding(
@@ -155,7 +155,7 @@ class _PaymentTypesState extends State<PaymentTypes> {
                             Align(
                               alignment: Alignment.topLeft,
                               child: Text(
-                                'Введите номер Вашей карты',
+                                'writeCardNumber'.tr,
                                 style: FontStyles.regularStyle(
                                   fontSize: 11,
                                   fontFamily: 'Montserrat',
@@ -212,7 +212,7 @@ class _PaymentTypesState extends State<PaymentTypes> {
                                   child: Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
-                                      'Номер прикрепленного телефона',
+                                      'enteredNumber'.tr,
                                       style: FontStyles.regularStyle(
                                         fontSize: 11,
                                         fontFamily: 'Montserrat',
@@ -226,7 +226,7 @@ class _PaymentTypesState extends State<PaymentTypes> {
                                   child: Align(
                                     alignment: Alignment.topRight,
                                     child: Text(
-                                      'Дата действия',
+                                      'exprireDate'.tr,
                                       style: FontStyles.regularStyle(
                                         fontSize: 11,
                                         fontFamily: 'Montserrat',

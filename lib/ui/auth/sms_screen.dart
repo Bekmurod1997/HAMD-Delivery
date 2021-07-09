@@ -5,6 +5,7 @@ import 'package:HAMD/ui/auth/widgets/logo_item.dart';
 import 'package:HAMD/ui/auth/widgets/sms_text_item.dart';
 import 'package:HAMD/utils/my_prefs.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SmsScreen extends StatelessWidget {
   final phoneNumber = MyPref.phoneNumber;
@@ -30,8 +31,8 @@ class SmsScreen extends StatelessWidget {
                         imageUrl: 'assets/images/logo.png',
                       ),
                       SmsTextItem(
-                        myText:
-                            'Сейчас Вы получите 4-значный код верификации,мы отправили его на номер +998 *** ** ${phoneNumber.substring(14, 17)}',
+                        myText: 'smsWelcome'.tr +
+                            ' +998 *** ** ${phoneNumber.substring(14, 17)}',
                       ),
                       SizedBox(height: 40),
                       FormSms(),
@@ -43,15 +44,14 @@ class SmsScreen extends StatelessWidget {
                         const EdgeInsets.only(left: 12, right: 12, bottom: 30),
                     child: RichText(
                       text: TextSpan(
-                          text:
-                              'Регистрируясь в нашем приложении Вы полностью соглашаетесь с нашими ',
+                          text: 'buAuth'.tr,
                           style: FontStyles.regularStyle(
                               fontSize: 10,
                               fontFamily: 'Ubuntu',
                               color: Color(0xffBDBDBD)),
                           children: [
                             TextSpan(
-                              text: 'Правилами и Условиями пользования!',
+                              text: 'condtionAndRules'.tr,
                               style: FontStyles.regularStyle(
                                   fontSize: 10,
                                   fontFamily: 'Ubuntu',

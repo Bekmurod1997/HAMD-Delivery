@@ -46,7 +46,7 @@ class _BillState extends State<Bill> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Стоимость блюд',
+                    'foodPrice'.tr,
                     style: FontStyles.mediumStyle(
                       fontSize: 14,
                       fontFamily: 'Montserrat',
@@ -54,7 +54,7 @@ class _BillState extends State<Bill> {
                     ),
                   ),
                   Text(
-                    sum.toString(),
+                    sum.toString() + ' ' + 'sum'.tr,
                     style: FontStyles.mediumStyle(
                       fontSize: 14,
                       fontFamily: 'Montserrat',
@@ -74,7 +74,7 @@ class _BillState extends State<Bill> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Доставка',
+                          'deliveryPrice'.tr,
                           style: FontStyles.mediumStyle(
                             fontSize: 14,
                             fontFamily: 'Montserrat',
@@ -82,7 +82,7 @@ class _BillState extends State<Bill> {
                           ),
                         ),
                         Text(
-                          '10 000',
+                          '10 000' + ' ' + 'sum'.tr,
                           style: FontStyles.mediumStyle(
                             fontSize: 14,
                             fontFamily: 'Montserrat',
@@ -98,7 +98,7 @@ class _BillState extends State<Bill> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Итого',
+                    'totalPrice'.tr,
                     style: FontStyles.semiBoldStyle(
                       fontSize: 18,
                       fontFamily: 'Montserrat',
@@ -107,7 +107,7 @@ class _BillState extends State<Bill> {
                   ),
                   widget.sendIndex == 2
                       ? Text(
-                          sum.toString(),
+                          sum.toString() + ' ' + 'sum'.tr,
                           style: FontStyles.semiBoldStyle(
                             fontSize: 18,
                             fontFamily: 'Montserrat',
@@ -115,7 +115,7 @@ class _BillState extends State<Bill> {
                           ),
                         )
                       : Text(
-                          finalPrice.toString(),
+                          finalPrice.toString() + ' ' + 'sum'.tr,
                           style: FontStyles.semiBoldStyle(
                             fontSize: 18,
                             fontFamily: 'Montserrat',
@@ -131,11 +131,3 @@ class _BillState extends State<Bill> {
     );
   }
 }
-
-// int sum = 0;
-
-//                 for (var i = 0;
-//                     i < cartListController.allCartList.length;
-//                     i++) {
-//                   sum += cartListController.allCartList[i].totalPrice;
-//                 }

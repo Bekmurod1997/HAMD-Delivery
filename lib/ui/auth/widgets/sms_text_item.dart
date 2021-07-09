@@ -1,5 +1,6 @@
 import 'package:HAMD/constants/fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SmsTextItem extends StatelessWidget {
   final String myText;
@@ -9,7 +10,7 @@ class SmsTextItem extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(right: 10, left: 30, top: 67),
       child: Text(
-        myText,
+        myText.tr,
         style: FontStyles.regularStyle(
             fontSize: 14, fontFamily: 'Ubuntu', color: Colors.black),
       ),

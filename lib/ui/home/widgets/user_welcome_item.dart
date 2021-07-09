@@ -28,21 +28,34 @@ class UserWelcomeItem extends StatelessWidget {
                   children: [
                     RichText(
                       text: TextSpan(
-                          text: 'Добрый день, ',
+                          text: 'userWelcomeString1'.tr,
                           style: FontStyles.regularStyle(
                             fontSize: 22,
                             fontFamily: 'Montserrat',
                             color: Color(0xff222E54),
                           ),
                           children: [
-                            TextSpan(
-                              text: ppController.profileList.first.name ?? '',
-                              style: FontStyles.boldStyle(
-                                fontSize: 22,
-                                fontFamily: 'Montserrat',
-                                color: Color(0xff222E54),
-                              ),
-                            )
+                            ppController.profileList.first.name == null ||
+                                    ppController.profileList.first.name == ''
+                                ? TextSpan(
+                                    text: ' ',
+                                    style: FontStyles.boldStyle(
+                                      fontSize: 22,
+                                      fontFamily: 'Montserrat',
+                                      color: Color(0xff222E54),
+                                    ),
+                                  )
+                                : TextSpan(
+                                    text: ' ' +
+                                            ppController
+                                                .profileList.first.name ??
+                                        '',
+                                    style: FontStyles.boldStyle(
+                                      fontSize: 22,
+                                      fontFamily: 'Montserrat',
+                                      color: Color(0xff222E54),
+                                    ),
+                                  )
                           ]),
                     ),
 
@@ -51,15 +64,9 @@ class UserWelcomeItem extends StatelessWidget {
                     SizedBox(
                       height: 8,
                     ),
-                    // Text(
-                    //   'Добрый день, Дмитрий!',
-                    //   style: FontStyles.regularStyle(
-                    //       fontSize: 22,
-                    //       fontFamily: 'Montserrat',
-                    //       color: Color(0xff222E54)),
-                    // ),
+
                     Text(
-                      'Чего желаете сегодня? ',
+                      'userWelcomeString2'.tr,
                       style: FontStyles.regularStyle(
                           fontSize: 18,
                           fontFamily: 'Montserrat',

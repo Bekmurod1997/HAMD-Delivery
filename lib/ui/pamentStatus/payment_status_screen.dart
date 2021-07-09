@@ -322,7 +322,7 @@ class _PaymentStatusScreenState extends State<PaymentStatusScreen> {
             hasAction: false,
             icon1Url: 'assets/icons/drawer.svg',
             onpress1: () => Get.toNamed('/home-screen'),
-            title: 'Статус заказа',
+            title: 'orderStatus'.tr,
             // icon2Url: 'assets/icons/close.svg',
             // onpress2: () => Get.back(),
             height2: 18,
@@ -355,9 +355,10 @@ class _PaymentStatusScreenState extends State<PaymentStatusScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
+                    // SizedBox(
+                    //   height: 20,
+                    // ),
+                    Spacer(),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 38),
                       child: Column(
@@ -376,7 +377,7 @@ class _PaymentStatusScreenState extends State<PaymentStatusScreen> {
                             height: 35,
                           ),
                           Stages(
-                            bigTitle: 'Заказ принят',
+                            bigTitle: 'orderRecieved'.tr,
                             iconUrl: 'assets/icons/clock-alt.svg',
                             smallTitle:
                                 listOfAllOrdersControllers.orderList.first.date,
@@ -398,7 +399,7 @@ class _PaymentStatusScreenState extends State<PaymentStatusScreen> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15)),
                               child: Text(
-                                'на главную'.toUpperCase(),
+                                'goHomeScreen'.tr,
                                 style: FontStyles.mediumStyle(
                                   fontSize: 20,
                                   fontFamily: 'Montserrat',

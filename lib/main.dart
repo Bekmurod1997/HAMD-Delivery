@@ -16,6 +16,8 @@ import 'package:HAMD/ObxHelper/product_by_category.dart';
 import 'package:HAMD/ObxHelper/profile_controller.dart';
 import 'package:HAMD/constants/page_list.dart';
 import 'package:HAMD/locales/strings.dart';
+import 'package:HAMD/provider/category_provider.dart';
+import 'package:HAMD/splash_screen.dart';
 import 'package:HAMD/ui/home/home_screen.dart';
 import 'package:HAMD/utils/my_prefs.dart';
 
@@ -23,7 +25,10 @@ import 'package:flutter/material.dart';
 
 import 'package:get/route_manager.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
+import 'provider/all_products_provider.dart';
+import 'provider/user_info_provider.dart';
 import 'ui/landing/landing_screen.dart';
 
 import 'package:get_storage/get_storage.dart';
@@ -81,20 +86,28 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-        // accentColor: Colors.transparent.withOpacity(0),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => UserInfoProvider()),
+        ChangeNotifierProvider(create: (_) => CategoryProvider()),
+        ChangeNotifierProvider(create: (_) => AllProductsProvider()),
+      ],
+      child: GetMaterialApp(
+        title: 'Flutter Demo',
+
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          // accentColor: Colors.transparent.withOpacity(0),
+        ),
+        home: MyPref.secondToken == null ? LandingScreen() : HomeScreen(),
+        getPages: PageList.page,
+        //home: HomeScreen(),
+        translations: StringTranslations(),
+        locale: Locale("uz", "UZ"),
+        fallbackLocale: Locale("uz", "UZ"),
       ),
-      home: MyPref.secondToken == null ? LandingScreen() : HomeScreen(),
-      getPages: PageList.page,
-      //home: HomeScreen(),
-      translations: Strings(),
-      locale: Locale("uz", "UZ"),
-      fallbackLocale: Locale("uz", "UZ"),
     );
   }
 }

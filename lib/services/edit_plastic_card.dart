@@ -36,7 +36,7 @@ class EditPlasticCard {
       print(response.body);
       Get.snackbar(null, null,
           messageText: Text(
-            'Ваши данные сохранены!',
+            'yourDateSaved'.tr,
             style: TextStyle(color: Colors.white),
           ),
           backgroundColor: Color(0xff007E33));

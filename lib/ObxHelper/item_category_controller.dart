@@ -8,6 +8,7 @@ class CategoryItemController extends GetxController {
 
   @override
   void onInit() {
+    print('this is onInit in CategoryItemController');
     fetchCategories();
     super.onInit();
   }

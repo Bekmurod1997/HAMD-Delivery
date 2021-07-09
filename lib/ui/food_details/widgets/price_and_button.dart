@@ -42,7 +42,7 @@ class _PriceAndButtonState extends State<PriceAndButton> {
                 height: 6,
               ),
               Text(
-                '${widget.price} сум',
+                '${widget.price}' + 'sum'.tr,
                 style: FontStyles.regularStyle(
                   fontSize: 26,
                   fontFamily: 'Poppins',

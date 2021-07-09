@@ -18,7 +18,7 @@ class RatingAndItem extends StatelessWidget {
               ),
               SizedBox(width: 10),
               Text(
-                '4.5',
+                '5.0',
                 style: FontStyles.boldStyle(
                   fontSize: 24,
                   fontFamily: 'Poppins',

@@ -1,5 +1,6 @@
 import 'package:HAMD/constants/fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class WelcomeText extends StatelessWidget {
   final String mainText;
@@ -16,7 +17,7 @@ class WelcomeText extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            mainText,
+            mainText.tr,
             style: FontStyles.boldStyle(
               fontSize: 27,
               fontFamily: 'Ubuntu',
@@ -24,7 +25,7 @@ class WelcomeText extends StatelessWidget {
           ),
           SizedBox(height: 10),
           Text(
-            subText,
+            subText.tr,
             style: FontStyles.lightStyle(
               fontSize: 19,
               fontFamily: 'Ubuntu',

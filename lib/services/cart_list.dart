@@ -10,7 +10,10 @@ class CartList {
     final token = MyPref.secondToken ?? '';
     var response = await client.get(
       'http://hamd.loko.uz/api/cart',
-      headers: {HttpHeaders.authorizationHeader: 'Bearer $token'},
+      headers: {
+        HttpHeaders.authorizationHeader: 'Bearer $token',
+        'Content-Language': MyPref.lang,
+      },
     );
     print('all cart list');
     print(response.request);

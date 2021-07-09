@@ -1,6 +1,7 @@
 import 'package:HAMD/constants/colors.dart';
 import 'package:HAMD/constants/fonts.dart';
 import 'package:HAMD/services/code_confirm.dart';
+import 'package:HAMD/splash_screen.dart';
 import 'package:HAMD/ui/home/home_screen.dart';
 import 'package:HAMD/utils/my_prefs.dart';
 import 'package:flutter/material.dart';
@@ -18,25 +19,11 @@ class _FormSmsState extends State<FormSms> {
   void validateAndSave() async {
     final FormState form = _formKey.currentState;
     if (form.validate()) {
-      // showDialog(
-      //   context: context,
-      //   barrierDismissible: false,
-      //   builder: (context) {
-      //     return Dialog(
-      //       child: new Row(
-      //         mainAxisSize: MainAxisSize.min,
-      //         children: [
-      //           new CircularProgressIndicator(),
-      //           new Text("Loading"),
-      //         ],
-      //       ),
-      //     );
-      //   },
-      // );
-
       if (codeController.text == MyPref.code) {
         ConfirmCode.codeConfirmFunction(code: codeController.text);
         Get.offAll(HomeScreen());
+
+        // Get.offAll(HomeScreen());
       } else {
         print('hatolik');
       }
@@ -80,7 +67,7 @@ class _FormSmsState extends State<FormSms> {
 
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.only(left: 15.0),
-                        hintText: 'Введите полученный код',
+                        hintText: 'enterCode'.tr,
                         hintStyle: FontStyles.regularStyle(
                           fontSize: 12,
                           fontFamily: 'Ubuntu',
@@ -95,12 +82,12 @@ class _FormSmsState extends State<FormSms> {
                       validator: (value) {
                         if (value.isEmpty) {
                           setState(() {
-                            errorMessage = 'Поле не может быть пустым';
+                            errorMessage = 'fieldCannotBeEmpty'.tr;
                           });
                           return '';
                         } else if (value.length < 6) {
                           setState(() {
-                            errorMessage = 'Поле не может быть меньше 6 цифр';
+                            errorMessage = 'fieldCannotBeLess6'.tr;
                           });
                           return '';
                         }
@@ -132,7 +119,7 @@ class _FormSmsState extends State<FormSms> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15)),
                 child: Text(
-                  'Войти в приложение',
+                  'loginButton'.tr,
                   style: FontStyles.boldStyle(
                       fontSize: 16, fontFamily: 'Ubuntu', color: Colors.white),
                 ),

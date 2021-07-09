@@ -1,12 +1,14 @@
+import 'package:HAMD/models/code_confirm_model.dart';
 import 'package:HAMD/utils/my_prefs.dart';
 import 'package:http/http.dart' as http;
 import 'package:HAMD/models/item_category.dart';
 import 'package:HAMD/constants/api.dart';
 import 'dart:convert';
 
-class ItemCategoryConnecting {
+class ItemCategoryConnectingApi {
   static var client = http.Client();
-  static Future fetchItemCategories() async {
+
+  Future<CategoryProduct> fetchItemCategories() async {
     final languageToken = MyPref.lang ?? '';
     var response = await client.get(
       ApiUrl.productType,
@@ -22,6 +24,7 @@ class ItemCategoryConnecting {
       return jsonString;
     } else {
       print(response.reasonPhrase);
+      return CategoryProduct(data: []);
     }
   }
 }

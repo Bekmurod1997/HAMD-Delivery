@@ -36,7 +36,7 @@ class PaymentScreen extends StatelessWidget {
         children: [
           Header(
             icon1Url: 'assets/icons/Icon-left.svg',
-            title: 'Статус заказа',
+            title: 'orderStatus'.tr,
             icon2Url: 'assets/icons/close.svg',
             onpress1: () => Get.back(),
             onpress2: () => Get.back(),
@@ -76,20 +76,20 @@ class PaymentScreen extends StatelessWidget {
                                   ),
                                 )
                               : Text(
-                                  'ЗАКАЗАТЬ',
+                                  'orderButton'.tr,
                                   style: FontStyles.mediumStyle(
                                     fontSize: 20,
                                     fontFamily: 'Montserrat',
                                     color: Colors.white,
                                   ),
                                 ),
-                          onPressed: () async {
+                          onPressed: () {
                             var delivery = 12;
                             if (recievedIndex[0] == 2) {
                               delivery = 13;
                             }
                             print('this is $delivery');
-                            await orderLoaderController.onFetching();
+                            orderLoaderController.onFetching();
 
                             Order.makeOrders(
                                 address: recievedIndex[1],

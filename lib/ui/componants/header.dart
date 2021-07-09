@@ -1,6 +1,7 @@
 import 'package:HAMD/constants/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class Header extends StatelessWidget {
   final bool hasAction;
@@ -45,7 +46,7 @@ class Header extends StatelessWidget {
                   onPressed: onpress1),
             ),
             Text(
-              title,
+              title.tr,
               style: FontStyles.boldStyle(
                 fontSize: 16,
                 fontFamily: 'Montserrat',

@@ -58,7 +58,7 @@ class _FormNumberState extends State<FormNumber> {
                     width: 30,
                   ),
                   Text(
-                    'пожалуйста, подождите',
+                    'pleaseWait'.tr,
                     style: FontStyles.lightStyle(
                       fontSize: 19,
                       fontFamily: 'Ubuntu',
@@ -70,21 +70,6 @@ class _FormNumberState extends State<FormNumber> {
           ),
         ),
       );
-      // showDialog(
-      //     context: context,
-      //     barrierDismissible: false,
-      //     builder: (context) {
-      //       return Dialog(
-      //         child: new Row(
-      //           mainAxisSize: MainAxisSize.min,
-      //           children: [
-      //             new CircularProgressIndicator(
-      //               valueColor: new AlwaysStoppedAnimation<Color>(Colors.red),
-      //             ),
-      //           ],
-      //         ),
-      //       );
-      //     });
 
       SignIn.signInUser(userNumber: smsController.text, fcmToken: fcmToken);
     } else {
@@ -134,12 +119,12 @@ class _FormNumberState extends State<FormNumber> {
                     validator: (value) {
                       if (value.isEmpty) {
                         setState(() {
-                          errorMessage = 'Поле не может быть пустым';
+                          errorMessage = 'fieldCannotBeEmpty'.tr;
                         });
                         return '';
                       } else if (value.length < 17) {
                         setState(() {
-                          errorMessage = 'Поле не может быть меньше 12 цифр';
+                          errorMessage = 'fieldCannotBeLess'.tr;
                         });
                         return '';
                       }
@@ -169,7 +154,7 @@ class _FormNumberState extends State<FormNumber> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)),
               child: Text(
-                'Отправить код',
+                'sendCode'.tr,
                 style: FontStyles.boldStyle(
                     fontSize: 16, fontFamily: 'Ubuntu', color: Colors.white),
               ),

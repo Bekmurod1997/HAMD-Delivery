@@ -3,11 +3,13 @@ import 'package:HAMD/ObxHelper/favoritte.dart';
 import 'package:HAMD/ObxHelper/product_by_category.dart';
 import 'package:HAMD/constants/fonts.dart';
 import 'package:HAMD/services/add_cart_post.dart';
+import 'package:HAMD/ui/componants/appbar2.dart';
 
 import 'package:HAMD/ui/componants/my_appbar.dart';
 import 'package:HAMD/ui/food_details/widgets/item_description.dart';
 
 import 'package:HAMD/ui/food_details/widgets/rating_and_time.dart';
+import 'package:HAMD/ui/food_details/widgets/scrolling_text.dart';
 import 'package:flutter/material.dart';
 import 'package:HAMD/constants/colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -31,11 +33,14 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     var recievedIndex = ModalRoute.of(context).settings.arguments;
+    final foodDescription = productByCategoryController
+        .productByCategoryList[recievedIndex].description;
+
     print('recieved:');
     print(recievedIndex);
     return Scaffold(
       appBar: PreferredSize(
-        child: customAppBar(
+        child: customAppBar2(
           context,
           isCart: true,
           icon1Url: 'assets/icons/Icon-left.svg',
@@ -44,6 +49,14 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
           onpress1: () => Get.back(),
           title: productByCategoryController
               .productByCategoryList[recievedIndex].name,
+          // title: productByCategoryController
+          //             .productByCategoryList[recievedIndex].name.length >
+          //         16
+          //     ? productByCategoryController
+          //         .productByCategoryList[recievedIndex].name
+          //         .substring(0, 15)
+          //     : productByCategoryController
+          //         .productByCategoryList[recievedIndex].name,
           icon2Url: 'assets/icons/shopping-cart.svg',
           width2: 25,
           height2: 25,
@@ -104,7 +117,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                                     Align(
                                       alignment: Alignment.centerLeft,
                                       child: Text(
-                                        'Описание блюда',
+                                        'foodDes'.tr,
                                         style: FontStyles.mediumStyle(
                                           fontSize: 18,
                                           fontFamily: 'Poppins',
@@ -116,7 +129,10 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                                       height: 20,
                                     ),
                                     SizedBox(
-                                      child: ItemDescription(),
+                                      child: ItemDescription(
+                                        foodDes:
+                                            '${productByCategoryController.productByCategoryList[recievedIndex].description}',
+                                      ),
                                     ),
                                     SizedBox(height: 20),
                                     Spacer(),
@@ -134,7 +150,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                'Цена',
+                                                'price'.tr,
                                                 style: FontStyles.mediumStyle(
                                                   fontSize: 12,
                                                   fontFamily: 'Poppins',
@@ -145,7 +161,8 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                                                 height: 6,
                                               ),
                                               Text(
-                                                '${productByCategoryController.productByCategoryList[recievedIndex].price} сум',
+                                                '${productByCategoryController.productByCategoryList[recievedIndex].price}' +
+                                                    'sum'.tr,
                                                 style: FontStyles.regularStyle(
                                                   fontSize: 26,
                                                   fontFamily: 'Poppins',

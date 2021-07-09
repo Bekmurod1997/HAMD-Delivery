@@ -15,9 +15,9 @@ class PaymentCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Container(
-        height:
-            sendIndex == 1 ? screenSize.height * 0.26 : screenSize.height * .25,
-        width: screenSize.width,
+        // height:
+        //     sendIndex == 1 ? screenSize.height * 0.26 : screenSize.height * .25,
+        // width: screenSize.width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Colors.white,
@@ -39,7 +39,7 @@ class PaymentCard extends StatelessWidget {
                   Align(
                     alignment: Alignment.topLeft,
                     child: Text(
-                      'Детали заказа',
+                      'orderDetails'.tr,
                       style: FontStyles.mediumStyle(
                         fontSize: 17,
                         fontFamily: 'Montserrat',
@@ -52,7 +52,7 @@ class PaymentCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Стоимость блюд',
+                        'foodPrice'.tr,
                         style: FontStyles.regularStyle(
                           fontSize: 13,
                           fontFamily: 'Montserrat',
@@ -69,14 +69,14 @@ class PaymentCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  sendIndex == 1 ? Container() : SizedBox(height: 12),
+                  sendIndex == 1 ? Container() : SizedBox(height: 0),
                   sendIndex == 2
                       ? Container()
                       : Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'Доставка',
+                              'deliveryPrice'.tr,
                               style: FontStyles.regularStyle(
                                 fontSize: 13,
                                 fontFamily: 'Montserrat',
@@ -102,7 +102,7 @@ class PaymentCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Итого',
+                        'totalPrice'.tr,
                         style: FontStyles.mediumStyle(
                           fontSize: 15,
                           fontFamily: 'Montserrat',
@@ -128,6 +128,7 @@ class PaymentCard extends StatelessWidget {
                             ),
                     ],
                   ),
+                  SizedBox(height: 10),
                 ],
               );
             })),

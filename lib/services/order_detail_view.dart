@@ -10,9 +10,14 @@ class OrderDetailView {
 
   static Future fetchOrderDetailView(int id) async {
     final token = MyPref.secondToken ?? '';
+    final languageToken = MyPref.lang ?? '';
+
     var response = await client.get(
       'http://hamd.loko.uz/api/order/view?id=$id',
-      headers: {HttpHeaders.authorizationHeader: 'Bearer $token'},
+      headers: {
+        HttpHeaders.authorizationHeader: 'Bearer $token',
+        'Content-Language': MyPref.lang
+      },
     );
     print(response.request);
     if (response.statusCode == 200) {

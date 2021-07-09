@@ -2,11 +2,21 @@ import 'package:HAMD/constants/colors.dart';
 import 'package:HAMD/constants/fonts.dart';
 import 'package:HAMD/ui/landing/pageview/my_pageview.dart';
 import 'package:HAMD/ui/landing/widgets/language_choose.dart';
+import 'package:HAMD/utils/my_prefs.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
 class LandingScreen extends StatelessWidget {
+  String languageChoice;
+  final locales = [
+    {'name': 'Uzbek', 'locale': Locale('uz', 'Uz')},
+    {'name': 'Russian', 'locale': Locale('ru', 'RU')},
+  ];
+  updateLocale(Locale locale) {
+    Get.updateLocale(locale);
+  }
+
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -25,16 +35,13 @@ class LandingScreen extends StatelessWidget {
               child: Image.asset('assets/images/logo.png'),
             ),
             Padding(
-              padding: EdgeInsets.only(right: 37, left: 37, top: 67),
-              child: Text(
-                  'На каком языке Вы предпо  читаете пользоваться нашим приложением?',
-                  style: FontStyles.regularStyle(
-                      fontSize: 14, fontFamily: 'Ubuntu')),
-            ),
-            Padding(
               padding: EdgeInsets.only(top: 67),
               child: LanguageChoosing(
-                function: () => Get.to(MyPageView()),
+                function: () {
+                  MyPref.lang = 'ru';
+                  updateLocale(locales[1]['locale']);
+                  Get.to(MyPageView());
+                },
                 // function: () => Get.to(AuthScreen()),
                 iconName: 'assets/icons/russia.svg',
                 text: 'Русский язык',
@@ -44,7 +51,11 @@ class LandingScreen extends StatelessWidget {
               height: 10,
             ),
             LanguageChoosing(
-              function: () => Get.to(MyPageView()),
+              function: () {
+                MyPref.lang = 'uz';
+                updateLocale(locales[0]['locale']);
+                Get.to(MyPageView());
+              },
               // function: () => Get.to(AuthScreen()),
 
               iconName: 'assets/icons/uzbekistan.svg',

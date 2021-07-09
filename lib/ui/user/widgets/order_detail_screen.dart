@@ -172,7 +172,7 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
                                                                 .product
                                                                 .price
                                                                 .toString() +
-                                                            'сум',
+                                                            'sum'.tr,
                                                         style: FontStyles
                                                             .semiBoldStyle(
                                                           fontSize: 18,
@@ -224,7 +224,7 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
                                                   .first
                                                   .productTotalSum
                                                   .toString() +
-                                              ' сум ',
+                                              'sum'.tr,
                                           style: FontStyles.mediumStyle(
                                             fontSize: 14,
                                             fontFamily: 'Montserrat',
@@ -241,7 +241,7 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          'Доставка',
+                                          'deliveryPrice'.tr,
                                           style: FontStyles.mediumStyle(
                                             fontSize: 14,
                                             fontFamily: 'Montserrat',
@@ -249,7 +249,7 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
                                           ),
                                         ),
                                         Text(
-                                          '10 000 сум ',
+                                          '10 000' + 'sum'.tr,
                                           style: FontStyles.mediumStyle(
                                             fontSize: 14,
                                             fontFamily: 'Montserrat',
@@ -279,7 +279,7 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
                                                   .first
                                                   .productTotalSum
                                                   .toString() +
-                                              ' сум ',
+                                              'sum'.tr,
                                           style: FontStyles.semiBoldStyle(
                                             fontSize: 18,
                                             fontFamily: 'Montserrat',

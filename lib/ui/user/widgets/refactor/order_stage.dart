@@ -35,7 +35,7 @@ class _OrderStageScreenState extends State<OrderStageScreen> {
             hasAction: false,
             icon1Url: 'assets/icons/Icon-left.svg',
             onpress1: () => Get.back(),
-            title: 'Статус заказа',
+            title: 'orderStatus',
             // icon2Url: 'assets/icons/pencil.svg',
             // onpress2: () => Get.to(EditProfile()),
             height2: 18,
@@ -55,7 +55,7 @@ class _OrderStageScreenState extends State<OrderStageScreen> {
                 } else {
                   return orderDetailViewController
                           .orderDetailViewList.first.orderProducts.isNotEmpty
-                      ? ListView(
+                      ? Column(
                           children: [
                             Center(
                               child: Container(
@@ -105,20 +105,45 @@ class _OrderStageScreenState extends State<OrderStageScreen> {
                                     height: 35,
                                   ),
                                   Stages(
-                                    bigTitle: 'Заказ принят',
+                                    bigTitle: 'orderAccepted'.tr,
                                     iconUrl: 'assets/icons/clock-alt.svg',
+                                    smallTitle: orderDetailViewController
+                                        .orderDetailViewList.first.date
+                                        .toString(),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.symmetric(vertical: 5),
+                                    width: 30.0,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: List.generate(
+                                        4,
+                                        (index) => Container(
+                                          height: 8,
+                                          width: 2,
+                                          color: Color(0xffFB6A43),
+                                          margin: EdgeInsets.only(
+                                              bottom: 2, left: 20, top: 2),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Stages(
+                                    bigTitle: 'cooking'.tr,
+                                    iconUrl: 'assets/icons/flag.svg',
                                     smallTitle: orderDetailViewController
                                         .orderDetailViewList.first.date
                                         .toString(),
                                   ),
                                   orderDetailViewController.orderDetailViewList
                                                   .first.status ==
-                                              1 ||
+                                              2 ||
                                           orderDetailViewController
                                                   .orderDetailViewList
                                                   .first
                                                   .status ==
-                                              2
+                                              3
                                       ? Container(
                                           margin:
                                               EdgeInsets.symmetric(vertical: 5),
@@ -143,50 +168,14 @@ class _OrderStageScreenState extends State<OrderStageScreen> {
                                       : Container(),
                                   orderDetailViewController.orderDetailViewList
                                                   .first.status ==
-                                              1 ||
+                                              2 ||
                                           orderDetailViewController
                                                   .orderDetailViewList
                                                   .first
                                                   .status ==
-                                              2
+                                              3
                                       ? Stages(
-                                          bigTitle: 'В процессе',
-                                          iconUrl: 'assets/icons/flag.svg',
-                                          smallTitle: orderDetailViewController
-                                              .orderDetailViewList.first.date
-                                              .toString(),
-                                        )
-                                      : Container(),
-                                  orderDetailViewController.orderDetailViewList
-                                              .first.status ==
-                                          2
-                                      ? Container(
-                                          margin:
-                                              EdgeInsets.symmetric(vertical: 5),
-                                          width: 30.0,
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: List.generate(
-                                              4,
-                                              (index) => Container(
-                                                height: 8,
-                                                width: 2,
-                                                color: Color(0xffFB6A43),
-                                                margin: EdgeInsets.only(
-                                                    bottom: 2,
-                                                    left: 20,
-                                                    top: 2),
-                                              ),
-                                            ),
-                                          ),
-                                        )
-                                      : Container(),
-                                  orderDetailViewController.orderDetailViewList
-                                              .first.status ==
-                                          2
-                                      ? Stages(
-                                          bigTitle: 'Передан на доставку',
+                                          bigTitle: 'givenToDriver'.tr,
                                           iconUrl:
                                               'assets/icons/deliver-alt.svg',
                                           smallTitle: orderDetailViewController
@@ -198,33 +187,33 @@ class _OrderStageScreenState extends State<OrderStageScreen> {
                                     height: 55,
                                   ),
                                   SizedBox(
-                                    width: MediaQuery.of(context).size.width *
-                                        0.86,
-                                    height: 63,
-                                    child: RaisedButton(
-                                      elevation: 0,
-                                      color: Color(0xff9F111B),
-                                      onPressed: () => Get.to(HomeScreen()),
-                                      // onPressed: () => _showSnackBar(context),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(15)),
-                                      child: Text(
-                                        'на главную'.toUpperCase(),
-                                        style: FontStyles.mediumStyle(
-                                          fontSize: 20,
-                                          fontFamily: 'Montserrat',
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
                                     height: 40,
                                   ),
                                 ],
                               ),
                             ),
+                            Spacer(),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.86,
+                              height: 63,
+                              child: RaisedButton(
+                                elevation: 0,
+                                color: Color(0xff9F111B),
+                                onPressed: () => Get.to(HomeScreen()),
+                                // onPressed: () => _showSnackBar(context),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15)),
+                                child: Text(
+                                  'goHomeScreen'.tr.toUpperCase(),
+                                  style: FontStyles.mediumStyle(
+                                    fontSize: 20,
+                                    fontFamily: 'Montserrat',
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 26)
                           ],
                         )
                       : Text('pustoy');

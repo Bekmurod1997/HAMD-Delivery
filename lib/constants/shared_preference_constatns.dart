@@ -4,4 +4,5 @@ abstract class SPKeys {
 
   static const String secondToken = 'secondToken';
   static const String phoneNumber = 'phoneNumber';
+  static const String lang = 'lang';
 }

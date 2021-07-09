@@ -1,12 +1,13 @@
 import 'package:HAMD/ObxHelper/cart_list_controller.dart';
 import 'package:HAMD/constants/colors.dart';
 import 'package:HAMD/constants/fonts.dart';
+import 'package:HAMD/ui/food_details/widgets/scrolling_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 final CartListController cartListController = Get.find<CartListController>();
-AppBar customAppBar(
+AppBar customAppBar2(
   BuildContext context, {
   String icon1Url,
   final bool isCart,
@@ -45,14 +46,8 @@ AppBar customAppBar(
                   ),
                   onPressed: onpress1),
             ),
-            Text(
-              title.tr,
-              style: FontStyles.boldStyle(
-                fontSize: 16,
-                fontFamily: 'Montserrat',
-                color: Color(0xff222E54),
-              ),
-            ),
+            Container(
+                height: 100, width: 200, child: ScrollingText(text: title)),
             isCart
                 ? Container(
                     width: 50,

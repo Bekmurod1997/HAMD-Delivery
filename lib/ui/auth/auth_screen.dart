@@ -6,6 +6,7 @@ import 'package:HAMD/ui/auth/widgets/form_number.dart';
 import 'package:HAMD/ui/auth/widgets/welcome_text.dart';
 import 'package:flutter/material.dart';
 import 'widgets/logo_item.dart';
+import 'package:get/get.dart';
 
 class AuthScreen extends StatelessWidget {
   @override
@@ -29,8 +30,10 @@ class AuthScreen extends StatelessWidget {
                       imageUrl: 'assets/images/logo.png',
                     ),
                     WelcomeText(
-                      mainText: 'Добро пожаловать',
-                      subText: 'Пожалуйста, авторизуйтесь',
+                      mainText: 'welcome',
+                      // mainText: 'Добро пожаловать',
+                      subText: 'pleaseAuth',
+                      // subText: 'Пожалуйста, авторизуйтесь',
                     ),
                     SizedBox(height: 40),
                     FormNumber(),
@@ -42,15 +45,14 @@ class AuthScreen extends StatelessWidget {
                       const EdgeInsets.only(left: 12, right: 12, bottom: 30),
                   child: RichText(
                     text: TextSpan(
-                        text:
-                            'Регистрируясь в нашем приложении Вы полностью соглашаетесь с нашими ',
+                        text: 'buAuth'.tr,
                         style: FontStyles.regularStyle(
                             fontSize: 10,
                             fontFamily: 'Ubuntu',
                             color: Color(0xffBDBDBD)),
                         children: [
                           TextSpan(
-                            text: 'Правилами и Условиями пользования!',
+                            text: 'condtionAndRules'.tr,
                             style: FontStyles.regularStyle(
                                 fontSize: 10,
                                 fontFamily: 'Ubuntu',

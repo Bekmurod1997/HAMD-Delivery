@@ -67,7 +67,7 @@ class _AddressFieldState extends State<AddressField> {
     var paymentTitle = [
       'UzCard',
       'Humo',
-      'Наличка',
+      'cash'.tr,
     ];
     return Padding(
       padding: const EdgeInsets.only(left: 24, right: 28),
@@ -132,7 +132,7 @@ class _AddressFieldState extends State<AddressField> {
             Align(
               alignment: Alignment.topLeft,
               child: Text(
-                'Метод оплаты',
+                'paymentTypes'.tr,
                 style: FontStyles.mediumStyle(
                   fontSize: 21,
                   fontFamily: 'Montserrat',
@@ -216,7 +216,7 @@ class _AddressFieldState extends State<AddressField> {
                       Align(
                         alignment: Alignment.topLeft,
                         child: Text(
-                          'Введите номер Вашей карты',
+                          'writeCardNumber'.tr,
                           style: FontStyles.regularStyle(
                             fontSize: 11,
                             fontFamily: 'Montserrat',
@@ -270,7 +270,7 @@ class _AddressFieldState extends State<AddressField> {
                             child: Align(
                               alignment: Alignment.topLeft,
                               child: Text(
-                                'Номер прикрепленного телефона',
+                                'enteredNumber'.tr,
                                 style: FontStyles.regularStyle(
                                   fontSize: 11,
                                   fontFamily: 'Montserrat',
@@ -284,7 +284,7 @@ class _AddressFieldState extends State<AddressField> {
                             child: Align(
                               alignment: Alignment.topRight,
                               child: Text(
-                                'Дата действия',
+                                'exprireDate'.tr,
                                 style: FontStyles.regularStyle(
                                   fontSize: 11,
                                   fontFamily: 'Montserrat',
@@ -347,7 +347,7 @@ class _AddressFieldState extends State<AddressField> {
                                   : dateHumoController,
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
-                                hintText: '00/00',
+                                hintText: '.. / ..',
                                 hintStyle: FontStyles.regularStyle(
                                   fontSize: 16,
                                   fontFamily: 'Ubuntu',

@@ -8,6 +8,8 @@ class CartListController extends GetxController {
 
   @override
   void onInit() {
+    print('this is onInit in CartListController');
+
     fetchAllCartList();
     super.onInit();
   }

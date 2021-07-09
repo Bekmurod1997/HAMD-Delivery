@@ -20,6 +20,16 @@ class _CategoryButtonsState extends State<CategoryButtons> {
   final ProductByCategoryController productByCategoryController =
       Get.find<ProductByCategoryController>();
   int buttonIndex = 0;
+  @override
+  void initState() {
+    print('this is inti in category button');
+
+    // categoryData.fetchCategories();
+    // productByCategoryController.fetchProductByCategory(widget.selectedCategory);
+    print('this is in category button screen');
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +40,7 @@ class _CategoryButtonsState extends State<CategoryButtons> {
           child: Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              'Наше меню',
+              'ourMenu'.tr,
               style: FontStyles.mediumStyle(
                 fontSize: 18,
                 fontFamily: 'Poppins', //looked really strange with this style
